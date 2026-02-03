@@ -1,0 +1,20 @@
+services:
+  db:
+    image: alpine
+    volumes:
+      - sqlite_data:/data
+    command: tail -f /dev/null
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/app
+      - sqlite_data:/app/db_folder
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+volumes:
+  sqlite_data:

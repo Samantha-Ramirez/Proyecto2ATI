@@ -1,0 +1,20 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Django
+*.log
+db.sqlite3
+db.sqlite3-journal
+
+# Variables de entorno
+.env
+
+# Docker (No queremos subir la base de datos local de tu PC)
+.docker_data/
+sqlite_data/
+
+# IDEs
+.vscode/
+.idea/
