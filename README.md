@@ -52,19 +52,6 @@ El proyecto está contenerizado para garantizar que funcione correctamente en cu
 
 ---
 
-## ⚙️ Flujo de Trabajo (Workflow)
-
-Para mantener el orden en el desarrollo, utilizamos la siguiente estrategia de ramas:
-
-1.  **`main`**: Rama de producción (estable). No se trabaja aquí directamente.
-2.  **`dev`**: Rama de integración. Aquí se fusionan los avances para pruebas.
-3.  **Ramas de trabajo:**
-    Para cada nueva tarea o corrección, se crea una rama temporal desde `dev` con un nombre descriptivo breve.
-    *   **Formato:** `nombre-de-la-tarea`
-    *   *Ejemplos:* `crear-login`, `ajuste-navbar`, `modelo-oferta`.
-
----
-
 ## 👥 Equipo de Desarrollo (Dev Team)
 
 Proyecto realizado para la asignatura "Aplicaciones con Tecnología Internet" (Semestre 2025-2, UCV).
