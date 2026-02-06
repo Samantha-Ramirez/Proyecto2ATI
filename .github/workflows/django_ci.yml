@@ -1,0 +1,50 @@
+name: Django CI & Docker Build
+
+# Se activa en PUSH a cualquier rama (para que vean si rompieron algo mientras programan)
+# Y en PULL REQUEST hacia main
+on:
+  push:
+    branches: ['**']  # Ejecutar en cualquier rama (feature/..., fix/..., etc)
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  # TRABAJO 1: Validación de Código Django
+  test-django:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout del código
+      uses: actions/checkout@v4
+
+    - name: Configurar Python 3.11
+      uses: actions/setup-python@v5
+      with:
+        python-version: '3.11'
+
+    - name: Instalar Dependencias
+      run: |
+        python -m pip install --upgrade pip
+        pip install -r requirements.txt
+
+    - name: Verificar Integridad de Django (Check)
+      # Este comando revisa si hay errores de configuración o sintaxis sin correr el server
+      run: |
+        python manage.py check
+
+    - name: Ejecutar Pruebas (Tests)
+      # Aunque no hay ni una sola prueba unitaria, sirve para verificar que el proyecto no está roto
+      run: |
+        python manage.py test
+
+  # TRABAJO 2: Verificar Build de Docker
+  build-docker:
+    needs: test-django # Si Django falla, no intenta construir Docker
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout del código
+      uses: actions/checkout@v4
+
+    - name: Construir imagen de Docker
+      # Verifica que el Dockerfile copie bien el requirements.txt y construya sin error
+      run: docker build . --file Dockerfile
