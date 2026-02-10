@@ -1,9 +1,10 @@
-FROM python:3.11-slim
+# Fix: subimos a la versión 3.12 de Python
+FROM python:3.12-slim
 
 ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
 
-ENV PATH="/home/user/.local/bin:${PATH}"
+ENV PATH="/root/.local/bin:$PATH"
 
 WORKDIR /app
 
