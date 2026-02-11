@@ -1,7 +1,6 @@
 name: Django CI & Docker Build
 
-# Se activa en PUSH a cualquier rama (para que vean si rompieron algo mientras programan)
-# Y en PULL REQUEST hacia main
+# Se activa en PUSH a cualquier rama y en PULL REQUEST hacia main
 on:
   push:
     branches: ['**']  # Ejecutar en cualquier rama (feature/..., fix/..., etc)
@@ -28,7 +27,7 @@ jobs:
         pip install -r requirements.txt
 
     - name: Verificar Integridad de Django (Check)
-      # Este comando revisa si hay errores de configuración o sintaxis sin correr el server
+      # Revisa si hay errores de configuración o sintaxis sin correr el server
       run: |
         python manage.py check
 
