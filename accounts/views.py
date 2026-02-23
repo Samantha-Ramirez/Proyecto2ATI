@@ -11,7 +11,11 @@ def register(request):
 
 
 def profile(request):
-    return render(request, 'profile.html')
+    return render(request, 'profile.html', {
+        'page_title': _('Perfil'),
+        'show_bottom_nav': True,
+        'desktop_search': True,
+    })
 
 
 def manage_profile(request):
