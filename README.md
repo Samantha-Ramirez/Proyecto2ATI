@@ -10,14 +10,16 @@ LinkedOut es una plataforma diseñada para centralizar las oportunidades laboral
 
 **Más que una bolsa de trabajo:**
 A diferencia de un portal de empleos tradicional, LinkedOut es una **red social completa** que fomenta la interacción profesional. Además de postularse a vacantes, la plataforma permite:
-*   **Socializar:** Publicar contenido en un muro y comentar publicaciones.
-*   **Conectar:** Seguir a otros profesionales y empresas.
-*   **Comunicar:** Interactuar mediante un chat privado.
+
+- **Socializar:** Publicar contenido en un muro y comentar publicaciones.
+- **Conectar:** Seguir a otros profesionales y empresas.
+- **Comunicar:** Interactuar mediante un chat privado.
 
 ### Objetivos de Negocio
-*   Centralizar las oportunidades laborales del sector.
-*   Atraer profesionales interesados en empleos.
-*   Impulsar la empleabilidad de la comunidad.
+
+- Centralizar las oportunidades laborales del sector.
+- Atraer profesionales interesados en empleos.
+- Impulsar la empleabilidad de la comunidad.
 
 ---
 
@@ -28,60 +30,70 @@ A diferencia de un portal de empleos tradicional, LinkedOut es una **red social 
 El sistema se basa en el patrón **MVT (Model-View-Template)**. A continuación se presentan los artefactos que modelan la estructura y el comportamiento de LinkedOut.
 
 ### 🧩 Modelo de Dominio (DOM)
+
 Este diagrama representa las entidades principales del sistema y cómo se relacionan entre sí (Usuarios, Perfiles, Publicaciones, Ofertas, Chat, etc.).
-![Modelo de Dominio](./docs/Modelo_de_dominio.svg)
+![Modelo de Dominio](./docs/domain_model.png)
 
 ### ⚙️ Diagrama de Casos de Uso
+
 Representa las interacciones entre los Actores (Profesional, Empresa, Administrador) y las funcionalidades del sistema.
-![Diagrama de Casos de Uso](./docs/casos_de_uso.svg)
+![Diagrama de Casos de Uso](./docs/use_case_diagram.png)
 
 ### Diagrama de Despliegue
+
 Este diagrama describe la infraestructura física y cómo se distribuyen los componentes (Docker, Django, SQLite).
-![Diagrama de Despliegue](./docs/Diagrama_de_despliegue.svg)
+![Diagrama de Despliegue](./docs/deployment_diagram.png)
 
 ### Diagrama de Paquetes
+
 Muestra la organización lógica de los módulos del sistema (Autenticación, Perfiles, Ofertas, Chat).
-![Diagrama de Paquetes](./docs/Diagrama_de_paquetes.png)
+![Diagrama de Paquetes](./docs/package_diagram.png)
 
 ---
 
 ## 🎨 Diseño UI (Wireframes)
-El diseño ha sido concebido bajo un enfoque *Mobile-First* y adaptado para escritorio.
 
-| Vista Desktop | Vista Mobile |
-| :--- | :--- |
-| ![Desktop Placeholder](./docs/desktop.png) | ![Mobile Placeholder](./docs/mobile.png) |
-| *Ver [Wireframes Desktop](./docs/Desktop_Wireframes.pdf)* | *Ver [Wireframes Mobile](./docs/Mobile_Wireframes.pdf)* |
+El diseño ha sido concebido bajo un enfoque _Mobile-First_ y adaptado para escritorio.
+
+| Vista Desktop                                             | Vista Mobile                                            |
+| :-------------------------------------------------------- | :------------------------------------------------------ |
+| _Ver [Wireframes Desktop](./docs/desktop_wireframes.pdf)_ | _Ver [Wireframes Mobile](./docs/mobile_Wireframes.pdf)_ |
 
 ---
 
 ## 🛠️ Stack Tecnológico
-* **Lenguaje:** Python 3.x
-* **Framework:** Django 6.0.1
-* **Base de Datos:** SQLite
-* **Infraestructura:** Docker & Docker Compose
-* **Diseño:** Figma
-* **Control de Versiones:** Git
+
+- **Lenguaje:** Python 3.x
+- **Framework:** Django 6.0.1
+- **Base de Datos:** SQLite
+- **Infraestructura:** Docker & Docker Compose
+- **Diseño:** Figma
+- **Control de Versiones:** Git
 
 ---
 
 ## 📜 Políticas de Control de Versiones
+
 Para garantizar la estabilidad del proyecto, seguimos estas normas estrictas:
 
 ### 1. Estrategia de Ramas
-* **main:** Rama de producción. Solo recibe código mediante Pull Requests (PR) aprobados.
-* **Features:** `feature/UC[Numero]-[Descripcion]` (Ej: `feature/UC3-publicar-oferta`).
-* **Bugs:** `fix/[Descripcion]` (Ej: `fix/error-login`).
+
+- **main:** Rama de producción. Solo recibe código mediante Pull Requests (PR) aprobados.
+- **Features:** `feature/UC[Numero]-[Descripcion]` (Ej: `feature/UC3-publicar-oferta`).
+- **Bugs:** `fix/[Descripcion]` (Ej: `fix/error-login`).
 
 ### 2. Convención de Commits
-Formato: `[Prefijo] add/fix/update: [Descripción]`
-* `UC[Nro] add:` Para nuevas funcionalidades.
-* `RNF[Nro] fix:` Para ajustes de requerimientos no funcionales.
-* `DOC update:` Para cambios en documentación.
+
+Formato: `add/fix/update: [Descripción]`
+
+- `add:` Para nuevas funcionalidades.
+- `fix:` Para ajustes de requerimientos no funcionales.
+- `update:` Para cambios en documentación.
 
 ### 3. Flujo de Integración (CI/CD)
-* **Pipeline:** Cada *push* dispara un pipeline en GitHub Actions que valida la estructura de Django y el build de Docker.
-* **Merge:** Es obligatorio que el pipeline esté en **verde** y el PR sea revisado antes de unir a `main`.
+
+- **Pipeline:** Cada _push_ dispara un pipeline en GitHub Actions que valida la estructura de Django y el build de Docker.
+- **Merge:** Es obligatorio que el pipeline esté en **verde** y el PR sea revisado antes de unir a `main`.
 
 ---
 
@@ -90,12 +102,14 @@ Formato: `[Prefijo] add/fix/update: [Descripción]`
 El proyecto está contenerizado para garantizar que funcione correctamente en cualquier equipo.
 
 1.  **Clonar el repositorio:**
+
     ```bash
     git clone https://github.com/Samantha-Ramirez/Proyecto2ATI.git
     ```
 
 2.  **Iniciar la aplicación:**
     Ejecuta el siguiente comando en la terminal (donde está el archivo `docker-compose.yml`):
+
     ```bash
     docker-compose up -d
     ```
@@ -103,7 +117,7 @@ El proyecto está contenerizado para garantizar que funcione correctamente en cu
 3.  **Acceder:**
     Abre tu navegador en: [http://localhost:8000](http://localhost:8000)
 
-*(Para detener el servidor, usa: `docker-compose down`)*
+_(Para detener el servidor, usa: `docker-compose down`)_
 
 ---
 
@@ -112,14 +126,16 @@ El proyecto está contenerizado para garantizar que funcione correctamente en cu
 Proyecto realizado para la asignatura "Aplicaciones con Tecnología Internet" (Semestre 2025-2, UCV).
 
 **Stakeholders:**
-*   **Maria Herrero** - CEO
-*   **Sofía Marcano** - Product Owner
+
+- **Maria Herrero** - CEO
+- **Sofía Marcano** - Product Owner
 
 **Developers:**
-*   **Samantha Ramírez** - Scrum Master
-*   **Gustavo Berne** - UI/UX Developer
-*   **Luisdavid Colina** - Developer
-*   **José Campos** - Developer
-*   **Gabriel Padilla** - Developer
 
---------------------------------------------------------------------------------
+- **Samantha Ramírez** - Scrum Master
+- **Gustavo Berne** - UI/UX Developer
+- **Luisdavid Colina** - Developer
+- **José Campos** - Developer
+- **Gabriel Padilla** - Developer
+
+---
