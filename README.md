@@ -54,10 +54,8 @@ Muestra la organización lógica de los módulos del sistema (Autenticación, Pe
 ## 🎨 Diseño UI (Wireframes)
 
 El diseño ha sido concebido bajo un enfoque _Mobile-First_ y adaptado para escritorio.
-
-| Vista Desktop                                             | Vista Mobile                                            |
-| :-------------------------------------------------------- | :------------------------------------------------------ |
-| _Ver [Wireframes Desktop](./docs/desktop_wireframes.pdf)_ | _Ver [Wireframes Mobile](./docs/mobile_Wireframes.pdf)_ |
+![Wireframes Desktop](https://www.figma.com/design/InsltnGkXWAljm4XlRxcQP/Proyecto-LinkedOut-ATI?node-id=0-1&t=8g4amMnfq4OOVSJw-1)
+![Wireframes Mobile](https://www.figma.com/design/InsltnGkXWAljm4XlRxcQP/Proyecto-LinkedOut-ATI?node-id=0-1&t=8g4amMnfq4OOVSJw-1)
 
 ---
 
