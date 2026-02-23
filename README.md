@@ -2,6 +2,8 @@
 
 **Visión:** Red social que te conecta con el mundo empresarial.
 
+---
+
 ## 📄 Descripción del Proyecto
 
 LinkedOut es una plataforma diseñada para centralizar las oportunidades laborales del sector, conectando a **Profesionales** con **Empresas**.
@@ -19,14 +21,67 @@ A diferencia de un portal de empleos tradicional, LinkedOut es una **red social 
 
 ---
 
-## 💻 Tecnologías Utilizadas
+---
 
-El proyecto utiliza el siguiente stack tecnológico:
-*   **Lenguaje:** Python 3.x
-*   **Framework:** Django 6.0.1
-*   **Base de Datos:** SQLite
-*   **Infraestructura:** Docker & Docker Compose
-*   **Control de Versiones:** Git
+## 🏗️ Arquitectura y Diseño Técnico
+
+El sistema se basa en el patrón **MVT (Model-View-Template)**. A continuación se presentan los artefactos que modelan la estructura y el comportamiento de LinkedOut.
+
+### 🧩 Modelo de Dominio (DOM)
+Este diagrama representa las entidades principales del sistema y cómo se relacionan entre sí (Usuarios, Perfiles, Publicaciones, Ofertas, Chat, etc.).
+![Modelo de Dominio](./docs/Modelo_de_dominio.svg)
+
+### ⚙️ Diagrama de Casos de Uso
+Representa las interacciones entre los Actores (Profesional, Empresa, Administrador) y las funcionalidades del sistema.
+![Diagrama de Casos de Uso](./docs/casos_de_uso.svg)
+
+### Diagrama de Despliegue
+Este diagrama describe la infraestructura física y cómo se distribuyen los componentes (Docker, Django, SQLite).
+![Diagrama de Despliegue](./docs/Diagrama_de_despliegue.svg)
+
+### Diagrama de Paquetes
+Muestra la organización lógica de los módulos del sistema (Autenticación, Perfiles, Ofertas, Chat).
+![Diagrama de Paquetes](./docs/Diagrama_de_paquetes.png)
+
+---
+
+## 🎨 Diseño UI (Wireframes)
+El diseño ha sido concebido bajo un enfoque *Mobile-First* y adaptado para escritorio.
+
+| Vista Desktop | Vista Mobile |
+| :--- | :--- |
+| ![Desktop Placeholder](./docs/desktop.png) | ![Mobile Placeholder](./docs/mobile.png) |
+| *Ver [Wireframes Desktop](./docs/Desktop_Wireframes.pdf)* | *Ver [Wireframes Mobile](./docs/Mobile_Wireframes.pdf)* |
+
+---
+
+## 🛠️ Stack Tecnológico
+* **Lenguaje:** Python 3.x
+* **Framework:** Django 6.0.1
+* **Base de Datos:** SQLite
+* **Infraestructura:** Docker & Docker Compose
+* **Diseño:** Figma
+* **Control de Versiones:** Git
+
+---
+
+## 📜 Políticas de Control de Versiones
+Para garantizar la estabilidad del proyecto, seguimos estas normas estrictas:
+
+### 1. Estrategia de Ramas
+* **main:** Rama de producción. Solo recibe código mediante Pull Requests (PR) aprobados.
+* **Features:** `feature/UC[Numero]-[Descripcion]` (Ej: `feature/UC3-publicar-oferta`).
+* **Bugs:** `fix/[Descripcion]` (Ej: `fix/error-login`).
+
+### 2. Convención de Commits
+Formato: `[Prefijo] add/fix/update: [Descripción]`
+* `UC[Nro] add:` Para nuevas funcionalidades.
+* `RNF[Nro] fix:` Para ajustes de requerimientos no funcionales.
+* `DOC update:` Para cambios en documentación.
+
+### 3. Flujo de Integración (CI/CD)
+* **Pipeline:** Cada *push* dispara un pipeline en GitHub Actions que valida la estructura de Django y el build de Docker.
+* **Merge:** Es obligatorio que el pipeline esté en **verde** y el PR sea revisado antes de unir a `main`.
 
 ---
 
