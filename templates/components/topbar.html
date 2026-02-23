@@ -1,28 +1,29 @@
-<header class="topbar">
-    <div class="topbar-left">
+{% load i18n %}
+<header class="bg-linkedout-orange text-white min-h-[72px] px-5 py-3 flex items-center justify-between gap-3">
+    <div class="flex items-center gap-3 min-w-0">
         {% if back_button %}
-            <button class="icon-button" type="button" aria-label="Volver">←</button>
+            <button class="text-3xl leading-none" type="button" aria-label="{% trans 'Volver' %}">←</button>
         {% endif %}
-        <h1>{{ topbar_title|default:"LinkedOut" }}</h1>
+        <h1 class="text-2xl lg:text-4xl font-bold truncate">{{ topbar_title|default:'LinkedOut' }}</h1>
     </div>
 
     {% if desktop_search %}
-        <form class="search-box desktop-only" role="search">
+        <form class="hidden lg:flex items-center gap-2 bg-white/20 rounded-md px-3 py-2 w-[380px]" role="search">
             <span>🔍</span>
-            <input type="search" placeholder="Buscar">
+            <input class="w-full bg-transparent outline-none" type="search" placeholder="{% trans 'Buscar' %}">
         </form>
     {% endif %}
 
     {% if show_search %}
-        <form class="search-box mobile-search" role="search">
+        <form class="flex items-center gap-2 bg-white/20 rounded-md px-3 py-2" role="search">
             <span>🔍</span>
-            <input type="search" placeholder="Buscar Mensaje">
+            <input class="w-full bg-transparent outline-none" type="search" placeholder="{% trans 'Buscar Mensaje' %}">
         </form>
     {% endif %}
 
     {% if show_menu %}
-        <button class="icon-button" type="button" aria-label="Opciones">⋮</button>
+        <button class="text-3xl leading-none" type="button" aria-label="{% trans 'Opciones' %}">⋮</button>
     {% endif %}
 
-    <div class="profile-dot desktop-only">◯</div>
+    <div class="hidden lg:block text-4xl" aria-hidden="true">◯</div>
 </header>

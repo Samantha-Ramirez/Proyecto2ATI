@@ -1,8 +1,9 @@
 from django.shortcuts import render
+from django.utils.translation import gettext_lazy as _
 
 
 def login(request):
-    return render(request, 'login.html')
+    return render(request, 'login.html.html')
 
 
 def register(request):
@@ -10,15 +11,7 @@ def register(request):
 
 
 def profile(request):
-    return render(
-        request,
-        'profile.html',
-        {
-            'page_title': 'Perfil',
-            'show_bottom_nav': True,
-            'desktop_search': True,
-        },
-    )
+    return render(request, 'profile.html')
 
 
 def manage_profile(request):
