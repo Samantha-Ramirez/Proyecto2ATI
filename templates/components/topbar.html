@@ -1,0 +1,28 @@
+<header class="topbar">
+    <div class="topbar-left">
+        {% if back_button %}
+            <button class="icon-button" type="button" aria-label="Volver">←</button>
+        {% endif %}
+        <h1>{{ topbar_title|default:"LinkedOut" }}</h1>
+    </div>
+
+    {% if desktop_search %}
+        <form class="search-box desktop-only" role="search">
+            <span>🔍</span>
+            <input type="search" placeholder="Buscar">
+        </form>
+    {% endif %}
+
+    {% if show_search %}
+        <form class="search-box mobile-search" role="search">
+            <span>🔍</span>
+            <input type="search" placeholder="Buscar Mensaje">
+        </form>
+    {% endif %}
+
+    {% if show_menu %}
+        <button class="icon-button" type="button" aria-label="Opciones">⋮</button>
+    {% endif %}
+
+    <div class="profile-dot desktop-only">◯</div>
+</header>

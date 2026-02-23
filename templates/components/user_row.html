@@ -1,0 +1,10 @@
+<article class="user-row {{ row_class|default:'' }}">
+    <div class="avatar"></div>
+    <div class="user-main">
+        <h3>{{ name }}</h3>
+        {% if subtitle %}<p>{{ subtitle }}</p>{% endif %}
+    </div>
+    {% if status %}
+        <span class="status-pill">{{ status }}</span>
+    {% endif %}
+</article>

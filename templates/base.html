@@ -1,0 +1,38 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}LinkedOut{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+    <link rel="stylesheet" href="{% static 'css/mobile.css' %}">
+    <link rel="stylesheet" href="{% static 'css/desktop.css' %}">
+</head>
+<body class="{% block body_class %}{% endblock %}">
+<div class="app-shell">
+    {% block desktop_sidebar %}
+        {% if not auth_layout %}
+            {% include 'components/sidebar.html' %}
+        {% endif %}
+    {% endblock %}
+
+    <div class="app-main">
+        {% block topbar %}
+            {% include 'components/topbar.html' with topbar_title=page_title back_button=show_back show_search=show_search_menu show_menu=show_menu desktop_search=desktop_search %}
+        {% endblock %}
+
+        <main class="page-content">
+            {% block content %}{% endblock %}
+        </main>
+
+        {% block mobile_bottom_nav %}
+            {% if show_bottom_nav %}
+                {% include 'components/bottombar.html' %}
+            {% endif %}
+        {% endblock %}
+    </div>
+</div>
+{% block overlays %}{% endblock %}
+</body>
+</html>

@@ -15,10 +15,6 @@ db.sqlite3-journal
 .docker_data/
 sqlite_data/
 
-# IDEs
-.vscode/
-.idea/
-
 # Ambientes virtuales
 .venv/
 venv/
