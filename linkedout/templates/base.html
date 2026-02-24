@@ -6,24 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>{% block title %}LinkedOut{% endblock %}</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        linkedout: {
-                            orange: '#ff6c00',
-                            soft: '#f6a14f',
-                            bg: '#e9e9e9'
-                        }
-                    }
-                }
-            }
-        }
-    </script>
+    <script src="{% static 'js/tailwind.config.js' %}"></script>
     <link rel="stylesheet" href="{% static 'css/base.css' %}">
-    <link rel="stylesheet" href="{% static 'css/mobile.css' %}">
-    <link rel="stylesheet" href="{% static 'css/desktop.css' %}">
 </head>
 <body class="bg-linkedout-bg text-gray-900 {% block body_class %}{% endblock %}">
 <div class="min-h-screen lg:grid lg:grid-cols-[220px_1fr]">
@@ -49,6 +33,17 @@
         {% endblock %}
     </div>
 </div>
+
+{% if not auth_layout %}
+    <div class="fixed top-2 right-2 z-50">
+        <form action="{% url 'set_language' %}" method="post" class="bg-white/90 border border-gray-300 rounded px-2 py-1 text-xs flex gap-1">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.get_full_path }}">
+            <button type="submit" name="language" value="es" class="px-2 py-1 rounded hover:bg-gray-100">ES</button>
+            <button type="submit" name="language" value="en" class="px-2 py-1 rounded hover:bg-gray-100">EN</button>
+        </form>
+    </div>
+{% endif %}
 {% block overlays %}{% endblock %}
 </body>
 </html>

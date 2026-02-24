@@ -2,7 +2,9 @@
     <div class="w-14 h-14 rounded-full bg-gray-300 shrink-0"></div>
     <div class="min-w-0">
         <h3 class="text-3xl md:text-4xl lg:text-2xl truncate">{{ name }}</h3>
-        {% if subtitle %}<p class="font-medium text-current/80 truncate">{{ subtitle }}</p>{% endif %}
+        {% if subtitle %}
+            <p class="font-medium text-current/80 truncate">{{ subtitle }}</p>
+        {% endif %}
     </div>
     {% if status %}
         <span class="ml-auto whitespace-nowrap">{{ status }}</span>

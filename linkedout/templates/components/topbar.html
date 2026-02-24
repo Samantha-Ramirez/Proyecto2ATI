@@ -4,7 +4,7 @@
         {% if back_button %}
             <button class="text-3xl leading-none" type="button" aria-label="{% trans 'Volver' %}">←</button>
         {% endif %}
-        <h1 class="text-2xl lg:text-4xl font-bold truncate">{{ topbar_title|default:'LinkedOut' }}</h1>
+        <h1 class="text-2xl lg:text-4xl font-bold truncate">{% if topbar_title %}{{ topbar_title }}{% else %}{% trans 'LinkedOut' %}{% endif %}</h1>
     </div>
 
     {% if desktop_search %}
@@ -17,7 +17,7 @@
     {% if show_search %}
         <form class="flex items-center gap-2 bg-white/20 rounded-md px-3 py-2" role="search">
             <span>🔍</span>
-            <input class="w-full bg-transparent outline-none" type="search" placeholder="{% trans 'Buscar Mensaje' %}">
+            <input class="w-full bg-transparent outline-none" type="search" placeholder="{% trans 'Buscar mensaje' %}">
         </form>
     {% endif %}
 

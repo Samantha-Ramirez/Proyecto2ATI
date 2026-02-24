@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load i18n %}
+{% block title %}{% trans 'Mensajes' %}{% endblock %}
+{% block content %}
+    <section class="-mx-4 lg:mx-0">
+        <div class="border-b border-gray-300 px-6 py-5 flex items-center gap-4 text-gray-500 bg-linkedout-bg">
+            <span class="text-4xl">🔎</span>
+            <input placeholder="{% trans 'Buscar mensaje' %}" class="bg-transparent outline-none w-full text-4xl">
+        </div>
+        <div class="divide-y divide-gray-300">
+            {% for row in message_rows %}
+                <article class="flex items-center gap-5 px-6 py-6">
+                    <div class="size-14 lg:size-16 rounded-full bg-gray-300 shrink-0"></div>
+                    <div class="min-w-0 flex-1">
+                        <div class="flex justify-between gap-4 items-start">
+                            <h3 class="text-5xl lg:text-3xl">{{ row.name }}</h3>
+                            <span class="text-gray-500 text-4xl lg:text-2xl">{{ row.time }}</span>
+                        </div>
+                        <p class="text-4xl lg:text-2xl {% if row.bold %}font-bold{% endif %}">{{ row.message }}</p>
+                    </div>
+                </article>
+            {% endfor %}
+        </div>
+    </section>
+{% endblock %}
+{% block bottombar %}
+    {% include 'components/bottombar.html' %}
+{% endblock %}
