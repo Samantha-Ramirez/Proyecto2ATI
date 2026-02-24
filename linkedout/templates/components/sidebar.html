@@ -2,9 +2,9 @@
 <aside class="hidden lg:block bg-gray-100 border-r border-gray-300 min-h-screen">
     <div class="bg-linkedout-orange text-white text-4xl font-bold p-6">Linked<span class="bg-white text-linkedout-orange px-1 rounded">out</span></div>
     <nav class="grid gap-4 p-4 text-xl text-gray-600">
-        <a href="/network/feed/">🏠 {% trans 'Home' %}</a>
-        <a href="/jobs/search-jobs/">💼 {% trans 'Zona Laboral' %}</a>
-        <a href="/network/messages/">💬 {% trans 'Chat' %}</a>
-        <a href="/accounts/profile/">👤 {% trans 'Perfil' %}</a>
+        <a href="{% url 'feed' %}">🏠 {% trans 'Home' %}</a>
+        <a href="{% url 'search_jobs' %}">💼 {% trans 'Zona laboral' %}</a>
+        <a href="{% url 'messages' %}">💬 {% trans 'Chat' %}</a>
+        <a href="{% url 'profile' %}">👤 {% trans 'Perfil' %}</a>
     </nav>
 </aside>
