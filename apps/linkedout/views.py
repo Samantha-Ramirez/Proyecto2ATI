@@ -12,11 +12,34 @@ def register(request):
 
 
 def profile(request):
-    return render(request, 'profile.html')
+    # En el futuro, aquí buscaremos al usuario real: user = request.user
+    context = {
+        'page_title': _('Perfil'),
+        'show_bottom_nav': True,
+        'desktop_search': True,
+        'show_search_menu': True,
+        'show_menu': True,
+
+        # Datos de prueba para los posts
+        'message_rows': [
+            {
+                'name': 'First Guy',
+                'time': '17 h',
+                'message': 'Java Technical Lead',
+                'bold': True
+            },
+        ],
+    }
+
+    return render(request, 'profile.html', context)
 
 
 def manage_profile(request):
-    return render(request, 'manage_profile.html')
+    return render(request, 'manage_profile.html', {
+        'page_title': _('Ajustes'),
+        'show_search_menu': True,
+        'desktop_search': True,
+    })
 
 
 # Sección de zona laboral
