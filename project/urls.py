@@ -1,5 +1,5 @@
 """
-URL configuration for config project.
+URL configuration for project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.2/topics/http/urls/
@@ -17,7 +17,7 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from linkedout import views
+from apps.linkedout import views
 
 urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
