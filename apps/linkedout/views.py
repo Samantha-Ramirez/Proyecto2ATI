@@ -19,7 +19,7 @@ def manage_profile(request):
     return render(request, 'manage_profile.html')
 
 
-# Sección de zona laboral
+# Sección laboral
 def search_jobs(request):
     return render(request, 'search_jobs.html')
 
@@ -36,8 +36,8 @@ def post_job(request):
     return render(request, 'post_job.html')
 
 
-# Sección de muro y mensajería
-def feed_view(request):
+# Sección social
+def feed(request):
     return render(request, 'feed.html')
 
 
@@ -49,7 +49,7 @@ def comment_post(request, post_id):
     pass
 
 
-def messages_view(request):
+def messages(request):
     message_rows = [
         {'name': 'Samantha Ramirez', 'message': _('Por supuesto'), 'time': '10:07 AM', 'bold': True},
         {'name': 'Gustavo Berne', 'message': _('Tu: OK'), 'time': _('Lun'), 'bold': False},
@@ -67,12 +67,11 @@ def messages_view(request):
     })
 
 
-def chat_view(request, user_id):
+def chat(request, user_id):
     return render(request, 'chat.html')
 
+
 # Sección de administración
-
-
 def admin_panel(request):
     return render(request, 'admin_panel.html')
 
