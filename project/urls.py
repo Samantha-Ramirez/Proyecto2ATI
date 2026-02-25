@@ -29,13 +29,13 @@ urlpatterns = [
     path('profile/', controllers.profile, name='profile'),
     path('profile/manage/', controllers.manage_profile, name='manage_profile'),
 
-    # Sección de zona laboral
+    # Sección laboral
     path('search-jobs/', controllers.search_jobs, name='search_jobs'),
     path('apply-job/<int:job_id>/', controllers.apply_job, name='apply_job'),
     path('search-staff/', controllers.search_staff, name='search_staff'),
     path('post-job/', controllers.post_job, name='post_job'),
 
-    # Sección de muro y mensajería
+    # Sección social
     path('feed/', controllers.feed, name='feed'),
     path('feed/follow/<int:user_id>/', controllers.follow_user, name='follow_user'),
     path('feed/comment/<int:post_id>/', controllers.comment_post, name='comment_post'),
