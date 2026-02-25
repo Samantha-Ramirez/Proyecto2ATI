@@ -17,33 +17,33 @@ Including another URLconf
 
 from django.contrib import admin
 from django.urls import path, include
-from apps.linkedout import controllers
+from apps.linkedout import views
 
 urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
     path('admin/', admin.site.urls),
 
     # Sección de perfil y autenticación
-    path('login/', controllers.login, name='login'),
-    path('register/', controllers.register, name='register'),
-    path('profile/', controllers.profile, name='profile'),
-    path('profile/manage/', controllers.manage_profile, name='manage_profile'),
+    path('login/', views.login, name='login'),
+    path('register/', views.register, name='register'),
+    path('profile/', views.profile, name='profile'),
+    path('profile/manage/', views.manage_profile, name='manage_profile'),
 
     # Sección de zona laboral
-    path('search-jobs/', controllers.search_jobs, name='search_jobs'),
-    path('apply-job/<int:job_id>/', controllers.apply_job, name='apply_job'),
-    path('search-staff/', controllers.search_staff, name='search_staff'),
-    path('post-job/', controllers.post_job, name='post_job'),
+    path('search-jobs/', views.search_jobs, name='search_jobs'),
+    path('apply-job/<int:job_id>/', views.apply_job, name='apply_job'),
+    path('search-staff/', views.search_staff, name='search_staff'),
+    path('post-job/', views.post_job, name='post_job'),
 
     # Sección de muro y mensajería
-    path('feed/', controllers.feed, name='feed'),
-    path('feed/follow/<int:user_id>/', controllers.follow_user, name='follow_user'),
-    path('feed/comment/<int:post_id>/', controllers.comment_post, name='comment_post'),
-    path('messages/', controllers.messages, name='messages'),
-    path('messages/chat/<int:user_id>/', controllers.chat, name='chat'),
+    path('feed/', views.feed_view, name='feed'),
+    path('feed/follow/<int:user_id>/', views.follow_user, name='follow_user'),
+    path('feed/comment/<int:post_id>/', views.comment_post, name='comment_post'),
+    path('messages/', views.messages_view, name='messages'),
+    path('messages/chat/<int:user_id>/', views.chat_view, name='chat'),
 
     # Sección de administración
-    path('admin-panel/', controllers.admin_panel, name='admin_panel'),
-    path('admin-panel/users/manage/', controllers.manage_users, name='manage_users'),
-    path('admin-panel/content/manage/', controllers.manage_content, name='manage_content'),
+    path('admin-panel/', views.admin_panel, name='admin_panel'),
+    path('admin-panel/users/manage/', views.manage_users, name='manage_users'),
+    path('admin-panel/content/manage/', views.manage_content, name='manage_content'),
 ]
