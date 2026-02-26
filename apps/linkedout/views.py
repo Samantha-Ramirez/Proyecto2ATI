@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 from django.shortcuts import render
 from django.utils.translation import gettext_lazy as _
 
@@ -12,16 +13,46 @@ def register(request):
 
 
 def profile(request):
-    return render(request, 'profile.html')
+    # En el futuro, aquí buscaremos al usuario real: user = request.user
+    context = {
+        'page_title': _('Perfil'),
+        'show_bottom_nav': True,
+        'desktop_search': True,
+        'show_search_menu': True,
+        'show_menu': True,
+
+        # Datos de prueba para los posts
+        'message_rows': [
+            {
+                'name': 'First Guy',
+                'time': '17 h',
+                'message': 'Java Technical Lead',
+                'bold': True
+            },
+        ],
+    }
+
+    return render(request, 'profile.html', context)
 
 
 def manage_profile(request):
-    return render(request, 'manage_profile.html')
+    return render(request, 'manage_profile.html', {
+        'page_title': _('Ajustes'),
+        'show_search_menu': True,
+        'desktop_search': True,
+        'show_bottom_nav': True,
+    })
 
 
 # Sección laboral
 def search_jobs(request):
-    return render(request, 'search_jobs.html')
+    context = {
+        'page_title': _('Zona laboral'),
+        'show_bottom_nav': True,
+        'desktop_search': True,
+        'show_search_menu': True,
+    }
+    return render(request, 'search_jobs.html', context)
 
 
 def apply_job(request, job_id):
@@ -36,9 +67,14 @@ def post_job(request):
     return render(request, 'post_job.html')
 
 
-# Sección social
+# Sección de muro y mensajería
 def feed(request):
-    return render(request, 'feed.html')
+    context = {
+        'desktop_search': True,
+        'page_title': '',
+        'show_bottom_nav': True,
+    }
+    return render(request, 'feed.html', context)
 
 
 def follow_user(request, user_id):
@@ -46,7 +82,11 @@ def follow_user(request, user_id):
 
 
 def comment_post(request, post_id):
-    pass
+    context = {
+        'desktop_search': True,
+        'page_title': '',
+    }
+    return render(request, 'post.html', context)
 
 
 def messages(request):
@@ -68,7 +108,7 @@ def messages(request):
 
 
 def chat(request, user_id):
-    return render(request, 'chat.html')
+    return redirect('messages')
 
 
 # Sección de administración

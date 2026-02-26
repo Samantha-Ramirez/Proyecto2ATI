@@ -1,29 +1,40 @@
 {% load i18n %}
-<header class="bg-linkedout-orange text-white min-h-[72px] px-5 py-3 flex items-center justify-between gap-3">
-    <div class="flex items-center gap-3 min-w-0">
+<header class="bg-linkedout-orange text-white min-h-[72px] px-4 py-2 flex items-center justify-between gap-2 lg:gap-6">
+    
+    <div class="flex items-center gap-2 min-w-[100px] shrink-0">
         {% if back_button %}
-            <button class="text-3xl leading-none" type="button" aria-label="{% trans 'Volver' %}">←</button>
+            <a href="{% url 'profile' %}" class="text-2xl lg:text-3xl hover:bg-white/10 rounded-full p-1" aria-label="{% trans 'Volver' %}">←</a>
         {% endif %}
-        <h1 class="text-2xl lg:text-4xl font-bold truncate">{% if topbar_title %}{{ topbar_title }}{% else %}{% trans 'LinkedOut' %}{% endif %}</h1>
+        <h1 class="text-lg lg:text-3xl font-bold truncate">
+            {% if topbar_title %}{{ topbar_title }}{% else %}{% trans 'LinkedOut' %}{% endif %}
+        </h1>
     </div>
 
-    {% if desktop_search %}
-        <form class="hidden lg:flex items-center gap-2 bg-white/20 rounded-md px-3 py-2 w-[380px]" role="search">
-            <span>🔍</span>
-            <input class="w-full bg-transparent outline-none" type="search" placeholder="{% trans 'Buscar' %}">
-        </form>
-    {% endif %}
+    <div class="flex-1 flex justify-center gap-2 max-w-2xl">
+        {% if desktop_search %}
+            <div class="flex items-center bg-white rounded-lg px-2 py-1 border border-gray-300 w-full max-w-[180px] lg:max-w-xs transition-all">
+                <span class="text-sm lg:text-xl">🔍</span>
+                <input type="text" 
+                    placeholder="{% trans 'Buscar' %}" 
+                    class="bg-transparent border-none text-black placeholder-gray-400 outline-none px-1 lg:px-2 w-full text-xs lg:text-base">
+            </div>
+        {% endif %}
 
-    {% if show_search %}
-        <form class="flex items-center gap-2 bg-white/20 rounded-md px-3 py-2" role="search">
-            <span>🔍</span>
-            <input class="w-full bg-transparent outline-none" type="search" placeholder="{% trans 'Buscar mensaje' %}">
-        </form>
-    {% endif %}
+        {% if show_search %}
+            <form class="flex items-center bg-white rounded-lg px-2 py-1 border border-gray-300 w-full max-w-[180px] lg:max-w-xs transition-all" role="search">
+                <span class="text-sm lg:text-xl">🔍</span>
+                <input type="search" 
+                    placeholder="{% trans 'Buscar mensaje' %}" 
+                    class="bg-transparent border-none text-black placeholder-gray-400 outline-none px-1 lg:px-2 w-full text-xs lg:text-base">
+            </form>
+        {% endif %}
+    </div>
 
-    {% if show_menu %}
-        <button class="text-3xl leading-none" type="button" aria-label="{% trans 'Opciones' %}">⋮</button>
-    {% endif %}
+    <div class="flex items-center gap-2 shrink-0">
+        {% if show_menu %}
+            <button class="text-2xl lg:text-3xl p-1 hover:bg-white/10 rounded-full" type="button" aria-label="{% trans 'Opciones' %}">⋮</button>
+        {% endif %}
+        <div class="hidden lg:block text-3xl opacity-80" aria-hidden="true">◯</div>
+    </div>
 
-    <div class="hidden lg:block text-4xl" aria-hidden="true">◯</div>
 </header>
