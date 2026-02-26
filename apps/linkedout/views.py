@@ -40,6 +40,7 @@ def manage_profile(request):
         'page_title': _('Ajustes'),
         'show_search_menu': True,
         'desktop_search': True,
+        'show_bottom_nav': True,
     })
 
 
@@ -67,7 +68,7 @@ def post_job(request):
 
 
 # Sección de muro y mensajería
-def feed_view(request):
+def feed(request):
     context = {
         'desktop_search': True,
         'page_title': '',
@@ -105,7 +106,7 @@ def messages(request):
     })
 
 
-def chat_view(request, user_id):
+def chat(request, user_id):
     return redirect('messages')
 
 
