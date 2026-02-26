@@ -2,22 +2,26 @@
 <header class="bg-linkedout-orange text-white min-h-[72px] px-5 py-3 flex items-center justify-between gap-3">
     <div class="flex items-center gap-3 min-w-0">
         {% if back_button %}
-            <button class="text-3xl leading-none" type="button" aria-label="{% trans 'Volver' %}">←</button>
+            <a href="{% url 'profile' %}" class="text-3xl leading-none" aria-label="{% trans 'Volver' %}">←</a>
         {% endif %}
         <h1 class="text-2xl lg:text-4xl font-bold truncate">{% if topbar_title %}{{ topbar_title }}{% else %}{% trans 'LinkedOut' %}{% endif %}</h1>
     </div>
 
     {% if desktop_search %}
-        <form class="hidden lg:flex items-center gap-2 bg-white/20 rounded-md px-3 py-2 w-[380px]" role="search">
-            <span>🔍</span>
-            <input class="w-full bg-transparent outline-none" type="search" placeholder="{% trans 'Buscar' %}">
-        </form>
+        <div class="flex items-center bg-white rounded-lg px-3 py-1 border border-gray-300 w-full max-w-xs">
+            <span class="text-xl">🔍</span>
+            <input type="text" 
+                placeholder="{% trans 'Buscar' %}" 
+                class="bg-transparent border-none text-black placeholder-gray-400 outline-none px-2 w-full">
+        </div>
     {% endif %}
 
     {% if show_search %}
-        <form class="flex items-center gap-2 bg-white/20 rounded-md px-3 py-2" role="search">
-            <span>🔍</span>
-            <input class="w-full bg-transparent outline-none" type="search" placeholder="{% trans 'Buscar mensaje' %}">
+        <form class="flex items-center gap-2 bg-white rounded-lg px-3 py-1 border border-gray-300 w-full max-w-xs" role="search">
+            <span class="text-xl">🔍</span>
+            <input type="search" 
+                placeholder="{% trans 'Buscar mensaje' %}" 
+                class="bg-transparent border-none text-black placeholder-gray-400 outline-none px-2 w-full">
         </form>
     {% endif %}
 
