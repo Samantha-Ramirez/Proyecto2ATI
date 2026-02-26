@@ -44,7 +44,13 @@ def manage_profile(request):
 
 # Sección de zona laboral
 def search_jobs(request):
-    return render(request, 'search_jobs.html')
+    context = {
+        'page_title': _('Zona laboral'),
+        'show_bottom_nav': True,
+        'desktop_search': True,
+        'show_search_menu': True,
+    }
+    return render(request, 'search_jobs.html', context)
 
 
 def apply_job(request, job_id):
