@@ -38,7 +38,11 @@ def post_job(request):
 
 # Sección de muro y mensajería
 def feed_view(request):
-    return render(request, 'feed.html')
+    context = {
+        'desktop_search': True,
+        'page_title': '', 
+    }
+    return render(request, 'feed.html', context)
 
 
 def follow_user(request, user_id):

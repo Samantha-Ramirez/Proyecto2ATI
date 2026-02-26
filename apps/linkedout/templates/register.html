@@ -1,0 +1,65 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans 'Registro | LinkedOut' %}{% endblock %}
+
+{% block desktop_sidebar %}{% endblock %}
+{% block topbar %}{% endblock %}
+{% block bottombar %}{% endblock %}
+
+{% block content %}
+<div class="fixed inset-0 z-50 bg-gray-300 flex items-center justify-center overflow-y-auto">
+
+    <div
+        class="bg-white w-full max-w-[550px] min-h-screen sm:min-h-0 sm:h-auto sm:max-h-[95vh] sm:rounded-xl px-6 py-8 flex flex-col items-center justify-center relative shadow-2xl z-10 my-auto">
+
+        <div class="bg-linkedout-orange w-[220px] h-[140px] flex items-center justify-center mb-6 rounded-sm">
+            <h1 class="text-white text-3xl lg:text-4xl font-bold flex items-center gap-1">
+                Linked<span class="bg-white text-linkedout-orange px-1.5 py-0.5 rounded-sm">out</span>
+            </h1>
+        </div>
+
+        <form class="w-full max-w-sm flex flex-col gap-4" method="POST" action="{% url 'register' %}">
+            {% csrf_token %}
+
+            <div class="flex flex-col gap-1">
+                <label for="username" class="font-bold text-black text-sm md:text-base">Usuario/Correo
+                    electronico</label>
+                <input type="text" id="username" name="username" placeholder="Ingrese su usuario o correo electronico"
+                    class="w-full bg-[#E5E5E5] border border-gray-400 rounded px-4 py-2 text-gray-700 outline-none focus:border-linkedout-orange focus:ring-1 focus:ring-linkedout-orange text-center md:text-left text-sm">
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <label for="password" class="font-bold text-black text-sm md:text-base">Contraseña</label>
+                <input type="password" id="password" name="password" placeholder="Ingrese su Contraseña"
+                    class="w-full bg-[#E5E5E5] border border-gray-400 rounded px-4 py-2 text-gray-700 outline-none focus:border-linkedout-orange focus:ring-1 focus:ring-linkedout-orange text-center md:text-left text-sm">
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <label for="user_type" class="font-bold text-black text-sm md:text-base">Tipo de usuario</label>
+                <select id="user_type" name="user_type" required
+                    class="w-full bg-[#E5E5E5] border border-gray-400 rounded px-4 py-2 text-gray-700 outline-none focus:border-linkedout-orange focus:ring-1 focus:ring-linkedout-orange text-center md:text-left text-sm cursor-pointer appearance-none">
+                    <option value="" disabled selected>Tipo de usuario</option>
+                    <option value="profesional">Profesional</option>
+                    <option value="empresa">Empresa</option>
+                </select>
+            </div>
+
+            <div class="flex justify-center mt-4">
+                <button type="submit"
+                    class="bg-linkedout-orange text-white font-bold py-2.5 px-10 rounded-full hover:opacity-90 transition-opacity text-sm md:text-base shadow-md">
+                    Registrarse
+                </button>
+            </div>
+        </form>
+
+        <div class="mt-8 mb-2 w-full max-w-sm flex justify-center">
+            <a href="{% url 'login' %}"
+                class="w-full text-center bg-linkedout-orange text-white font-bold py-2.5 px-6 rounded-full hover:opacity-90 transition-opacity text-sm md:text-base shadow-md">
+                ¿Ya tienes cuenta? Iniciar sesión
+            </a>
+        </div>
+
+    </div>
+</div>
+{% endblock %}

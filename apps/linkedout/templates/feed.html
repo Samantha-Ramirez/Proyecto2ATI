@@ -1,0 +1,88 @@
+{% extends 'base.html' %}
+{% load static i18n %}
+
+{% block title %}{% trans 'Inicio | LinkedOut' %}{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto py-6 flex flex-col gap-6">
+
+    <article class="bg-white border border-gray-300 rounded-sm">
+        <div class="p-4 flex gap-3">
+            <div class="w-14 h-14 rounded-full bg-gray-300 shrink-0"></div>
+            <div class="flex-1 min-w-0">
+                <div class="flex justify-between items-start">
+                    <h3 class="font-bold text-gray-800 text-base">First Guy <span
+                            class="text-gray-500 font-normal ml-1">•</span></h3>
+                    <button class="text-gray-500 hover:bg-gray-100 px-2 py-1 rounded">⋮</button>
+                </div>
+                <p class="text-gray-500 text-sm">Java Technical Lead</p>
+                <p class="text-gray-500 text-xs mt-0.5">17 h • 🌍</p>
+            </div>
+        </div>
+
+        <div class="px-4 pb-3">
+            <p class="text-gray-800 text-sm md:text-base leading-relaxed">
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                industry's standard dummy text ever since the 1500s.
+            </p>
+        </div>
+
+        <div class="px-4 py-2 flex justify-end text-gray-500 text-xs border-b border-gray-200">
+            <span class="hover:text-linkedout-orange cursor-pointer">5 Comentarios</span>
+        </div>
+
+        <div class="px-2 py-1 flex justify-between items-center bg-white">
+            <button
+                class="flex-1 flex flex-col md:flex-row justify-center items-center gap-2 py-3 text-gray-500 hover:bg-gray-100 rounded text-sm font-medium transition-colors">
+                <span class="text-xl">👍</span> Me gusta
+            </button>
+            <button
+                class="flex-1 flex flex-col md:flex-row justify-center items-center gap-2 py-3 text-gray-500 hover:bg-gray-100 rounded text-sm font-medium transition-colors">
+                <span class="text-xl">💬</span> Comentarios
+            </button>
+            <button
+                class="flex-1 flex flex-col md:flex-row justify-center items-center gap-2 py-3 text-gray-500 hover:bg-gray-100 rounded text-sm font-medium transition-colors">
+                <span class="text-xl">✈️</span> Enviar
+            </button>
+        </div>
+    </article>
+
+    <article class="bg-white border border-gray-300 rounded-sm">
+        <div class="p-4 flex gap-3">
+            <div class="w-14 h-14 rounded-full bg-gray-300 shrink-0"></div>
+            <div class="flex-1 min-w-0">
+                <div class="flex justify-between items-start">
+                    <h3 class="font-bold text-gray-800 text-base">First Guy <span
+                            class="text-gray-500 font-normal ml-1">•</span></h3>
+                    <button class="text-gray-500 hover:bg-gray-100 px-2 py-1 rounded">⋮</button>
+                </div>
+                <p class="text-gray-500 text-sm">Java Technical Lead</p>
+                <p class="text-gray-500 text-xs mt-0.5">17 h • 🌍</p>
+            </div>
+        </div>
+
+        <div class="w-full h-72 bg-gray-200 border-t border-b border-gray-300 flex items-center justify-center">
+            <div class="w-full h-full relative overflow-hidden flex items-center justify-center">
+                <div class="absolute inset-0 border border-gray-300 m-4"></div>
+                <span class="text-5xl text-gray-400">🖼️</span>
+            </div>
+        </div>
+
+        <div class="px-2 py-1 flex justify-between items-center bg-white">
+            <button
+                class="flex-1 flex flex-col md:flex-row justify-center items-center gap-2 py-3 text-gray-500 hover:bg-gray-100 rounded text-sm font-medium transition-colors">
+                <span class="text-xl">👍</span> Me gusta
+            </button>
+            <button
+                class="flex-1 flex flex-col md:flex-row justify-center items-center gap-2 py-3 text-gray-500 hover:bg-gray-100 rounded text-sm font-medium transition-colors">
+                <span class="text-xl">💬</span> Comentarios
+            </button>
+            <button
+                class="flex-1 flex flex-col md:flex-row justify-center items-center gap-2 py-3 text-gray-500 hover:bg-gray-100 rounded text-sm font-medium transition-colors">
+                <span class="text-xl">✈️</span> Enviar
+            </button>
+        </div>
+    </article>
+
+</div>
+{% endblock %}
