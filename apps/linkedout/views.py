@@ -73,7 +73,11 @@ def follow_user(request, user_id):
 
 
 def comment_post(request, post_id):
-    pass
+    context = {
+        'desktop_search': True,
+        'page_title': '',
+    }
+    return render(request, 'post.html', context)
 
 
 def messages_view(request):
