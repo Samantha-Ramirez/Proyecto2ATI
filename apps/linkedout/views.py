@@ -1,5 +1,6 @@
 from django.shortcuts import render
 from django.utils.translation import gettext_lazy as _
+from django.shortcuts import redirect
 
 
 # Sección de perfil y autenticación
@@ -39,6 +40,7 @@ def manage_profile(request):
         'page_title': _('Ajustes'),
         'show_search_menu': True,
         'desktop_search': True,
+        'show_bottom_nav': True,
     })
 
 
@@ -69,7 +71,8 @@ def post_job(request):
 def feed_view(request):
     context = {
         'desktop_search': True,
-        'page_title': '', 
+        'page_title': '',
+        'show_bottom_nav': True,
     }
     return render(request, 'feed.html', context)
 
@@ -103,8 +106,6 @@ def messages_view(request):
         'show_bottom_nav': True,
     })
 
-
-from django.shortcuts import redirect
 
 def chat_view(request, user_id):
     return redirect('messages')
