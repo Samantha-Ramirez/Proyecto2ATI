@@ -100,8 +100,10 @@ def messages_view(request):
     })
 
 
+from django.shortcuts import redirect
+
 def chat_view(request, user_id):
-    return render(request, 'chat.html')
+    return redirect('messages')
 
 # Sección de administración
 
