@@ -29,18 +29,18 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('profile/manage/', views.manage_profile, name='manage_profile'),
 
-    # Sección de zona laboral
+    # Sección laboral
     path('search-jobs/', views.search_jobs, name='search_jobs'),
     path('apply-job/<int:job_id>/', views.apply_job, name='apply_job'),
     path('search-staff/', views.search_staff, name='search_staff'),
     path('post-job/', views.post_job, name='post_job'),
 
-    # Sección de muro y mensajería
-    path('feed/', views.feed_view, name='feed'),
+    # Sección social
+    path('feed/', views.feed, name='feed'),
     path('feed/follow/<int:user_id>/', views.follow_user, name='follow_user'),
     path('feed/comment/<int:post_id>/', views.comment_post, name='comment_post'),
-    path('messages/', views.messages_view, name='messages'),
-    path('messages/chat/<int:user_id>/', views.chat_view, name='chat'),
+    path('messages/', views.messages, name='messages'),
+    path('messages/chat/<int:user_id>/', views.chat, name='chat'),
 
     # Sección de administración
     path('admin-panel/', views.admin_panel, name='admin_panel'),
