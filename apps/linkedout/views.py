@@ -72,6 +72,7 @@ def feed(request):
     context = {
         'desktop_search': True,
         'page_title': '',
+        'show_bottom_nav': True,
     }
     return render(request, 'feed.html', context)
 
