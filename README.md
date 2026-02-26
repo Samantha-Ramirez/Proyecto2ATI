@@ -48,6 +48,8 @@ Este diagrama define la experiencia del usuario (UX), mostrando el flujo entre p
 ## 🎨 Diseño UI (Wireframes)
 El diseño ha sido concebido bajo un enfoque *Mobile-First* y adaptado para escritorio.
 
+[Figma](https://www.figma.com/design/InsltnGkXWAljm4XlRxcQP/Proyecto-LinkedOut-ATI?node-id=30-1057&t=hySV0PvQUuFgofog-1)
+
 | Vista Desktop | Vista Mobile |
 | :--- | :--- |
 | ![Mobile Placeholder](./docs/mobile.png) | ![Desktop Placeholder](./docs/desktop.png) |
