@@ -43,8 +43,8 @@ urlpatterns = [
     path('feed/comment/<int:post_id>/', views.comment_post, name='comment_post'),
     
     # --- Por si acaso, aqui estaba el conflicto ---
-    path('messages/', views.messages_view, name='messages'),
-    path('messages/chat/<int:user_id>/', views.chat_view, name='chat'),
+    path('messages/', views.messages, name='messages'),
+    path('messages/chat/<int:user_id>/', views.chat, name='chat'),
     path('notifications/', views.notifications_view, name='notifications'),
 
     # Sección de administración
