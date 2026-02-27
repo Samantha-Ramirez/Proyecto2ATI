@@ -25,6 +25,7 @@ urlpatterns = [
 
     # Sección de perfil y autenticación
     path('login/', views.login, name='login'),
+    path('logout/', views.logout, name='logout'),
     path('register/', views.register, name='register'),
     path('profile/', views.profile, name='profile'),
     path('profile/manage/', views.manage_profile, name='manage_profile'),
@@ -41,7 +42,7 @@ urlpatterns = [
     path('feed/', views.feed, name='feed'),
     path('feed/follow/<int:user_id>/', views.follow_user, name='follow_user'),
     path('feed/comment/<int:post_id>/', views.comment_post, name='comment_post'),
-    
+
     # Sección Mensajeria --- Por si acaso, aqui estaba el conflicto ---
     path('messages/', views.messages, name='messages'),
     path('messages/chat/<int:user_id>/', views.chat, name='chat'),

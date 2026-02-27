@@ -1,11 +1,28 @@
 from django.shortcuts import redirect
 from django.shortcuts import render
 from django.utils.translation import gettext_lazy as _
+from django.contrib.auth import authenticate, login as auth_login
+from django.contrib.auth import logout as auth_logout
 
 
 # Sección de perfil y autenticación
 def login(request):
+    if request.method == 'POST':
+        u = request.POST.get('username')
+        p = request.POST.get('password')
+
+        user = authenticate(request, username=u, password=p)
+
+        if user is not None:
+            auth_login(request, user)
+            return redirect('feed')
+
     return render(request, 'login.html')
+
+
+def logout(request):
+    auth_logout(request)
+    return redirect('login')
 
 
 def register(request):
@@ -62,7 +79,7 @@ def apply_job(request, job_id):
 def post_job(request):
     return render(request, 'post_job.html', {
         'page_title': _('Publicar Oferta'),
-        'show_back': True, 
+        'show_back': True,
     })
 
 
@@ -72,17 +89,19 @@ def search_staff(request):
         {'id': 2, 'nombre': 'Juan Pérez', 'rol': 'Backend Developer', 'skills': ['Python', 'Django', 'Docker']},
         {'id': 3, 'nombre': 'Ana Gómez', 'rol': 'Data Scientist', 'skills': ['Python', 'SQL', 'Machine Learning']},
     ]
-    
+
     return render(request, 'search_staff.html', {
         'page_title': _('Buscar Talento'),
         'profesionales': profesionales,
     })
 
+
 def professional_detail(request, pk):
     return render(request, 'professional_profile.html', {
         'page_title': _('Perfil del Candidato'),
-        'candidato_id': pk, 
+        'candidato_id': pk,
     })
+
 
 def manage_staff(request):
     return render(request, 'manage_staff.html', {
@@ -128,6 +147,7 @@ def messages(request):
         'page_title': _('Mensajes'),
         'show_bottom_nav': True,
     })
+
 
 def notifications_view(request):
     return render(request, 'notifications.html', {
