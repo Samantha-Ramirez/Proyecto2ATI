@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-26 20:07-0400\n"
+"POT-Creation-Date: 2026-02-26 20:45-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -17,6 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
 #: .\apps\linkedout\templates\components\bottombar.html:2
 msgid "Navegación principal"
 msgstr "Main Navigation"
@@ -32,7 +33,7 @@ msgid "Zona laboral"
 msgstr "Jobs"
 
 #: .\apps\linkedout\templates\components\bottombar.html:5
-#: .\apps\linkedout\templates\messages.html:4 .\apps\linkedout\views.py:105
+#: .\apps\linkedout\templates\messages.html:4 .\apps\linkedout\views.py:128
 msgid "Mensajes"
 msgstr "Messaging"
 
@@ -125,7 +126,60 @@ msgid ""
 "Controla como LinkedOut usa tu información para proporcionarte tu "
 "información favorita"
 msgstr ""
-"Control how LinkedOut uses your data to provide you with your favorite content"
+"Control how LinkedOut uses your data to provide you with your favorite "
+"content"
+
+#: .\apps\linkedout\templates\manage_staff.html:4
+msgid "Gestionar Profesionales | LinkedOut"
+msgstr "Manage Professionals | LinkedOut"
+
+#: .\apps\linkedout\templates\manage_staff.html:10
+msgid "Gestión de Talento"
+msgstr "Talent Management"
+
+#: .\apps\linkedout\templates\manage_staff.html:11
+msgid "Administra tus candidatos y contactos profesionales."
+msgstr "Manage your candidates and professional contacts."
+
+#: .\apps\linkedout\templates\manage_staff.html:15
+msgid "Todos los estados"
+msgstr "All statuses"
+
+#: .\apps\linkedout\templates\manage_staff.html:16
+msgid "Contactados"
+msgstr "Contacted"
+
+#: .\apps\linkedout\templates\manage_staff.html:17
+msgid "En proceso"
+msgstr "In progress"
+
+#: .\apps\linkedout\templates\manage_staff.html:18
+msgid "Contratados"
+msgstr "Hired"
+
+#: .\apps\linkedout\templates\manage_staff.html:28
+msgid "Profesional"
+msgstr "Professional"
+
+#: .\apps\linkedout\templates\manage_staff.html:29
+msgid "Último Contacto"
+msgstr "Last Contact"
+
+#: .\apps\linkedout\templates\manage_staff.html:30
+msgid "Estado"
+msgstr "Status"
+
+#: .\apps\linkedout\templates\manage_staff.html:31
+msgid "Acciones"
+msgstr "Actions"
+
+#: .\apps\linkedout\templates\manage_staff.html:48
+msgid "En revisión"
+msgstr "Under review"
+
+#: .\apps\linkedout\templates\manage_staff.html:53
+msgid "Ver"
+msgstr "View"
 
 #: .\apps\linkedout\templates\messages.html:12
 msgid "Conversaciones"
@@ -143,9 +197,160 @@ msgstr "You"
 msgid "Escribe un mensaje..."
 msgstr "Write a message..."
 
+#: .\apps\linkedout\templates\notifications.html:4
+msgid "Notificaciones | LinkedOut"
+msgstr "Notifications | LinkedOut"
+
+#: .\apps\linkedout\templates\notifications.html:9
+#: .\apps\linkedout\views.py:134
+msgid "Notificaciones"
+msgstr "Notifications"
+
+#: .\apps\linkedout\templates\notifications.html:10
+msgid "Marcar todas como leídas"
+msgstr "Mark all as read"
+
+#: .\apps\linkedout\templates\notifications.html:22
+msgid "se ha postulado a tu oferta de"
+msgstr "has applied to your job offer for"
+
+#: .\apps\linkedout\templates\notifications.html:25
+msgid "Hace 2 horas"
+msgstr "2 hours ago"
+
+#: .\apps\linkedout\templates\notifications.html:37
+msgid "ha comenzado a seguirte."
+msgstr "has started following you."
+
+#: .\apps\linkedout\templates\notifications.html:39
+msgid "Hace 5 horas"
+msgstr "5 hours ago"
+
+#: .\apps\linkedout\templates\notifications.html:50
+msgid "comentó tu publicación:"
+msgstr "commented on your post:"
+
+#: .\apps\linkedout\templates\notifications.html:53
+msgid "Ayer"
+msgstr "Yesterday"
+
 #: .\apps\linkedout\templates\post.html:4
 msgid "Publicación | LinkedOut"
 msgstr "Post | LinkedOut"
+
+#: .\apps\linkedout\templates\post_job.html:4
+msgid "Publicar Oferta | LinkedOut"
+msgstr "Post Job Offer | LinkedOut"
+
+#: .\apps\linkedout\templates\post_job.html:9
+msgid "Crear nueva oferta de empleo"
+msgstr "Create new job offer"
+
+#: .\apps\linkedout\templates\post_job.html:10
+msgid "Atrae al mejor talento completando los detalles de la vacante."
+msgstr "Attract the best talent by completing the job details."
+
+#: .\apps\linkedout\templates\post_job.html:17
+msgid "Título de la posición"
+msgstr "Position Title"
+
+#: .\apps\linkedout\templates\post_job.html:19
+msgid "Ej: Desarrollador Python Senior"
+msgstr "e.g., Senior Python Developer"
+
+#: .\apps\linkedout\templates\post_job.html:24
+msgid "Sector"
+msgstr "Industry"
+
+#: .\apps\linkedout\templates\post_job.html:27
+msgid "Seleccione un sector"
+msgstr "Select an industry"
+
+#: .\apps\linkedout\templates\post_job.html:28
+msgid "Tecnología / IT"
+msgstr "Technology / IT"
+
+#: .\apps\linkedout\templates\post_job.html:29
+msgid "Marketing"
+msgstr "Marketing"
+
+#: .\apps\linkedout\templates\post_job.html:30
+msgid "Ventas"
+msgstr "Sales"
+
+#: .\apps\linkedout\templates\post_job.html:35
+msgid "Descripción del puesto"
+msgstr "Job Description"
+
+#: .\apps\linkedout\templates\post_job.html:37
+msgid "Describe las responsabilidades y el día a día..."
+msgstr "Describe the responsibilities and daily tasks..."
+
+#: .\apps\linkedout\templates\post_job.html:42
+msgid "Requerimientos / Skills"
+msgstr "Requirements / Skills"
+
+#: .\apps\linkedout\templates\post_job.html:44
+msgid "Ej: Django, React, PostgreSQL, Inglés B2"
+msgstr "e.g., Django, React, PostgreSQL, B2 English"
+
+#: .\apps\linkedout\templates\post_job.html:50
+msgid "Cancelar"
+msgstr "Cancel"
+
+#: .\apps\linkedout\templates\post_job.html:54
+msgid "Publicar Vacante"
+msgstr "Post Job"
+
+#: .\apps\linkedout\templates\professional_profile.html:4
+msgid "Perfil Profesional | LinkedOut"
+msgstr "Professional Profile | LinkedOut"
+
+#: .\apps\linkedout\templates\professional_profile.html:13
+msgid "Foto de perfil"
+msgstr "Profile picture"
+
+#: .\apps\linkedout\templates\professional_profile.html:17
+#: .\apps\linkedout\templates\search_staff.html:43
+msgid "Contactar"
+msgstr "Contact"
+
+#: .\apps\linkedout\templates\professional_profile.html:20
+msgid "Guardar en favoritos"
+msgstr "Save to favorites"
+
+#: .\apps\linkedout\templates\professional_profile.html:25
+msgid "Ingeniero de Software | Especialista en Ciberseguridad"
+msgstr "Software Engineer | Cybersecurity Specialist"
+
+#: .\apps\linkedout\templates\professional_profile.html:26
+msgid "conexiones"
+msgstr "connections"
+
+#: .\apps\linkedout\templates\professional_profile.html:33
+msgid "Acerca de"
+msgstr "About"
+
+#: .\apps\linkedout\templates\professional_profile.html:35
+msgid ""
+"Desarrollador con más de 8 años de experiencia construyendo aplicaciones "
+"escalables. Apasionado por la arquitectura de software y el aprendizaje "
+"continuo."
+msgstr ""
+"Developer with over 8 years of experience building scalable applications. "
+"Passionate about software architecture and continuous learning."
+
+#: .\apps\linkedout\templates\professional_profile.html:40
+msgid "Experiencia"
+msgstr "Experience"
+
+#: .\apps\linkedout\templates\professional_profile.html:47
+msgid "Presente"
+msgstr "Present"
+
+#: .\apps\linkedout\templates\professional_profile.html:56
+msgid "Aptitudes"
+msgstr "Skills"
 
 #: .\apps\linkedout\templates\profile.html:29
 msgid "Editar Perfil"
@@ -175,50 +380,82 @@ msgstr "Job options"
 msgid "Ver Comentarios"
 msgstr "View Comments"
 
-#: .\apps\linkedout\views.py:94
+#: .\apps\linkedout\templates\search_staff.html:4
+msgid "Buscar Talento | LinkedOut"
+msgstr "Search Talent | LinkedOut"
+
+#: .\apps\linkedout\templates\search_staff.html:12
+msgid "Buscar por habilidad (ej: React, Python, UI)..."
+msgstr "Search by skill (e.g., React, Python, UI)..."
+
+#: .\apps\linkedout\templates\search_staff.html:16
+msgid "Filtrar"
+msgstr "Filter"
+
+#: .\apps\linkedout\templates\search_staff.html:39
+msgid "Ver Perfil"
+msgstr "View Profile"
+
+#: .\apps\linkedout\views.py:64
+msgid "Publicar Oferta"
+msgstr "Post Job Offer"
+
+#: .\apps\linkedout\views.py:77
+msgid "Buscar Talento"
+msgstr "Search Talent"
+
+#: .\apps\linkedout\views.py:83
+msgid "Perfil del Candidato"
+msgstr "Candidate Profile"
+
+#: .\apps\linkedout\views.py:89
+msgid "Gestionar Profesionales"
+msgstr "Manage Professionals"
+
+#: .\apps\linkedout\views.py:117
 msgid "Por supuesto"
 msgstr "Of course"
 
-#: .\apps\linkedout\views.py:95 .\apps\linkedout\views.py:100
+#: .\apps\linkedout\views.py:118 .\apps\linkedout\views.py:123
 msgid "Tu: OK"
 msgstr "You: OK"
 
-#: .\apps\linkedout\views.py:95
+#: .\apps\linkedout\views.py:118
 msgid "Lun"
 msgstr "Mon"
 
-#: .\apps\linkedout\views.py:96
+#: .\apps\linkedout\views.py:119
 msgid "Tu: Creo que deberia cambiarse"
 msgstr "You: I think it should be changed"
 
-#: .\apps\linkedout\views.py:96
+#: .\apps\linkedout\views.py:119
 msgid "Vie"
 msgstr "Fri"
 
-#: .\apps\linkedout\views.py:97
+#: .\apps\linkedout\views.py:120
 msgid "Tu: Luego lo revisare"
 msgstr "You: I'll check it later"
 
-#: .\apps\linkedout\views.py:97
+#: .\apps\linkedout\views.py:120
 msgid "Mie"
 msgstr "Wed"
 
-#: .\apps\linkedout\views.py:98
+#: .\apps\linkedout\views.py:121
 msgid "Hola, tengo una sugerencia"
 msgstr "Hi, I have a suggestion"
 
-#: .\apps\linkedout\views.py:98
+#: .\apps\linkedout\views.py:121
 msgid "Mar"
 msgstr "Tue"
 
-#: .\apps\linkedout\views.py:99
+#: .\apps\linkedout\views.py:122
 msgid "LinkedOut es lo maximo"
 msgstr "LinkedOut is the best"
 
-#: .\apps\linkedout\views.py:99 .\apps\linkedout\views.py:100
+#: .\apps\linkedout\views.py:122 .\apps\linkedout\views.py:123
 msgid "Dom"
 msgstr "Sun"
 
-#: .\apps\linkedout\views.py:101
+#: .\apps\linkedout\views.py:124
 msgid "Oct 9"
 msgstr "Oct 9"
