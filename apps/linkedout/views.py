@@ -1,3 +1,4 @@
+from django.shortcuts import redirect
 from django.shortcuts import render
 from django.utils.translation import gettext_lazy as _
 
@@ -39,10 +40,11 @@ def manage_profile(request):
         'page_title': _('Ajustes'),
         'show_search_menu': True,
         'desktop_search': True,
+        'show_bottom_nav': True,
     })
 
 
-# Sección de zona laboral
+# Sección laboral
 def search_jobs(request):
     context = {
         'page_title': _('Zona laboral'),
@@ -89,10 +91,11 @@ def manage_staff(request):
 
 
 # Sección de muro y mensajería
-def feed_view(request):
+def feed(request):
     context = {
         'desktop_search': True,
-        'page_title': '', 
+        'page_title': '',
+        'show_bottom_nav': True,
     }
     return render(request, 'feed.html', context)
 
@@ -109,7 +112,7 @@ def comment_post(request, post_id):
     return render(request, 'post.html', context)
 
 
-def messages_view(request):
+def messages(request):
     message_rows = [
         {'name': 'Samantha Ramirez', 'message': _('Por supuesto'), 'time': '10:07 AM', 'bold': True},
         {'name': 'Gustavo Berne', 'message': _('Tu: OK'), 'time': _('Lun'), 'bold': False},
@@ -133,14 +136,11 @@ def notifications_view(request):
     })
 
 
-from django.shortcuts import redirect
-
-def chat_view(request, user_id):
+def chat(request, user_id):
     return redirect('messages')
 
+
 # Sección de administración
-
-
 def admin_panel(request):
     return render(request, 'admin_panel.html')
 

@@ -29,7 +29,7 @@ urlpatterns = [
     path('profile/', views.profile, name='profile'),
     path('profile/manage/', views.manage_profile, name='manage_profile'),
 
-    # Sección de zona laboral
+    # Sección laboral
     path('search-jobs/', views.search_jobs, name='search_jobs'),
     path('apply-job/<int:job_id>/', views.apply_job, name='apply_job'),
     path('search-staff/', views.search_staff, name='search_staff'),
@@ -37,10 +37,12 @@ urlpatterns = [
     path('professional-profile/<int:pk>/', views.professional_detail, name='professional_detail'),
     path('manage-staff/', views.manage_staff, name='manage_staff'),
 
-    # Sección de muro y mensajería
-    path('feed/', views.feed_view, name='feed'),
+    # Sección social
+    path('feed/', views.feed, name='feed'),
     path('feed/follow/<int:user_id>/', views.follow_user, name='follow_user'),
     path('feed/comment/<int:post_id>/', views.comment_post, name='comment_post'),
+    
+    # --- Por si acaso, aqui estaba el conflicto ---
     path('messages/', views.messages_view, name='messages'),
     path('messages/chat/<int:user_id>/', views.chat_view, name='chat'),
     path('notifications/', views.notifications_view, name='notifications'),
