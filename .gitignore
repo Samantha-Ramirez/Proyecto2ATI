@@ -5,8 +5,6 @@ __pycache__/
 
 # Django
 *.log
-db.sqlite3
-db.sqlite3-journal
 
 # Variables de entorno
 .env
@@ -15,6 +13,8 @@ db.sqlite3-journal
 .docker_data/
 sqlite_data/
 
-# IDEs
-.vscode/
-.idea/
+# Ambientes virtuales
+.venv/
+venv/
+env/
+ENV/

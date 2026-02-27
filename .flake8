@@ -1,0 +1,4 @@
+[flake8]
+exclude = .git,__pycache__,docs,old,build,dist,venv,.venv,migrations
+extend-ignore = E501, F401
+indent-size = 4

@@ -1,0 +1,49 @@
+{% load i18n static %}
+<!DOCTYPE html>
+<html lang="{{ LANGUAGE_CODE|default:'es' }}">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{% block title %}LinkedOut{% endblock %}</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="{% static 'js/tailwind.config.js' %}"></script>
+    <link rel="stylesheet" href="{% static 'css/base.css' %}">
+</head>
+<body class="bg-linkedout-bg text-gray-900 {% block body_class %}{% endblock %}">
+<div class="min-h-screen lg:grid lg:grid-cols-[220px_1fr]">
+    {% block desktop_sidebar %}
+        {% if not auth_layout %}
+            {% include 'components/sidebar.html' %}
+        {% endif %}
+    {% endblock %}
+
+    <div class="min-h-screen flex flex-col">
+        {% block topbar %}
+            {% include 'components/topbar.html' with topbar_title=page_title back_button=show_back show_search=show_search_menu show_menu=show_menu desktop_search=desktop_search %}
+        {% endblock %}
+
+        <main class="flex-1 p-4 lg:p-6">
+            {% block content %}{% endblock %}
+        </main>
+
+        {% block bottombar %}
+            {% if show_bottom_nav %}
+                {% include 'components/bottombar.html' %}
+            {% endif %}
+        {% endblock %}
+    </div>
+</div>
+
+{% if not auth_layout %}
+    <div class="fixed top-2 right-2 z-50">
+        <form action="{% url 'set_language' %}" method="post" class="bg-white/90 border border-gray-300 rounded px-2 py-1 text-xs flex gap-1">
+            {% csrf_token %}
+            <input type="hidden" name="next" value="{{ request.get_full_path }}">
+            <button type="submit" name="language" value="es" class="px-2 py-1 rounded hover:bg-gray-100">ES</button>
+            <button type="submit" name="language" value="en" class="px-2 py-1 rounded hover:bg-gray-100">EN</button>
+        </form>
+    </div>
+{% endif %}
+{% block overlays %}{% endblock %}
+</body>
+</html>

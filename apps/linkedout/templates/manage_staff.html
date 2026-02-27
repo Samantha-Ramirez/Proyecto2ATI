@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans "Gestionar Profesionales | LinkedOut" %}{% endblock %}
+
+{% block content %}
+<div class="max-w-6xl mx-auto">
+    <div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-8">
+        <div>
+            <h1 class="text-2xl font-bold text-gray-900">{% trans "Gestión de Talento" %}</h1>
+            <p class="text-sm text-gray-500">{% trans "Administra tus candidatos y contactos profesionales." %}</p>
+        </div>
+        <div class="flex gap-2">
+            <select class="bg-white border border-gray-300 rounded-lg px-4 py-2 text-sm outline-none focus:border-linkedout-orange">
+                <option>{% trans "Todos los estados" %}</option>
+                <option>{% trans "Contactados" %}</option>
+                <option>{% trans "En proceso" %}</option>
+                <option>{% trans "Contratados" %}</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="bg-white border border-gray-300 rounded-xl shadow-sm overflow-hidden">
+        <div class="overflow-x-auto">
+            <table class="w-full text-left border-collapse">
+                <thead class="bg-gray-50 text-gray-600 text-xs uppercase font-bold">
+                    <tr>
+                        <th class="px-6 py-4">{% trans "Profesional" %}</th>
+                        <th class="px-6 py-4">{% trans "Último Contacto" %}</th>
+                        <th class="px-6 py-4">{% trans "Estado" %}</th>
+                        <th class="px-6 py-4">{% trans "Acciones" %}</th>
+                    </tr>
+                </thead>
+                <tbody class="divide-y divide-gray-100">
+                    <tr class="hover:bg-gray-50 transition-colors">
+                        <td class="px-6 py-4">
+                            <div class="flex items-center gap-3">
+                                <div class="w-10 h-10 bg-gray-200 rounded-full"></div>
+                                <div>
+                                    <div class="font-bold text-gray-900">Luis Colina</div>
+                                    <div class="text-xs text-gray-500">Frontend Developer</div>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="px-6 py-4 text-sm text-gray-600">12/02/2026</td>
+                        <td class="px-6 py-4">
+                            <span class="px-2 py-1 bg-yellow-100 text-yellow-700 text-[10px] font-bold rounded uppercase">
+                                {% trans "En revisión" %}
+                            </span>
+                        </td>
+                        <td class="px-6 py-4">
+                            <div class="flex gap-3">
+                                <a href="#" class="text-linkedout-orange hover:text-orange-700 text-sm font-bold">{% trans "Ver" %}</a>
+                                <button class="text-gray-400 hover:text-red-500 text-sm">🗑️</button>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
