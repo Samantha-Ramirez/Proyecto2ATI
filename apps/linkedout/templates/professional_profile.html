@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans "Perfil Profesional | LinkedOut" %}{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto">
+    <div class="bg-white border border-gray-300 rounded-xl overflow-hidden shadow-sm mb-6">
+        <div class="h-32 bg-gradient-to-r from-linkedout-orange to-orange-400"></div>
+        <div class="px-6 pb-6">
+            <div class="relative flex justify-between items-end -mt-12 mb-4">
+                <div class="w-32 h-32 bg-gray-200 rounded-full border-4 border-white overflow-hidden">
+                    <img src="{% static 'img/default-avatar.png' %}" alt="{% trans 'Foto de perfil' %}" class="w-full h-full object-cover">
+                </div>
+                <div class="flex gap-2">
+                    <button class="bg-linkedout-orange text-white font-bold px-6 py-2 rounded-full hover:opacity-90">
+                        {% trans "Contactar" %}
+                    </button>
+                    <button class="border border-gray-300 text-gray-700 font-bold px-4 py-2 rounded-full hover:bg-gray-50">
+                        {% trans "Guardar en favoritos" %}
+                    </button>
+                </div>
+            </div>
+            <h1 class="text-2xl font-bold text-gray-900">Juan Pérez</h1>
+            <p class="text-gray-600">{% trans "Ingeniero de Software | Especialista en Ciberseguridad" %}</p>
+            <p class="text-sm text-gray-500 mt-1">Caracas, Venezuela • <span class="text-linkedout-orange font-medium">500+ {% trans "conexiones" %}</span></p>
+        </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div class="md:col-span-2 space-y-6">
+            <section class="bg-white border border-gray-300 rounded-xl p-6 shadow-sm">
+                <h2 class="font-bold text-lg mb-4">{% trans "Acerca de" %}</h2>
+                <p class="text-gray-700 leading-relaxed">
+                    {% trans "Desarrollador con más de 8 años de experiencia construyendo aplicaciones escalables. Apasionado por la arquitectura de software y el aprendizaje continuo." %}
+                </p>
+            </section>
+
+            <section class="bg-white border border-gray-300 rounded-xl p-6 shadow-sm">
+                <h2 class="font-bold text-lg mb-4">{% trans "Experiencia" %}</h2>
+                <div class="space-y-4">
+                    <div class="flex gap-4">
+                        <div class="w-12 h-12 bg-gray-100 rounded"></div>
+                        <div>
+                            <h3 class="font-bold text-gray-900">Senior Backend Dev</h3>
+                            <p class="text-sm text-gray-700">Tech Solutions C.A.</p>
+                            <p class="text-xs text-gray-500">2020 - {% trans "Presente" %}</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <div class="space-y-6">
+            <section class="bg-white border border-gray-300 rounded-xl p-6 shadow-sm">
+                <h2 class="font-bold text-lg mb-4">{% trans "Aptitudes" %}</h2>
+                <div class="flex flex-wrap gap-2">
+                    <span class="px-3 py-1 bg-orange-50 text-linkedout-orange border border-orange-100 rounded-full text-xs font-bold">Python</span>
+                    <span class="px-3 py-1 bg-orange-50 text-linkedout-orange border border-orange-100 rounded-full text-xs font-bold">Django</span>
+                    <span class="px-3 py-1 bg-orange-50 text-linkedout-orange border border-orange-100 rounded-full text-xs font-bold">Docker</span>
+                </div>
+            </section>
+        </div>
+    </div>
+</div>
+{% endblock %}

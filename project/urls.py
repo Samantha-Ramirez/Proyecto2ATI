@@ -34,13 +34,18 @@ urlpatterns = [
     path('apply-job/<int:job_id>/', views.apply_job, name='apply_job'),
     path('search-staff/', views.search_staff, name='search_staff'),
     path('post-job/', views.post_job, name='post_job'),
+    path('professional-profile/<int:pk>/', views.professional_detail, name='professional_detail'),
+    path('manage-staff/', views.manage_staff, name='manage_staff'),
 
     # Sección social
     path('feed/', views.feed, name='feed'),
     path('feed/follow/<int:user_id>/', views.follow_user, name='follow_user'),
     path('feed/comment/<int:post_id>/', views.comment_post, name='comment_post'),
+    
+    # Sección Mensajeria --- Por si acaso, aqui estaba el conflicto ---
     path('messages/', views.messages, name='messages'),
     path('messages/chat/<int:user_id>/', views.chat, name='chat'),
+    path('notifications/', views.notifications_view, name='notifications'),
 
     # Sección de administración
     path('admin-panel/', views.admin_panel, name='admin_panel'),
