@@ -57,12 +57,35 @@ def apply_job(request, job_id):
     pass
 
 
-def search_staff(request):
-    return render(request, 'search_staff.html')
-
-
 def post_job(request):
-    return render(request, 'post_job.html')
+    return render(request, 'post_job.html', {
+        'page_title': _('Publicar Oferta'),
+        'show_back': True, 
+    })
+
+
+def search_staff(request):
+    profesionales = [
+        {'id': 1, 'nombre': 'Luis Colina', 'rol': 'Frontend Developer', 'skills': ['React', 'CSS', 'Figma']},
+        {'id': 2, 'nombre': 'Juan Pérez', 'rol': 'Backend Developer', 'skills': ['Python', 'Django', 'Docker']},
+        {'id': 3, 'nombre': 'Ana Gómez', 'rol': 'Data Scientist', 'skills': ['Python', 'SQL', 'Machine Learning']},
+    ]
+    
+    return render(request, 'search_staff.html', {
+        'page_title': _('Buscar Talento'),
+        'profesionales': profesionales,
+    })
+
+def professional_detail(request, pk):
+    return render(request, 'professional_profile.html', {
+        'page_title': _('Perfil del Candidato'),
+        'candidato_id': pk, 
+    })
+
+def manage_staff(request):
+    return render(request, 'manage_staff.html', {
+        'page_title': _('Gestionar Profesionales'),
+    })
 
 
 # Sección de muro y mensajería
@@ -100,6 +123,12 @@ def messages_view(request):
     return render(request, 'messages.html', {
         'message_rows': message_rows,
         'page_title': _('Mensajes'),
+        'show_bottom_nav': True,
+    })
+
+def notifications_view(request):
+    return render(request, 'notifications.html', {
+        'page_title': _('Notificaciones'),
         'show_bottom_nav': True,
     })
 
