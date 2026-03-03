@@ -1,55 +1,102 @@
 {% extends 'base.html' %}
 {% load i18n static %}
 
-{% block title %}{% trans "Publicar Oferta | LinkedOut" %}{% endblock %}
+{% block title %}{% trans "Crear Oferta Laboral | LinkedOut" %}{% endblock %}
 
 {% block content %}
-<div class="max-w-2xl mx-auto bg-white rounded-xl border border-gray-300 shadow-sm overflow-hidden">
+<div class="max-w-3xl mx-auto bg-white rounded-xl border border-gray-300 shadow-sm overflow-hidden mb-10">
     <div class="p-6 border-b border-gray-200">
-        <h2 class="text-2xl font-bold text-gray-800">{% trans "Crear nueva oferta de empleo" %}</h2>
-        <p class="text-sm text-gray-500">{% trans "Atrae al mejor talento completando los detalles de la vacante." %}</p>
+        <h2 class="text-2xl font-bold text-gray-800">{% trans "Crear oferta laboral" %}</h2>
+        <p class="text-sm text-gray-500">{% trans "Atrae al mejor talento completando los detalles de la vacante." %}
+        </p>
     </div>
 
-    <form method="POST" action="{% url 'post_job' %}" class="p-6 space-y-6">
+    <form method="POST" action="{% url 'post_job' %}" enctype="multipart/form-data" class="p-6 space-y-6">
         {% csrf_token %}
-        
+
+        <input type="hidden" name="tipo" value="oferta">
+        <input type="hidden" name="estado_oferta" value="abierta">
+
         <div class="space-y-1">
-            <label for="title" class="block font-bold text-gray-700">{% trans "Título de la posición" %}</label>
-            <input type="text" id="title" name="title" required
+            <label for="titulo" class="block font-bold text-gray-700">{% trans "Título de la vacante" %}</label>
+            <input type="text" id="titulo" name="titulo" required
                 placeholder="{% trans 'Ej: Desarrollador Python Senior' %}"
                 class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:border-linkedout-orange focus:ring-1 focus:ring-linkedout-orange outline-none transition-all">
         </div>
 
         <div class="space-y-1">
-            <label for="sector" class="block font-bold text-gray-700">{% trans "Sector" %}</label>
-            <select id="sector" name="sector" required
-                class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:border-linkedout-orange focus:ring-1 focus:ring-linkedout-orange outline-none transition-all">
-                <option value="">{% trans "Seleccione un sector" %}</option>
-                <option value="it">{% trans "Tecnología / IT" %}</option>
-                <option value="marketing">{% trans "Marketing" %}</option>
-                <option value="ventas">{% trans "Ventas" %}</option>
-            </select>
+            <label for="contenido" class="block font-bold text-gray-700">{% trans "Introducción / Resumen" %}</label>
+            <textarea id="contenido" name="contenido" rows="2" required
+                placeholder="{% trans 'Un breve resumen de por qué trabajar con ustedes...' %}"
+                class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:border-linkedout-orange focus:ring-1 focus:ring-linkedout-orange outline-none transition-all"></textarea>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div class="space-y-1">
+                <label for="puesto" class="block font-bold text-gray-700">{% trans "Puesto / Cargo exacto" %}</label>
+                <input type="text" id="puesto" name="puesto" required placeholder="{% trans 'Ej: Backend Engineer' %}"
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:border-linkedout-orange focus:ring-1 focus:ring-linkedout-orange outline-none transition-all">
+            </div>
+
+            <div class="space-y-1">
+                <label for="sector" class="block font-bold text-gray-700">{% trans "Sector" %}</label>
+                <select id="sector" name="sector" required
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:border-linkedout-orange focus:ring-1 focus:ring-linkedout-orange outline-none transition-all">
+                    <option value="">{% trans "Seleccione un sector" %}</option>
+                    <option value="it">{% trans "Tecnología / IT" %}</option>
+                    <option value="marketing">{% trans "Marketing" %}</option>
+                    <option value="ventas">{% trans "Ventas" %}</option>
+                </select>
+            </div>
+
+            <div class="space-y-1">
+                <label for="salario" class="block font-bold text-gray-700">{% trans "Salario Estimado" %}</label>
+                <input type="number" id="salario" name="salario" step="0.01" required
+                    placeholder="{% trans 'Ej: 2500.00' %}"
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:border-linkedout-orange focus:ring-1 focus:ring-linkedout-orange outline-none transition-all">
+            </div>
+
+            <div class="space-y-1">
+                <label for="horas_laborales" class="block font-bold text-gray-700">
+                    {% trans "Horas Laborales /Modalidad" %}
+                </label>
+                <input type="text" id="horas_laborales" name="horas_laborales" required
+                    placeholder="{% trans 'Ej: 40 horas semanales / Remoto' %}"
+                    class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:border-linkedout-orange focus:ring-1 focus:ring-linkedout-orange outline-none transition-all">
+            </div>
         </div>
 
         <div class="space-y-1">
-            <label for="description" class="block font-bold text-gray-700">{% trans "Descripción del puesto" %}</label>
-            <textarea id="description" name="description" rows="4" required
+            <label for="descripcion_puesto" class="block font-bold text-gray-700">
+                {% trans "Descripción completa del puesto" %}
+            </label>
+            <textarea id="descripcion_puesto" name="descripcion_puesto" rows="4" required
                 placeholder="{% trans 'Describe las responsabilidades y el día a día...' %}"
                 class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:border-linkedout-orange focus:ring-1 focus:ring-linkedout-orange outline-none transition-all"></textarea>
         </div>
 
         <div class="space-y-1">
-            <label for="requirements" class="block font-bold text-gray-700">{% trans "Requerimientos / Skills" %}</label>
-            <textarea id="requirements" name="requirements" rows="3" required
+            <label for="requerimientos" class="block font-bold text-gray-700">
+                {% trans "Requerimientos / Skills"%}
+            </label>
+            <textarea id="requerimientos" name="requerimientos" rows="3" required
                 placeholder="{% trans 'Ej: Django, React, PostgreSQL, Inglés B2' %}"
                 class="w-full border border-gray-300 rounded-lg px-4 py-2.5 focus:border-linkedout-orange focus:ring-1 focus:ring-linkedout-orange outline-none transition-all"></textarea>
         </div>
 
-        <div class="flex items-center justify-end gap-4 pt-4">
-            <a href="{% url 'search_jobs' %}" class="text-gray-600 font-bold hover:underline">
+        <div class="space-y-1">
+            <label for="imagen" class="block font-bold text-gray-700">
+                {% trans "Imagen de la empresa / Banner (Opcional)" %}
+            </label>
+            <input type="file" id="imagen" name="imagen" accept="image/*"
+                class="w-full border border-gray-300 rounded-lg px-4 py-2 focus:border-linkedout-orange outline-none transition-all file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-bold file:bg-orange-50 file:text-linkedout-orange hover:file:bg-orange-100">
+        </div>
+
+        <div class="flex items-center justify-end gap-4 pt-4 border-t border-gray-200">
+            <a href="{% url 'feed' %}" class="text-gray-600 font-bold hover:underline">
                 {% trans "Cancelar" %}
             </a>
-            <button type="submit" 
+            <button type="submit"
                 class="bg-linkedout-orange text-white font-bold py-2.5 px-8 rounded-full hover:opacity-90 transition-opacity">
                 {% trans "Publicar Vacante" %}
             </button>
