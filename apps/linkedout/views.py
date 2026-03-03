@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout as auth_logout
-from .models import Propuesta
+from .models import JobOpportunity
 
 # Sección de perfil y autenticación
 def login(request):
@@ -80,41 +80,41 @@ def post_job(request):
     if request.method == 'POST':
         
         # 1. Extraemos todos los textos del formulario usando el atributo 'name' del HTML
-        t_titulo = request.POST.get('titulo')
-        t_contenido = request.POST.get('contenido')
-        t_puesto = request.POST.get('puesto')
-        t_sector = request.POST.get('sector')
-        t_salario = request.POST.get('salario')
-        t_horas = request.POST.get('horas_laborales')
-        t_desc = request.POST.get('descripcion_puesto')
-        t_req = request.POST.get('requerimientos')
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        position = request.POST.get('position')
+        industry = request.POST.get('industry')
+        salary = request.POST.get('salary')
+        working_hours = request.POST.get('working_hours')
+        job_description = request.POST.get('job_description')
+        requirements = request.POST.get('requirements')
         
         # Extraemos los campos ocultos (hidden)
-        t_tipo = request.POST.get('tipo', 'oferta')
-        t_estado = request.POST.get('estado_oferta', 'abierta')
+        opportunity_type = request.POST.get('opportunity_type', 'job_offer')
+        offer_status = request.POST.get('offer_status', 'open')
 
-        f_imagen = request.FILES.get('imagen')
+        image = request.FILES.get('image')
 
         # Pequeña validación de seguridad: Si el campo salario llega vacío, lo volvemos None 
         # para que la base de datos (que espera un Decimal) no lance un error.
-        if t_salario == '':
-            t_salario = None
+        if salary == '':
+            salary = None
 
         # 2. Guardamos todo en la base de datos
         # asignamos el autor usando la sesión activa (request.user)
-        Propuesta.objects.create(
-            autor=request.user,
-            tipo=t_tipo,
-            titulo=t_titulo,
-            contenido=t_contenido,
-            imagen=f_imagen,
-            puesto=t_puesto,
-            sector=t_sector,
-            salario=t_salario,
-            horas_laborales=t_horas,
-            descripcion_puesto=t_desc,
-            requerimientos=t_req,
-            estado_oferta=t_estado
+        JobOpportunity.objects.create(
+            author=request.user,
+            opportunity_type=opportunity_type,
+            title=title,
+            content=content,
+            image=image,
+            position=position,
+            industry=industry,
+            salary=salary,
+            working_hours=working_hours,
+            job_description=job_description,
+            requirements=requirements,
+            offer_status=offer_status
         )
 
         # 3. Exito, redirigimos al usuario al feed para que vea su nueva publicación
