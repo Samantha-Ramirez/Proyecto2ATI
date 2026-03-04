@@ -15,19 +15,11 @@
             <div class="flex items-center bg-white rounded-lg px-2 py-1 border border-gray-300 w-full max-w-[180px] lg:max-w-xs transition-all">
                 <span class="text-sm lg:text-xl">🔍</span>
                 <input type="text" 
-                    placeholder="{% trans 'Buscar' %}" 
+                    placeholder="{% trans 'Buscar empresa/usuario' %}" 
                     class="bg-transparent border-none text-black placeholder-gray-400 outline-none px-1 lg:px-2 w-full text-xs lg:text-base">
             </div>
         {% endif %}
 
-        {% if show_search %}
-            <form class="flex items-center bg-white rounded-lg px-2 py-1 border border-gray-300 w-full max-w-[180px] lg:max-w-xs transition-all" role="search">
-                <span class="text-sm lg:text-xl">🔍</span>
-                <input type="search" 
-                    placeholder="{% trans 'Buscar mensaje' %}" 
-                    class="bg-transparent border-none text-black placeholder-gray-400 outline-none px-1 lg:px-2 w-full text-xs lg:text-base">
-            </form>
-        {% endif %}
     </div>
 
     <div class="flex items-center gap-2 shrink-0">
