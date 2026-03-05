@@ -15,7 +15,7 @@
     <form method="POST" action="{% url 'post_job' %}" enctype="multipart/form-data" class="p-6 space-y-6">
         {% csrf_token %}
 
-        <input type="hidden" name="opportunity_type" value="job_offer">
+        {# ya no existe opportunity_type #}
         <input type="hidden" name="offer_status" value="open">
 
         <div class="space-y-1">
