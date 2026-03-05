@@ -1,12 +1,16 @@
 {% load i18n %}
 <nav class="lg:hidden bg-gray-100 border-t border-gray-300 flex justify-around py-2 text-3xl" aria-label="{% trans 'Navegación principal' %}">
     <a href="{% url 'feed' %}" title="{% trans 'Inicio' %}">🏠</a>
+
     {% if request.user.groups.all.0.name == 'Professional' %}
+        <a href="{% url 'create_post' %}" title="{% trans 'Crear Publicación' %}">➕</a>
         <a href="{% url 'search_jobs' %}" title="{% trans 'Zona Laboral' %}">💼</a>
     {% endif %}
+
     {% if request.user.groups.all.0.name == 'Company' %}
         <a href="{% url 'search_staff' %}" title="{% trans 'Zona Laboral' %}">💼</a>
     {% endif %}
+
     <a href="{% url 'messages' %}" title="{% trans 'Mensajes' %}">💬</a>
     <a href="{% url 'profile' %}" title="{% trans 'Perfil' %}">👤</a>
     <a href="{% url 'logout' %}"  title="{% trans 'Cerrar Sesión' %}">🚪</a>
