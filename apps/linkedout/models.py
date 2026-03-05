@@ -1,31 +1,41 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-class JobOpportunity(models.Model):
-    TYPE_CHOICES = [
-        ('post', 'Publicación Normal'),
-        ('job_offer', 'Oferta Laboral'),
-    ]
 
-    STATUS_CHOICES = [
-        ('open', 'Abierta / Recibiendo CVs'),
-        ('closed', 'Cerrada / Finalizada'),
-    ]
-
-    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name='job_opportunities')
-    title = models.CharField(max_length=255)
+class Post(models.Model):
+    author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="posts")
+    title = models.CharField(max_length=255, blank=True)
     content = models.TextField()
-    image = models.ImageField(upload_to='job_opportunities_imgs/', null=True, blank=True)
+    image = models.ImageField(upload_to="posts_imgs/", null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
-    opportunity_type = models.CharField(max_length=20, choices=TYPE_CHOICES, default='post')
-
-    job_description = models.TextField(null=True, blank=True)
-    salary = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
-    position = models.CharField(max_length=150, null=True, blank=True)
-    working_hours = models.CharField(max_length=50, null=True, blank=True, help_text="Ej: 40 horas semanales")
-    requirements = models.TextField(null=True, blank=True)
-    industry = models.CharField(max_length=100, null=True, blank=True)
-    offer_status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='open', null=True, blank=True)
 
     def __str__(self):
-        return f"{self.title} ({self.get_opportunity_type_display()})"
+        return f"Post #{self.id} by {self.author}"
+
+
+class JobOffer(Post):
+    STATUS_CHOICES = [
+        ("open", "Abierta / Recibiendo CVs"),
+        ("closed", "Cerrada / Finalizada"),
+    ]
+
+    job_description = models.TextField()
+    salary = models.DecimalField(max_digits=10, decimal_places=2, null=True, blank=True)
+    position = models.CharField(max_length=150)
+    working_hours = models.CharField(max_length=50, help_text="Ej: 40 horas semanales")
+    requirements = models.TextField()
+    industry = models.CharField(max_length=150)
+    offer_status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="open")
+
+    def __str__(self):
+        return f"{self.title} (Oferta)"
+
+
+class JobApplication(models.Model):
+    job_offer = models.ForeignKey(JobOffer, on_delete=models.CASCADE, related_name="applications")
+    applicant = models.ForeignKey(User, on_delete=models.CASCADE, related_name="job_applications")
+    created_at = models.DateTimeField(auto_now_add=True)
+    message = models.TextField(blank=True)
+
+    class Meta:
+        unique_together = [("job_offer", "applicant")]

@@ -134,8 +134,8 @@ msgid "Gestionar Profesionales | LinkedOut"
 msgstr "Manage Professionals | LinkedOut"
 
 #: .\apps\linkedout\templates\manage_staff.html:10
-msgid "Gestión de Talento"
-msgstr "Talent Management"
+msgid "Gestión de Personal"
+msgstr "Staff Management"
 
 #: .\apps\linkedout\templates\manage_staff.html:11
 msgid "Administra tus candidatos y contactos profesionales."
@@ -299,7 +299,7 @@ msgid "Cancelar"
 msgstr "Cancel"
 
 #: .\apps\linkedout\templates\post_job.html:54
-msgid "Publicar Vacante"
+msgid "Publicar Oferta"
 msgstr "Post Job"
 
 #: .\apps\linkedout\templates\professional_profile.html:4
@@ -381,8 +381,8 @@ msgid "Ver Comentarios"
 msgstr "View Comments"
 
 #: .\apps\linkedout\templates\search_staff.html:4
-msgid "Buscar Talento | LinkedOut"
-msgstr "Search Talent | LinkedOut"
+msgid "Buscar Personal | LinkedOut"
+msgstr "Search Staff | LinkedOut"
 
 #: .\apps\linkedout\templates\search_staff.html:12
 msgid "Buscar por habilidad (ej: React, Python, UI)..."
@@ -396,13 +396,9 @@ msgstr "Filter"
 msgid "Ver Perfil"
 msgstr "View Profile"
 
-#: .\apps\linkedout\views.py:64
-msgid "Publicar Oferta"
-msgstr "Post Job Offer"
-
 #: .\apps\linkedout\views.py:77
-msgid "Buscar Talento"
-msgstr "Search Talent"
+msgid "Buscar Personal"
+msgstr "Search Staff"
 
 #: .\apps\linkedout\views.py:83
 msgid "Perfil del Candidato"
