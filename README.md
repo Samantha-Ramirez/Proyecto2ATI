@@ -23,8 +23,6 @@ A diferencia de un portal de empleos tradicional, LinkedOut es una **red social 
 
 ---
 
----
-
 ## 🏗️ Arquitectura y Diseño Técnico
 
 El sistema se basa en el patrón **MVT (Model-View-Template)**. A continuación se presentan los artefactos que modelan la estructura y el comportamiento de LinkedOut.
@@ -49,24 +47,28 @@ Este diagrama describe la infraestructura física y cómo se distribuyen los com
 Muestra la organización lógica de los módulos del sistema (Autenticación, Perfiles, Ofertas, Chat).
 ![Diagrama de Paquetes](./docs/package_diagram.png)
 
----
+### Mapa de Navegacion
+Este diagrama define la experiencia del usuario (UX), mostrando el flujo entre pantallas y las condiciones de acceso (ej. áreas públicas vs. áreas privadas de usuario/admin).
+![Mapa de Navegacion](./docs/Mapa_navegacion.png)
 
 ## 🎨 Diseño UI (Wireframes)
 
-El diseño ha sido concebido bajo un enfoque _Mobile-First_ y adaptado para escritorio.
-![Wireframes Desktop](https://www.figma.com/design/InsltnGkXWAljm4XlRxcQP/Proyecto-LinkedOut-ATI?node-id=0-1&t=8g4amMnfq4OOVSJw-1)
-![Wireframes Mobile](https://www.figma.com/design/InsltnGkXWAljm4XlRxcQP/Proyecto-LinkedOut-ATI?node-id=0-1&t=8g4amMnfq4OOVSJw-1)
+[Figma](https://www.figma.com/design/InsltnGkXWAljm4XlRxcQP/Proyecto-LinkedOut-ATI?node-id=30-1057&t=hySV0PvQUuFgofog-1)
+
+| Vista Desktop | Vista Mobile |
+| :--- | :--- |
+| ![Mobile Placeholder](./docs/mobile.png) | ![Desktop Placeholder](./docs/desktop.png) |
+| *Ver [Wireframes Mobile](./docs/Mobile_Wireframes.pdf)* | *Ver [Wireframes Desktop](./docs/Desktop_Wireframes.pdf)* |
 
 ---
 
 ## 🛠️ Stack Tecnológico
-
-- **Lenguaje:** Python 3.x
-- **Framework:** Django 6.0.1
-- **Base de Datos:** SQLite
-- **Infraestructura:** Docker & Docker Compose
-- **Diseño:** Figma
-- **Control de Versiones:** Git
+* **Lenguaje:** Python 3.12-slim
+* **Framework:** Django 6.0.1
+* **Base de Datos:** SQLite
+* **Infraestructura:** Docker & Docker Compose
+* **Diseño:** Figma
+* **Control de Versiones:** Git
 
 ---
 
