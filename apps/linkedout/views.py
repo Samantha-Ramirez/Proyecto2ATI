@@ -122,7 +122,7 @@ def search_staff(request):
     ]
 
     return render(request, 'search_staff.html', {
-        'page_title': _('Buscar Talento'),
+        'page_title': _('Buscar Personal'),
         'profesionales': profesionales,
     })
 
