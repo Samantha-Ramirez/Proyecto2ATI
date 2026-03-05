@@ -98,6 +98,36 @@ def apply_job(request, job_id):
     return redirect('search_jobs')
 
 
+def create_post(request):
+    if request.method == "POST":
+        content = request.POST.get("content", "").strip()
+        title = (request.POST.get("title") or "").strip()
+        image = request.FILES.get("image")
+
+        if not content and not image:
+            # messages.error(request, _("Debes escribir un texto o adjuntar una imagen."))
+            return redirect("create_post")
+
+        Post.objects.create(
+            author=request.user,
+            title=title,
+            content=content or _("(Sin texto)"),
+            image=image,
+        )
+
+        # messages.success(request, _("Publicación creada correctamente."))
+        return redirect("feed")
+
+    # GET
+    return render(request, "create_post.html", {
+        "page_title": _("Crear publicación"),
+        "show_bottom_nav": True,
+        "desktop_search": True,
+        "show_search_menu": True,
+        "show_menu": True,
+    })
+
+
 def post_job(request):
     if request.method == 'POST':
         title = request.POST.get('title')

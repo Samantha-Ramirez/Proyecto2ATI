@@ -7,6 +7,7 @@
 
         {% if request.user.groups.all.0.name == 'Professional' %}
         <a href="{% url 'search_jobs' %}">💼 {% trans 'Zona Laboral' %}</a>
+        <a href="{% url 'create_post' %}">➕ {% trans 'Crear Publicación' %}</a>
         {% endif %}
 
         {% if request.user.groups.all.0.name == 'Company' %}
