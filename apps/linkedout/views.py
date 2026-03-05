@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout as auth_logout
-
+from .models import JobOpportunity
 
 # Sección de perfil y autenticación
 def login(request):
@@ -77,10 +77,51 @@ def apply_job(request, job_id):
 
 
 def post_job(request):
-    return render(request, 'post_job.html', {
-        'page_title': _('Publicar Oferta'),
-        'show_back': True,
-    })
+    if request.method == 'POST':
+        
+        # 1. Extraemos todos los textos del formulario usando el atributo 'name' del HTML
+        title = request.POST.get('title')
+        content = request.POST.get('content')
+        position = request.POST.get('position')
+        industry = request.POST.get('industry')
+        salary = request.POST.get('salary')
+        working_hours = request.POST.get('working_hours')
+        job_description = request.POST.get('job_description')
+        requirements = request.POST.get('requirements')
+        
+        # Extraemos los campos ocultos (hidden)
+        opportunity_type = request.POST.get('opportunity_type', 'job_offer')
+        offer_status = request.POST.get('offer_status', 'open')
+
+        image = request.FILES.get('image')
+
+        # Pequeña validación de seguridad: Si el campo salario llega vacío, lo volvemos None 
+        # para que la base de datos (que espera un Decimal) no lance un error.
+        if salary == '':
+            salary = None
+
+        # 2. Guardamos todo en la base de datos
+        # asignamos el autor usando la sesión activa (request.user)
+        JobOpportunity.objects.create(
+            author=request.user,
+            opportunity_type=opportunity_type,
+            title=title,
+            content=content,
+            image=image,
+            position=position,
+            industry=industry,
+            salary=salary,
+            working_hours=working_hours,
+            job_description=job_description,
+            requirements=requirements,
+            offer_status=offer_status
+        )
+
+        # 3. Exito, redirigimos al usuario al feed para que vea su nueva publicación
+        return redirect('feed') 
+
+    # Si la petición es GET (el usuario solo entró a ver la página vacía)
+    return render(request, 'post_job.html')
 
 
 def search_staff(request):
