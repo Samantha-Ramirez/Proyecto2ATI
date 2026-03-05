@@ -5,9 +5,8 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout as auth_logout
 from .models import JobOpportunity
 
+
 # Sección de perfil y autenticación
-
-
 def login(request):
     if request.method == 'POST':
         u = request.POST.get('username')
@@ -65,12 +64,15 @@ def manage_profile(request):
 
 # Sección laboral
 def search_jobs(request):
+    jobs = JobOpportunity.objects.all().order_by('-created_at')
     context = {
         'page_title': _('Zona laboral'),
         'show_bottom_nav': True,
         'desktop_search': True,
         'show_search_menu': True,
+        'jobs': jobs,
     }
+
     return render(request, 'search_jobs.html', context)
 
 
