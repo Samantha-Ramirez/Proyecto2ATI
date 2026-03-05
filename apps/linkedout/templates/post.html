@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans 'Publicación | LinkedOut' %}{% endblock %}
+
+{% block content %}
+<div class="max-w-3xl mx-auto py-6">
+
+    <div class="bg-white border border-gray-300 rounded-sm flex flex-col">
+
+        <article class="pt-2">
+            <div class="p-4 flex gap-3">
+                <div class="w-14 h-14 rounded-full bg-gray-300 shrink-0"></div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-start">
+                        <h3 class="font-bold text-gray-800 text-base">First Guy <span
+                                class="text-gray-500 font-normal ml-1">•</span></h3>
+                        <button class="text-gray-500 hover:bg-gray-100 px-2 py-0.5 rounded text-xl">⋮</button>
+                    </div>
+                    <p class="text-gray-500 text-sm">Java Technical Lead</p>
+                    <p class="text-gray-500 text-xs mt-0.5">17 h • 🌍</p>
+                </div>
+            </div>
+
+            <div class="px-4 pb-4">
+                <p class="text-gray-800 text-sm md:text-base leading-relaxed">
+                    Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the
+                    industry's standard dummy text ever since the 1500s.
+                </p>
+            </div>
+
+            <div class="px-10 py-2 flex justify-around items-center border-t border-gray-200">
+                <button
+                    class="flex flex-col justify-center items-center gap-1 py-2 text-gray-500 hover:bg-gray-100 rounded text-sm font-medium transition-colors px-6">
+                    <span class="text-xl leading-none">👍</span> Me gusta
+                </button>
+                <button
+                    class="flex flex-col justify-center items-center gap-1 py-2 text-gray-500 hover:bg-gray-100 rounded text-sm font-medium transition-colors px-6">
+                    <span class="text-xl leading-none">✈️</span> Enviar
+                </button>
+            </div>
+        </article>
+
+        <div class="px-4 py-4 border-t border-b border-gray-300 bg-white">
+            <h3 class="font-bold text-gray-700 text-lg mb-3">Comenta</h3>
+
+            <div class="border border-gray-400 rounded-md overflow-hidden">
+                <textarea rows="2" placeholder="Escribe un comentario..."
+                    class="w-full p-3 outline-none resize-none text-gray-700"></textarea>
+
+                <div class="flex justify-between items-center bg-white px-3 py-2 border-t border-gray-200">
+                    <button type="button"
+                        class="flex items-center gap-2 text-gray-500 hover:text-gray-700 font-medium text-sm">
+                        <span class="text-blue-500 text-2xl font-light leading-none">+</span> Agregar Imagen/Video
+                    </button>
+
+                    <button type="button"
+                        class="bg-gray-300 text-linkedout-orange font-bold py-1.5 px-6 rounded-full text-sm">
+                        Publicar
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <div class="bg-white pb-4">
+            <p class="text-gray-500 text-sm px-4 py-3 border-b border-gray-200">5 Comentarios</p>
+
+            <div class="flex px-4 py-5 gap-2 items-start border-b border-gray-200 last:border-0">
+
+                <div class="w-10 h-16 shrink-0 flex items-start justify-end -mt-2">
+                    <svg width="32" height="44" viewBox="0 0 32 44" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M16 0 V 28 H 28" stroke="#1f2937" stroke-width="2.5" />
+                        <path d="M22 22 L 28 28 L 22 34" stroke="#1f2937" stroke-width="2.5" stroke-linecap="round"
+                            stroke-linejoin="round" />
+                    </svg>
+                </div>
+
+                <div class="w-12 h-12 rounded-full bg-gray-300 shrink-0 mt-3"></div>
+
+                <div class="flex-1 min-w-0 mt-2">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-bold text-gray-800 text-base">Thrid Guy <span
+                                    class="text-gray-500 font-normal ml-1">•</span></h4>
+                            <p class="text-gray-500 text-sm">Java Junior</p>
+                            <p class="text-gray-500 text-xs mt-0.5">10 h • 🌍</p>
+                        </div>
+                        <button class="text-gray-500 hover:bg-gray-100 px-2 py-0.5 rounded text-xl">⋮</button>
+                    </div>
+                    <p class="text-gray-800 text-sm md:text-base mt-3 leading-relaxed">
+                        Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                        the industry's standard dummy text ever since the 1500s.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+{% endblock %}

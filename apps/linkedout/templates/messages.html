@@ -1,0 +1,199 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans 'Mensajes' %}{% endblock %}
+
+{% block content %}
+<div
+    class="flex flex-col lg:flex-row bg-white border border-gray-200 rounded-xl overflow-hidden h-[calc(100vh-140px)] lg:h-[calc(100vh-160px)]">
+
+    <div id="messages-list" class="flex flex-col w-full lg:w-[350px] border-r border-gray-200 shrink-0 h-full">
+        <header class="bg-linkedout-orange text-white px-5 py-4 shrink-0">
+            <h1 class="text-lg font-bold">{% trans 'Conversaciones' %}</h1>
+        </header>
+
+        <div class="p-3 border-b border-gray-100">
+            <div class="relative">
+                <span class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400">🔍</span>
+                <input type="text" placeholder="{% trans 'Buscar Mensaje' %}"
+                    class="w-full pl-9 pr-4 py-1.5 bg-gray-50 border-none rounded-lg focus:ring-1 focus:ring-linkedout-orange outline-none text-xs">
+            </div>
+        </div>
+
+        <div class="flex-1 overflow-y-auto divide-y divide-gray-50 bg-white">
+            {% for row in message_rows %}
+            <button onclick="showChat('{{ row.name }}')"
+                class="w-full text-left flex items-center gap-3 p-4 hover:bg-gray-50 transition-colors">
+                <div
+                    class="w-12 h-12 rounded-full bg-gray-100 shrink-0 flex items-center justify-center text-gray-400 font-bold text-sm border border-gray-200">
+                    {{ row.name|slice:":2"|upper }}
+                </div>
+                <div class="flex-1 min-w-0">
+                    <div class="flex justify-between items-baseline gap-2">
+                        <h3 class="font-bold text-gray-900 truncate text-sm">{{ row.name }}</h3>
+                        <span class="text-[10px] text-gray-400 shrink-0">{{ row.time }}</span>
+                    </div>
+                    <p class="text-xs text-gray-500 truncate {% if row.bold %}font-bold text-gray-800{% endif %}">
+                        {{ row.message }}
+                    </p>
+                </div>
+            </button>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div id="chat-pane" class="hidden lg:flex flex-col flex-1 bg-white relative h-full">
+        <header class="bg-linkedout-orange text-white px-4 py-4 shrink-0 flex items-center gap-3">
+            <button onclick="hideChat()" class="lg:hidden p-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+                </svg>
+            </button>
+            <div
+                class="w-10 h-10 rounded-full bg-gray-100 shrink-0 flex items-center justify-center text-gray-400 font-bold text-xs border border-white/20">
+                <span id="active-initials">SR</span>
+            </div>
+            <div class="flex-1 min-w-0 pt-1">
+                <h1 id="active-name" class="text-sm font-bold truncate leading-tight">Samantha Ramirez</h1>
+                <p class="text-[10px] opacity-90 flex items-center gap-1 mt-0.5">
+                    <span class="w-1.5 h-1.5 bg-green-400 rounded-full"></span>
+                    Movil • 2m atras
+                </p>
+            </div>
+            <button class="p-1">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                        d="M12 5v.01M12 12v.01M12 19v.01M12 6a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2zm0 7a1 1 0 110-2 1 1 0 010 2z" />
+                </svg>
+            </button>
+        </header>
+
+        <div class="flex-1 overflow-y-auto p-4 space-y-6 pb-20 bg-white scroll-smooth">
+            <div class="flex gap-3">
+                <div
+                    class="w-8 h-8 rounded-full bg-gray-100 shrink-0 flex items-center justify-center text-gray-400 font-bold text-[10px] border border-gray-200">
+                    <span class="participant-initials">FG</span>
+                </div>
+                <div class="flex flex-col gap-1.5">
+                    <div class="flex items-center gap-2">
+                        <span class="font-bold text-xs text-gray-900 participant-name">First Guy</span>
+                        <span class="text-[9px] text-gray-400">8:33 PM</span>
+                    </div>
+                    <div
+                        class="bg-gray-100 text-gray-800 p-3 rounded-2xl rounded-tl-none text-xs max-w-[85%] lg:max-w-md shadow-sm">
+                        Tu CV se ve interesante.
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex flex-row-reverse gap-3">
+                <div
+                    class="w-8 h-8 rounded-full bg-black shrink-0 flex items-center justify-center text-white font-bold text-[10px]">
+                    ME
+                </div>
+                <div class="flex flex-col items-end gap-1.5">
+                    <div class="flex items-center gap-2">
+                        <span class="text-[9px] text-gray-400">7:00 PM</span>
+                        <span class="font-bold text-xs text-gray-900">{% trans 'Tú' %}</span>
+                    </div>
+                    <div
+                        class="bg-linkedout-orange text-white p-3 rounded-2xl rounded-tr-none text-xs max-w-[85%] lg:max-w-md shadow-sm">
+                        Lo es. Podríamos reunirnos.
+                    </div>
+                </div>
+            </div>
+
+            <div class="flex gap-3">
+                <div
+                    class="w-8 h-8 rounded-full bg-gray-100 shrink-0 flex items-center justify-center text-gray-400 font-bold text-[10px] border border-gray-200">
+                    <span class="participant-initials">FG</span>
+                </div>
+                <div class="flex flex-col gap-1.5">
+                    <div class="flex items-center gap-2">
+                        <span class="font-bold text-xs text-gray-900 participant-name">First Guy</span>
+                        <span class="text-[9px] text-gray-400">7:08 PM</span>
+                    </div>
+                    <div
+                        class="border border-gray-100 rounded-xl p-3 flex items-center gap-4 bg-white shadow-sm max-w-[85%] lg:max-w-md">
+                        <div class="w-10 h-10 bg-gray-50 rounded-lg flex items-center justify-center text-gray-400">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24"
+                                stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                    d="M15 10l4.553-2.276A1 1 0 0121 8.618v6.764a1 1 0 01-1.447.894L15 14M5 18h8a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v8a2 2 0 002 2z" />
+                            </svg>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-xs text-gray-900 leading-tight">Reunión</h4>
+                            <button class="text-linkedout-orange font-bold text-[10px] hover:underline">Unirse a la
+                                reunión</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="relative py-8">
+                <div class="absolute inset-0 flex items-center" aria-hidden="true">
+                    <div class="w-full border-t border-gray-100"></div>
+                </div>
+                <div class="relative flex justify-center text-[9px] font-bold text-gray-300 tracking-widest uppercase">
+                    <span class="px-2 bg-white">Hoy</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="p-3 bg-white border-t border-gray-100 flex items-center gap-3">
+            <button
+                class="w-10 h-10 rounded-full border border-gray-200 flex items-center justify-center text-linkedout-orange hover:bg-orange-50 transition-colors shrink-0">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24"
+                    stroke="currentColor">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+            </button>
+            <div class="flex-1 bg-gray-50 rounded-xl px-4 py-2.5 text-xs text-gray-400 border border-gray-100">
+                {% trans 'Escribe un mensaje...' %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showChat(name) {
+        document.getElementById('active-name').textContent = name;
+        document.getElementById('active-initials').textContent = name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase();
+        document.querySelectorAll('.participant-name').forEach(el => el.textContent = name);
+        document.querySelectorAll('.participant-initials').forEach(el => el.textContent = name.split(' ').map(n => n[0]).join('').slice(0, 2).toUpperCase());
+
+        const pane = document.getElementById('chat-pane');
+        const list = document.getElementById('messages-list');
+
+        pane.classList.remove('hidden');
+        pane.classList.add('flex');
+
+        if (window.innerWidth < 1024) {
+            list.classList.add('hidden');
+        }
+    }
+    function hideChat() {
+        document.getElementById('messages-list').classList.remove('hidden');
+        document.getElementById('chat-pane').classList.add('hidden');
+        document.getElementById('chat-pane').classList.remove('flex');
+    }
+</script>
+{% endblock %}
+
+{% block bottombar %}
+<div id="navigation-bar" class="lg:hidden">{% include 'components/bottombar.html' %}</div>
+<script>
+    const chatPane = document.getElementById('chat-pane');
+    const navBar = document.getElementById('navigation-bar');
+    const config = { attributes: true, attributeFilter: ['class'] };
+    const callback = () => {
+        if (!chatPane.classList.contains('hidden') && window.innerWidth < 1024) { navBar.classList.add('hidden'); }
+        else { navBar.classList.remove('hidden'); }
+    };
+    new MutationObserver(callback).observe(chatPane, config);
+</script>
+{% endblock %}

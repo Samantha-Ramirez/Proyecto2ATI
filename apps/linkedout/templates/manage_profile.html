@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans 'Ajustes' %} | LinkedOut{% endblock %}
+
+{% block content %}
+<div class="max-w-4xl mx-auto bg-white min-h-screen shadow-sm">
+    <div class="flex items-center gap-4 p-4 border-b border-gray-200">
+        <a href="{% url 'profile' %}" class="text-3xl hover:bg-gray-100 p-2 rounded-full transition-colors">
+            ←
+        </a>
+        <h2 class="text-3xl font-bold flex-1 text-center mr-10">{% trans 'Ajustes' %}</h2>
+    </div>
+
+    <div class="divide-y divide-gray-200">
+        <article class="flex items-center gap-6 p-8 hover:bg-gray-50 cursor-pointer transition-colors">
+            <div class="text-3xl text-gray-600">👤</div>
+            <div class="flex-1">
+                <h3 class="text-2xl font-bold text-gray-800">{% trans 'Preferencias de la cuenta' %}</h3>
+                <p class="text-xl text-gray-500">{% trans 'Opciones para manejar tu cuenta de LinkedOut' %}</p>
+            </div>
+        </article>
+
+        <article class="flex items-center gap-6 p-8 hover:bg-gray-50 cursor-pointer transition-colors">
+            <div class="text-3xl text-gray-600">🔒</div>
+            <div class="flex-1">
+                <h3 class="text-2xl font-bold text-gray-800">{% trans 'Acceso y seguridad' %}</h3>
+                <p class="text-xl text-gray-500">{% trans 'Opciones de seguridad para proteger tu cuenta' %}</p>
+            </div>
+        </article>
+
+        <article class="flex items-center gap-6 p-8 hover:bg-gray-50 cursor-pointer transition-colors">
+            <div class="text-3xl text-gray-600">👁️</div>
+            <div class="flex-1">
+                <h3 class="text-2xl font-bold text-gray-800">{% trans 'Visibilidad' %}</h3>
+                <p class="text-xl text-gray-500">{% trans 'Controla quien puede ver tu información en LinkedOut' %}</p>
+            </div>
+        </article>
+
+        <article class="flex items-center gap-6 p-8 hover:bg-gray-50 cursor-pointer transition-colors">
+            <div class="text-3xl text-gray-600">✉️</div>
+            <div class="flex-1">
+                <h3 class="text-2xl font-bold text-gray-800">{% trans 'Comunicaciones' %}</h3>
+                <p class="text-xl text-gray-500">{% trans 'Controla tus mensajes y notificaciones' %}</p>
+            </div>
+        </article>
+
+        <article class="flex items-center gap-6 p-8 hover:bg-gray-50 cursor-pointer transition-colors">
+            <div class="text-3xl text-gray-600">🛡️</div>
+            <div class="flex-1">
+                <h3 class="text-2xl font-bold text-gray-800">{% trans 'Privacidad de datos' %}</h3>
+                <p class="text-xl text-gray-500">{% trans 'Controla como LinkedOut usa tu información para proporcionarte tu información favorita' %}</p>
+            </div>
+        </article>
+
+    </div>
+</div>
+{% endblock %}

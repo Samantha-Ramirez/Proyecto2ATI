@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+{% load i18n static %}
+
+{% block title %}{% trans "Notificaciones | LinkedOut" %}{% endblock %}
+
+{% block content %}
+<div class="max-w-2xl mx-auto space-y-4">
+    <div class="flex items-center justify-between mb-6">
+        <h2 class="text-xl font-bold text-gray-900">{% trans "Notificaciones" %}</h2>
+        <button class="text-sm text-linkedout-orange font-bold hover:underline">{% trans "Marcar todas como leídas" %}</button>
+    </div>
+
+    <div class="bg-white border border-gray-300 rounded-xl divide-y divide-gray-100 overflow-hidden shadow-sm">
+        
+        <div class="p-4 flex gap-4 hover:bg-gray-50 transition-colors">
+            <div class="flex-shrink-0 w-12 h-12 bg-blue-100 rounded-full flex items-center justify-center text-blue-600">
+                👤
+            </div>
+            <div class="flex-1">
+                <p class="text-sm text-gray-800">
+                    <span class="font-bold">Juan Pérez</span> 
+                    {% trans "se ha postulado a tu oferta de" %} 
+                    <span class="font-bold text-linkedout-orange">"Senior Dev"</span>.
+                </p>
+                <span class="text-xs text-gray-500">{% trans "Hace 2 horas" %}</span>
+            </div>
+            <div class="w-2 h-2 bg-linkedout-orange rounded-full self-center"></div>
+        </div>
+
+        <div class="p-4 flex gap-4 hover:bg-gray-50 transition-colors">
+            <div class="flex-shrink-0 w-12 h-12 bg-orange-100 rounded-full flex items-center justify-center text-orange-600">
+                ➕
+            </div>
+            <div class="flex-1">
+                <p class="text-sm text-gray-800">
+                    <span class="font-bold">Empresa Tech S.A.</span> 
+                    {% trans "ha comenzado a seguirte." %}
+                </p>
+                <span class="text-xs text-gray-500">{% trans "Hace 5 horas" %}</span>
+            </div>
+        </div>
+
+        <div class="p-4 flex gap-4 hover:bg-gray-50 transition-colors">
+            <div class="flex-shrink-0 w-12 h-12 bg-green-100 rounded-full flex items-center justify-center text-green-600">
+                💬
+            </div>
+            <div class="flex-1">
+                <p class="text-sm text-gray-800">
+                    <span class="font-bold">María Herrero</span> 
+                    {% trans "comentó tu publicación:" %} 
+                    <span class="italic text-gray-600">"¡Excelente iniciativa!"</span>
+                </p>
+                <span class="text-xs text-gray-500">{% trans "Ayer" %}</span>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
