@@ -1,9 +1,10 @@
-from django.shortcuts import redirect
-from django.shortcuts import render
-from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout as auth_logout
-from .models import JobOffer
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, redirect, render
+from django.utils.translation import gettext_lazy as _
+
+from .models import JobApplication, JobOffer, Post
 
 
 # Sección de perfil y autenticación
@@ -65,18 +66,36 @@ def manage_profile(request):
 # Sección laboral
 def search_jobs(request):
     jobs = JobOffer.objects.all().order_by('-created_at')
+
+    applied_job_ids = set()
+    if request.user.is_authenticated:
+        applied_job_ids = set(
+            JobApplication.objects.filter(applicant=request.user).values_list('job_offer_id', flat=True)
+        )
+
     context = {
         'page_title': _('Zona laboral'),
         'show_bottom_nav': True,
         'desktop_search': True,
         'show_search_menu': True,
         'jobs': jobs,
+        'applied_job_ids': applied_job_ids,
     }
     return render(request, 'search_jobs.html', context)
 
 
 def apply_job(request, job_id):
-    pass
+    job = get_object_or_404(JobOffer, pk=job_id)
+
+    if request.method != "POST":
+        return redirect('search_jobs')
+
+    application, created = JobApplication.objects.get_or_create(
+        job_offer=job,
+        applicant=request.user,
+    )
+
+    return redirect('search_jobs')
 
 
 def post_job(request):
@@ -142,10 +161,20 @@ def manage_staff(request):
 
 # Sección de muro y mensajería
 def feed(request):
+    posts = Post.objects.select_related("author", "joboffer").all().order_by("-created_at")
+
+    applied_job_ids = set()
+    if request.user.is_authenticated:
+        applied_job_ids = set(
+            JobApplication.objects.filter(applicant=request.user).values_list('job_offer_id', flat=True)
+        )
+
     context = {
         'desktop_search': True,
         'page_title': '',
         'show_bottom_nav': True,
+        'posts': posts,
+        'applied_job_ids': applied_job_ids,
     }
     return render(request, 'feed.html', context)
 

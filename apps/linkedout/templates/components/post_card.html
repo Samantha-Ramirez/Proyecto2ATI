@@ -19,8 +19,30 @@
           {% else %}
             {% trans "Usuario" %}
           {% endif %}
+
           <span class="text-gray-500 font-normal ml-1">•</span>
+
+          {% if item.joboffer %}
+            {% if item.joboffer.id in applied_job_ids %}
+              <span class="font-medium text-sm ml-0.5 text-green-600">✅ {% trans "Postulado" %}</span>
+            {% else %}
+              <form
+                method="POST"
+                action="{% url 'apply_job' item.joboffer.id %}"
+                class="inline"
+              >
+                {% csrf_token %}
+                <button
+                  type="submit"
+                  class="font-medium text-sm ml-0.5 text-linkedout-orange hover:underline"
+                >
+                  {% trans "Postularse" %}
+                </button>
+              </form>
+            {% endif %}
+          {% endif %}
         </h3>
+
         <button class="text-gray-500 hover:bg-gray-100 px-2 py-1 rounded">⋮</button>
       </div>
 
