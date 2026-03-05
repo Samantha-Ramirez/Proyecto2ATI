@@ -3,6 +3,7 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext_lazy as _
+from django.db.models import Q # Para búsquedas más complicadas
 
 from .models import JobApplication, JobOffer, Post
 
@@ -65,8 +66,22 @@ def manage_profile(request):
 
 # Sección laboral
 def search_jobs(request):
+    # Tomamos el termino de búsqueda
+    query = request.GET.get('q', '').strip()
+
+    # Nos traemos todas las ofertas base ordenadas por fecha
     jobs = JobOffer.objects.all().order_by('-created_at')
 
+    # Filtramos por lo que puso el usuario
+    if query:
+        jobs = jobs.filter(
+            Q(title__icontains=query) |
+            Q(position__icontains=query) |
+            Q(industry__icontains=query) |
+            Q(job_description__icontains=query) |
+            Q(requirements__icontains=query)
+        )
+        
     applied_job_ids = set()
     if request.user.is_authenticated:
         applied_job_ids = set(
@@ -80,6 +95,9 @@ def search_jobs(request):
         'show_search_menu': True,
         'jobs': jobs,
         'applied_job_ids': applied_job_ids,
+        'search_query': query, # Pasamos el término de vuelta al template
+        # Agregamos placeholder variable
+        'search_placeholder': _('Buscar oferta laboral'),
     }
     return render(request, 'search_jobs.html', context)
 
