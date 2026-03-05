@@ -6,6 +6,8 @@ from django.contrib.auth import logout as auth_logout
 from .models import JobOpportunity
 
 # Sección de perfil y autenticación
+
+
 def login(request):
     if request.method == 'POST':
         u = request.POST.get('username')
@@ -78,7 +80,7 @@ def apply_job(request, job_id):
 
 def post_job(request):
     if request.method == 'POST':
-        
+
         # 1. Extraemos todos los textos del formulario usando el atributo 'name' del HTML
         title = request.POST.get('title')
         content = request.POST.get('content')
@@ -88,14 +90,14 @@ def post_job(request):
         working_hours = request.POST.get('working_hours')
         job_description = request.POST.get('job_description')
         requirements = request.POST.get('requirements')
-        
+
         # Extraemos los campos ocultos (hidden)
         opportunity_type = request.POST.get('opportunity_type', 'job_offer')
         offer_status = request.POST.get('offer_status', 'open')
 
         image = request.FILES.get('image')
 
-        # Pequeña validación de seguridad: Si el campo salario llega vacío, lo volvemos None 
+        # Pequeña validación de seguridad: Si el campo salario llega vacío, lo volvemos None
         # para que la base de datos (que espera un Decimal) no lance un error.
         if salary == '':
             salary = None
@@ -118,7 +120,7 @@ def post_job(request):
         )
 
         # 3. Exito, redirigimos al usuario al feed para que vea su nueva publicación
-        return redirect('feed') 
+        return redirect('feed')
 
     # Si la petición es GET (el usuario solo entró a ver la página vacía)
     return render(request, 'post_job.html')

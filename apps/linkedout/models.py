@@ -1,6 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
+
 class JobOpportunity(models.Model):
     TYPE_CHOICES = [
         ('post', 'Publicación Normal'),
