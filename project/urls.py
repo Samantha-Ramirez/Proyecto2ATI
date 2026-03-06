@@ -16,12 +16,14 @@ Including another URLconf
 """
 
 from django.contrib import admin
+from django.shortcuts import redirect
 from django.urls import path, include
 from apps.linkedout import views
 
 urlpatterns = [
     path('i18n/', include('django.conf.urls.i18n')),
     path('admin/', admin.site.urls),
+    path('', lambda request: redirect('login'), name='root'),
 
     # Sección de perfil y autenticación
     path('login/', views.login, name='login'),
@@ -33,21 +35,21 @@ urlpatterns = [
     # Sección laboral
     path('search-jobs/', views.search_jobs, name='search_jobs'),
     path('apply-job/<int:job_id>/', views.apply_job, name='apply_job'),
-    path('search-staff/', views.search_staff, name='search_staff'),
-    path('create-post/', views.create_post, name='create_post'),
+    path('search-professionals/', views.search_professionals, name='search_professionals'),
+    path('post/', views.post, name='post'),
     path('post-job/', views.post_job, name='post_job'),
-    path('professional-profile/<int:pk>/', views.professional_detail, name='professional_detail'),
-    path('manage-staff/', views.manage_staff, name='manage_staff'),
+    path('professional-profile/<int:pk>/', views.professional_profile, name='professional_profile'),
+    path('manage-professionals/', views.manage_professionals, name='manage_professionals'),
 
     # Sección social
     path('feed/', views.feed, name='feed'),
     path('feed/follow/<int:user_id>/', views.follow_user, name='follow_user'),
     path('feed/comment/<int:post_id>/', views.comment_post, name='comment_post'),
 
-    # Sección Mensajeria --- Por si acaso, aqui estaba el conflicto ---
+    # Sección de muro y mensajería
     path('messages/', views.messages, name='messages'),
     path('messages/chat/<int:user_id>/', views.chat, name='chat'),
-    path('notifications/', views.notifications_view, name='notifications'),
+    path('notifications/', views.notifications, name='notifications'),
 
     # Sección de administración
     path('admin-panel/', views.admin_panel, name='admin_panel'),

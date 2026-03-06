@@ -1,15 +1,12 @@
 {% extends 'base.html' %}
 {% load i18n static %}
 
-{% block title %}{% trans "Crear Oferta Laboral | LinkedOut" %}{% endblock %}
+{% block title %}{% trans "Publicar oferta laboral | LinkedOut" %}{% endblock %}
 
 {% block content %}
 <div class="max-w-3xl mx-auto bg-white rounded-xl border border-gray-300 shadow-sm overflow-hidden mb-10">
     <div class="p-6 border-b border-gray-200">
-        <h2 class="text-2xl font-bold text-gray-800">{% trans "Crear oferta laboral" %}</h2>
-        <p class="text-sm text-gray-500">
-            {% blocktranslate %}Atrae al mejor talento completando los detalles de la oferta.{% endblocktranslate %}
-        </p>
+        <h2 class="text-2xl font-bold text-gray-800">{% trans "Publicar oferta laboral" %}</h2>
     </div>
 
     <form method="POST" action="{% url 'post_job' %}" enctype="multipart/form-data" class="p-6 space-y-6">
@@ -99,7 +96,7 @@
             </a>
             <button type="submit"
                 class="bg-linkedout-orange text-white font-bold py-2.5 px-8 rounded-full hover:opacity-90 transition-opacity">
-                {% trans "Publicar Oferta" %}
+                {% trans "Publicar" %}
             </button>
         </div>
     </form>

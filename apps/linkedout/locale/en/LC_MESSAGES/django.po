@@ -82,8 +82,8 @@ msgstr "Sign In | LinkedOut"
 #: .\apps\linkedout\templates\manage_profile.html:4
 #: .\apps\linkedout\templates\manage_profile.html:12
 #: .\apps\linkedout\views.py:40
-msgid "Ajustes"
-msgstr "Settings"
+msgid "Gestionar perfil"
+msgstr "Manage profile"
 
 #: .\apps\linkedout\templates\manage_profile.html:19
 msgid "Preferencias de la cuenta"
@@ -129,55 +129,55 @@ msgstr ""
 "Control how LinkedOut uses your data to provide you with your favorite "
 "content"
 
-#: .\apps\linkedout\templates\manage_staff.html:4
+#: .\apps\linkedout\templates\manage_professionals.html:4
 msgid "Gestionar Profesionales | LinkedOut"
 msgstr "Manage Professionals | LinkedOut"
 
-#: .\apps\linkedout\templates\manage_staff.html:10
+#: .\apps\linkedout\templates\manage_professionals.html:10
 msgid "Gestión de Personal"
 msgstr "Staff Management"
 
-#: .\apps\linkedout\templates\manage_staff.html:11
+#: .\apps\linkedout\templates\manage_professionals.html:11
 msgid "Administra tus candidatos y contactos profesionales."
 msgstr "Manage your candidates and professional contacts."
 
-#: .\apps\linkedout\templates\manage_staff.html:15
+#: .\apps\linkedout\templates\manage_professionals.html:15
 msgid "Todos los estados"
 msgstr "All statuses"
 
-#: .\apps\linkedout\templates\manage_staff.html:16
+#: .\apps\linkedout\templates\manage_professionals.html:16
 msgid "Contactados"
 msgstr "Contacted"
 
-#: .\apps\linkedout\templates\manage_staff.html:17
+#: .\apps\linkedout\templates\manage_professionals.html:17
 msgid "En proceso"
 msgstr "In progress"
 
-#: .\apps\linkedout\templates\manage_staff.html:18
+#: .\apps\linkedout\templates\manage_professionals.html:18
 msgid "Contratados"
 msgstr "Hired"
 
-#: .\apps\linkedout\templates\manage_staff.html:28
+#: .\apps\linkedout\templates\manage_professionals.html:28
 msgid "Profesional"
 msgstr "Professional"
 
-#: .\apps\linkedout\templates\manage_staff.html:29
+#: .\apps\linkedout\templates\manage_professionals.html:29
 msgid "Último Contacto"
 msgstr "Last Contact"
 
-#: .\apps\linkedout\templates\manage_staff.html:30
+#: .\apps\linkedout\templates\manage_professionals.html:30
 msgid "Estado"
 msgstr "Status"
 
-#: .\apps\linkedout\templates\manage_staff.html:31
+#: .\apps\linkedout\templates\manage_professionals.html:31
 msgid "Acciones"
 msgstr "Actions"
 
-#: .\apps\linkedout\templates\manage_staff.html:48
+#: .\apps\linkedout\templates\manage_professionals.html:48
 msgid "En revisión"
 msgstr "Under review"
 
-#: .\apps\linkedout\templates\manage_staff.html:53
+#: .\apps\linkedout\templates\manage_professionals.html:53
 msgid "Ver"
 msgstr "View"
 
@@ -311,7 +311,7 @@ msgid "Foto de perfil"
 msgstr "Profile picture"
 
 #: .\apps\linkedout\templates\professional_profile.html:17
-#: .\apps\linkedout\templates\search_staff.html:43
+#: .\apps\linkedout\templates\search_professionals.html:43
 msgid "Contactar"
 msgstr "Contact"
 
@@ -380,19 +380,19 @@ msgstr "Job options"
 msgid "Ver Comentarios"
 msgstr "View Comments"
 
-#: .\apps\linkedout\templates\search_staff.html:4
+#: .\apps\linkedout\templates\search_professionals.html:4
 msgid "Buscar Personal | LinkedOut"
 msgstr "Search Staff | LinkedOut"
 
-#: .\apps\linkedout\templates\search_staff.html:12
+#: .\apps\linkedout\templates\search_professionals.html:12
 msgid "Buscar por habilidad (ej: React, Python, UI)..."
 msgstr "Search by skill (e.g., React, Python, UI)..."
 
-#: .\apps\linkedout\templates\search_staff.html:16
+#: .\apps\linkedout\templates\search_professionals.html:16
 msgid "Filtrar"
 msgstr "Filter"
 
-#: .\apps\linkedout\templates\search_staff.html:39
+#: .\apps\linkedout\templates\search_professionals.html:39
 msgid "Ver Perfil"
 msgstr "View Profile"
 
