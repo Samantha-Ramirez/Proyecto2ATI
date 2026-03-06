@@ -6,17 +6,17 @@
         <a href="{% url 'feed' %}">🏠 {% trans 'Inicio' %}</a>
 
         {% if request.user.groups.all.0.name == 'Professional' %}
-        <a href="{% url 'search_jobs' %}">💼 {% trans 'Zona Laboral' %}</a>
-        <a href="{% url 'create_post' %}">➕ {% trans 'Crear Publicación' %}</a>
+        <a href="{% url 'search_jobs' %}">💼 {% trans 'Zona laboral' %}</a>
+        <a href="{% url 'post' %}">➕ {% trans 'Crear Publicación' %}</a>
         {% endif %}
 
         {% if request.user.groups.all.0.name == 'Company' %}
-        <a href="{% url 'search_staff' %}">💼 {% trans 'Zona Laboral' %}</a>
-        <a href="{% url 'post_job' %}">➕ {% trans 'Crear Oferta Laboral' %}</a>
+        <a href="{% url 'search_professionals' %}">💼 {% trans 'Zona laboral' %}</a>
+        <a href="{% url 'post_job' %}">➕ {% trans 'Crear oferta laboral' %}</a>
         {% endif %}
 
         <a href="{% url 'messages' %}">💬 {% trans 'Chat' %}</a>
         <a href="{% url 'profile' %}">👤 {% trans 'Perfil' %}</a>
-        <a href="{% url 'logout' %}">🚪 {% trans 'Cerrar Sesión' %}</a>
+        <a href="{% url 'logout' %}">🚪 {% trans 'Cerrar sesión' %}</a>
     </nav>
 </aside>

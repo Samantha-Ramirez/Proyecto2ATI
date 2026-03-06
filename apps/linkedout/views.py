@@ -3,7 +3,7 @@ from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext_lazy as _
-from django.db.models import Q  # Para búsquedas más complicadas
+from django.db.models import Q
 
 from .models import JobApplication, JobOffer, Post, Profile
 
@@ -33,7 +33,6 @@ def register(request):
 
 
 def profile(request):
-    # En el futuro, aquí buscaremos al usuario real: user = request.user
     context = {
         'page_title': _('Perfil'),
         'show_bottom_nav': True,
@@ -41,7 +40,6 @@ def profile(request):
         'show_search_menu': True,
         'show_menu': True,
 
-        # Datos de prueba para los posts
         'message_rows': [
             {
                 'name': 'First Guy',
@@ -56,23 +54,21 @@ def profile(request):
 
 
 def manage_profile(request):
-    return render(request, 'manage_profile.html', {
+    context = {
         'page_title': _('Gestionar perfil'),
         'show_search_menu': True,
         'desktop_search': True,
         'show_bottom_nav': True,
-    })
+    }
+
+    return render(request, 'manage_profile.html', context)
 
 
 # Sección laboral
 def search_jobs(request):
-    # Tomamos el termino de búsqueda
     query = request.GET.get('q', '').strip()
-
-    # Nos traemos todas las ofertas base ordenadas por fecha
     jobs = JobOffer.objects.all().order_by('-created_at')
 
-    # Filtramos por lo que puso el usuario
     if query:
         jobs = jobs.filter(
             Q(title__icontains=query) |
@@ -89,16 +85,16 @@ def search_jobs(request):
         )
 
     context = {
-        'page_title': _('Zona Laboral'),
+        'page_title': _('Zona laboral'),
         'show_bottom_nav': True,
         'desktop_search': True,
         'show_search_menu': True,
         'jobs': jobs,
         'applied_job_ids': applied_job_ids,
-        'search_query': query,  # Pasamos el término de vuelta al template
-        # Agregamos placeholder variable
+        'search_query': query,
         'search_placeholder': _('Buscar oferta laboral'),
     }
+
     return render(request, 'search_jobs.html', context)
 
 
@@ -116,15 +112,14 @@ def apply_job(request, job_id):
     return redirect('search_jobs')
 
 
-def create_post(request):
+def post(request):
     if request.method == "POST":
         content = request.POST.get("content", "").strip()
         title = (request.POST.get("title") or "").strip()
         image = request.FILES.get("image")
 
         if not content and not image:
-            # messages.error(request, _("Debes escribir un texto o adjuntar una imagen."))
-            return redirect("create_post")
+            return redirect("post")
 
         Post.objects.create(
             author=request.user,
@@ -133,24 +128,21 @@ def create_post(request):
             image=image,
         )
 
-        # messages.success(request, _("Publicación creada correctamente."))
         return redirect("feed")
 
-    # GET
-    return render(request, "create_post.html", {
-        "page_title": _("Crear publicación"),
+    context = {
+        "page_title": _("Hacer publicación"),
         "show_bottom_nav": True,
         "desktop_search": True,
         "show_search_menu": True,
         "show_menu": True,
-    })
+    }
+
+    return render(request, "post.html", context)
 
 
 def post_job(request):
     if request.method == 'POST':
-
-        # 1. Extraemos todos los textos del formulario
-        # usando el atributo 'name' del HTML
         title = request.POST.get('title')
         content = request.POST.get('content')
         position = request.POST.get('position')
@@ -160,14 +152,9 @@ def post_job(request):
         job_description = request.POST.get('job_description')
         requirements = request.POST.get('requirements')
 
-        # Extraemos los campos ocultos (hidden)
-        opportunity_type = request.POST.get('opportunity_type', 'job_offer')
         offer_status = request.POST.get('offer_status', 'open')
         image = request.FILES.get('image')
 
-        # Pequeña validación de seguridad:
-        # Si el campo salario llega vacío, lo volvemos None
-        # para que la base de datos (que espera un Decimal) no lance un error.
         if salary == '':
             salary = None
 
@@ -185,54 +172,53 @@ def post_job(request):
             offer_status=offer_status,
         )
 
-        # 3. Exito, redirigimos al usuario al feed
-        # para que vea su nueva publicación
         return redirect('feed')
 
     return render(request, 'post_job.html')
 
 
-def search_staff(request):
-    # Obtenemos los parámetros de búsqueda desde el método GET
-    q_summary = request.GET.get('summary', '')
-    q_education = request.GET.get('education', '')
-    q_experience = request.GET.get('experience', '')
+def search_professionals(request):
+    summary = request.GET.get('summary', '')
+    education = request.GET.get('education', '')
+    experience = request.GET.get('experience', '')
 
-    # Iniciamos consultando solo a los usuarios de tipo 'Profesional'
-    profesionales = Profile.objects.filter(user_type=Profile.PROFESSIONAL)
+    professionals = Profile.objects.filter(user_type=Profile.PROFESSIONAL)
 
-    # Flujo A1: Validar si se enviaron filtros (si el botón 'Filtrar' fue presionado)
     if 'search_btn' in request.GET:
-        if not any([q_summary, q_education, q_experience]):
-            # Solicitamos al menos un criterio (RNF-02: internacionalización)
+        if not any([summary, education, experience]):
             messages.warning(request, _('Por favor, introduzca al menos un criterio de búsqueda.'))
         else:
-            # Aplicamos filtros acumulativos (icontains para ignorar mayúsculas/minúsculas)
-            if q_summary:
-                profesionales = profesionales.filter(professional_summary__icontains=q_summary)
-            if q_education:
-                profesionales = profesionales.filter(education__icontains=q_education)
-            if q_experience:
-                profesionales = profesionales.filter(experience__icontains=q_experience)
+            if summary:
+                professionals = professionals.filter(professional_summary__icontains=summary)
+            if education:
+                professionals = professionals.filter(education__icontains=education)
+            if experience:
+                professionals = professionals.filter(experience__icontains=experience)
 
-    return render(request, 'search_staff.html', {
-        'page_title': _('Buscar Personal'),
-        'profesionales': profesionales,
+    context = {
+        'page_title': _('Buscar personal'),
+        'professionals': professionals,
         'show_bottom_nav': True,
-    })
+    }
+
+    return render(request, 'search_professionals.html', context)
 
 
-def professional_detail(request, pk):
-    return render(request, 'professional_profile.html', {
-        'page_title': _('Perfil del Candidato'),
+def professional_profile(request, pk):
+    context = {
+        'page_title': _('Perfil del profesional'),
         'candidato_id': pk,
-    })
+    }
+
+    return render(request, 'professional_profile.html', context)
 
 
-def manage_staff(request):
-    return render(request, 'manage_staff.html', {
-        'page_title': _('Gestionar Profesionales'),
-    })
+def manage_professionals(request):
+    context = {
+        'page_title': _('Gestionar profesionales'),
+    }
+
+    return render(request, 'manage_professionals.html', context)
 
 
 # Sección de muro y mensajería
@@ -252,6 +238,7 @@ def feed(request):
         'posts': posts,
         'applied_job_ids': applied_job_ids,
     }
+
     return render(request, 'feed.html', context)
 
 
@@ -264,7 +251,7 @@ def comment_post(request, post_id):
         'desktop_search': True,
         'page_title': '',
     }
-    return render(request, 'post.html', context)
+    return render(request, 'comment_post.html', context)
 
 
 def messages(request):
@@ -286,18 +273,23 @@ def messages(request):
         {'name': 'Third Guy', 'message': '👍',
          'time': _('Oct 9'), 'bold': False},
     ]
-    return render(request, 'messages.html', {
+
+    context = {
         'message_rows': message_rows,
         'page_title': _('Mensajes'),
         'show_bottom_nav': True,
-    })
+    }
+
+    return render(request, 'messages.html', context)
 
 
-def notifications_view(request):
-    return render(request, 'notifications.html', {
+def notifications(request):
+    context = {
         'page_title': _('Notificaciones'),
         'show_bottom_nav': True,
-    })
+    }
+
+    return render(request, 'notifications.html', context)
 
 
 def chat(request, user_id):

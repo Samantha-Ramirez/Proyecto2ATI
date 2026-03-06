@@ -3,15 +3,15 @@
     <a href="{% url 'feed' %}" title="{% trans 'Inicio' %}">🏠</a>
 
     {% if request.user.groups.all.0.name == 'Professional' %}
-        <a href="{% url 'create_post' %}" title="{% trans 'Crear Publicación' %}">➕</a>
-        <a href="{% url 'search_jobs' %}" title="{% trans 'Zona Laboral' %}">💼</a>
+        <a href="{% url 'post' %}" title="{% trans 'Crear publicación' %}">➕</a>
+        <a href="{% url 'search_jobs' %}" title="{% trans 'Zona laboral' %}">💼</a>
     {% endif %}
 
     {% if request.user.groups.all.0.name == 'Company' %}
-        <a href="{% url 'search_staff' %}" title="{% trans 'Zona Laboral' %}">💼</a>
+        <a href="{% url 'search_professionals' %}" title="{% trans 'Zona laboral' %}">💼</a>
     {% endif %}
 
     <a href="{% url 'messages' %}" title="{% trans 'Mensajes' %}">💬</a>
     <a href="{% url 'profile' %}" title="{% trans 'Perfil' %}">👤</a>
-    <a href="{% url 'logout' %}"  title="{% trans 'Cerrar Sesión' %}">🚪</a>
+    <a href="{% url 'logout' %}"  title="{% trans 'Cerrar sesión' %}">🚪</a>
 </nav>

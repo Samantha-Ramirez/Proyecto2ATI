@@ -113,7 +113,6 @@
 <script>
     document.addEventListener('DOMContentLoaded', function () {
 
-        // --- 1. LÓGICA DEL BANNER DE PERFIL ---
         const bannerInput = document.getElementById('banner-upload');
         const bannerPreview = document.getElementById('banner-preview');
         const defaultBannerIcon = document.getElementById('default-banner-icon');
@@ -124,7 +123,6 @@
                 const reader = new FileReader();
                 reader.onload = function (e) {
                     bannerPreview.src = e.target.result;
-                    // Ya no tienen 'hidden' por defecto, pero por seguridad las líneas se mantienen
                     bannerPreview.classList.remove('hidden');
                     defaultBannerIcon.classList.add('hidden');
                 };
@@ -132,7 +130,6 @@
             }
         });
 
-        // --- 2. LÓGICA DEL AVATAR DE PERFIL Y MINI AVATARES ---
         const avatarInput = document.getElementById('avatar-upload');
         const avatarPreview = document.getElementById('avatar-preview');
         const defaultAvatarIcon = document.getElementById('default-avatar-icon');
@@ -163,7 +160,6 @@
             }
         });
 
-        // --- 3. LÓGICA DE EDICIÓN DE DESCRIPCIÓN ---
         const btnEditProfile = document.getElementById('btn-edit-profile');
         const profileDisplay = document.getElementById('profile-display');
         const profileEditForm = document.getElementById('profile-edit-form');
