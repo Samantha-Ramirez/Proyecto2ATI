@@ -1,6 +1,7 @@
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
+from django.contrib import messages as msg
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Q
@@ -19,6 +20,8 @@ def login(request):
         if user is not None:
             auth_login(request, user)
             return redirect('feed')
+
+        msg.warning(request, _("Usuario o contraseña incorrectos."))
 
     context = {
         'page_title': _('Iniciar sesión'),
@@ -116,6 +119,11 @@ def apply_job(request, job_id):
         applicant=request.user,
     )
 
+    if created:
+        msg.success(request, _("Te postulaste correctamente."))
+    else:
+        msg.info(request, _("Ya estabas postulado."))
+
     return redirect('search_jobs')
 
 
@@ -126,6 +134,7 @@ def post(request):
         image = request.FILES.get("image")
 
         if not content and not image:
+            msg.warning(request, _("Escribe un texto o adjunta una imagen."))
             return redirect("post")
 
         Post.objects.create(
@@ -135,6 +144,7 @@ def post(request):
             image=image,
         )
 
+        msg.success(request, _("Publicación creada correctamente."))
         return redirect("feed")
 
     context = {
@@ -179,6 +189,7 @@ def post_job(request):
             offer_status=offer_status,
         )
 
+        msg.success(request, _("Oferta laboral publicada correctamente."))
         return redirect('feed')
 
     context = {
@@ -197,7 +208,7 @@ def search_professionals(request):
 
     if 'search_btn' in request.GET:
         if not any([summary, education, experience]):
-            messages.warning(request, _('Por favor, introduzca al menos un criterio de búsqueda.'))
+            msg.warning(request, _('Introduce al menos un criterio de búsqueda.'))
         else:
             if summary:
                 professionals = professionals.filter(professional_summary__icontains=summary)
@@ -244,7 +255,7 @@ def feed(request):
 
     context = {
         'desktop_search': True,
-        'page_title': 'Inicio',
+        'page_title': _('Inicio'),
         'show_bottom_nav': True,
         'posts': posts,
         'applied_job_ids': applied_job_ids,
