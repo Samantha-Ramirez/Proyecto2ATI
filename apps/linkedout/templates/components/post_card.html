@@ -1,0 +1,108 @@
+{% load i18n static %}
+
+<article class="bg-white border border-gray-300 rounded-sm">
+  <div class="p-4 flex gap-3">
+    <div class="w-14 h-14 rounded-full bg-gray-300 shrink-0 overflow-hidden">
+      {% if item.author %}
+        <img
+          src="https://ui-avatars.com/api/?name={{ item.author.first_name }}+{{ item.author.last_name }}&background=random"
+          alt="Avatar"
+        >
+      {% endif %}
+    </div>
+
+    <div class="flex-1 min-w-0">
+      <div class="flex justify-between items-start">
+        <h3 class="font-bold text-gray-800 text-base">
+          {% if item.author %}
+            {{ item.author.get_full_name|default:item.author.username }}
+          {% else %}
+            {% trans "Usuario" %}
+          {% endif %}
+
+          <span class="text-gray-500 font-normal ml-1">•</span>
+
+          {% if item.joboffer %}
+            {% if item.joboffer.id in applied_job_ids %}
+              <span class="font-medium text-sm ml-0.5 text-green-600">✅ {% trans "Postulado" %}</span>
+            {% else %}
+              <form
+                method="POST"
+                action="{% url 'apply_job' item.joboffer.id %}"
+                class="inline"
+              >
+                {% csrf_token %}
+                <button
+                  type="submit"
+                  class="font-medium text-sm ml-0.5 text-linkedout-orange hover:underline"
+                >
+                  {% trans "Postularse" %}
+                </button>
+              </form>
+            {% endif %}
+          {% endif %}
+        </h3>
+
+        <button class="text-gray-500 hover:bg-gray-100 px-2 py-1 rounded">⋮</button>
+      </div>
+
+      <p class="text-gray-500 text-sm">
+        {% if item.joboffer %}
+          {{ item.joboffer.position }}
+        {% else %}
+          {{ item.author.profile.headline|default:"Usuario" }}
+        {% endif %}
+      </p>
+
+      <p class="text-gray-500 text-xs mt-0.5">
+        {% if item.created_at %}
+          {{ item.created_at|timesince }} • 🌍
+        {% else %}
+          17 h • 🌍
+        {% endif %}
+      </p>
+    </div>
+  </div>
+
+  <div class="px-4 pb-3">
+    {% if item.title %}
+      <h4 class="font-bold text-lg mb-1">{{ item.title }}</h4>
+    {% endif %}
+
+    {% if item.content %}
+      <p class="text-gray-800 text-sm md:text-base leading-relaxed">
+        {{ item.content|linebreaksbr }}
+      </p>
+    {% endif %}
+
+    {% if item.joboffer %}
+      <div class="mt-3 p-3 bg-gray-50 rounded-md border border-gray-100">
+        <p class="text-sm text-gray-600"><strong>{% trans "Sueldo:" %}</strong> ${{ item.joboffer.salary }}</p>
+        <p class="text-sm text-gray-600"><strong>{% trans "Horario:" %}</strong> {{ item.joboffer.working_hours }}</p>
+      </div>
+    {% endif %}
+  </div>
+
+  {% if item.image %}
+    <div class="w-full bg-gray-200 border-t border-b border-gray-300">
+      <img src="{{ item.image.url }}" class="w-full h-auto max-h-96 object-cover" alt="{% trans 'Imagen del post' %}">
+    </div>
+  {% endif %}
+
+  <div class="px-2 py-1 flex justify-between items-center bg-white">
+    <button class="flex-1 flex flex-col md:flex-row justify-center items-center gap-2 py-3 text-gray-500 hover:bg-gray-100 rounded text-sm font-medium transition-colors">
+      <span class="text-xl">👍</span> {% trans "Me gusta" %}
+    </button>
+
+    <a
+      href="{{ comments_url|default:'#' }}"
+      class="flex-1 flex flex-col md:flex-row justify-center items-center gap-2 py-3 text-gray-500 hover:bg-gray-100 rounded text-sm font-medium transition-colors"
+    >
+      <span class="text-xl">💬</span> {% trans "Comentarios" %}
+    </a>
+
+    <button class="flex-1 flex flex-col md:flex-row justify-center items-center gap-2 py-3 text-gray-500 hover:bg-gray-100 rounded text-sm font-medium transition-colors">
+      <span class="text-xl">✈️</span> {% trans "Enviar" %}
+    </button>
+  </div>
+</article>

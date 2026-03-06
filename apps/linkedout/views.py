@@ -1,9 +1,11 @@
-from django.shortcuts import redirect
-from django.shortcuts import render
-from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout as auth_logout
-from .models import JobOpportunity, Profile
+from django.contrib.auth.decorators import login_required
+from django.shortcuts import get_object_or_404, redirect, render
+from django.utils.translation import gettext_lazy as _
+from django.db.models import Q  # Para búsquedas más complicadas
+
+from .models import JobApplication, JobOffer, Post, Profile
 
 
 # Sección de perfil y autenticación
@@ -64,17 +66,84 @@ def manage_profile(request):
 
 # Sección laboral
 def search_jobs(request):
+    # Tomamos el termino de búsqueda
+    query = request.GET.get('q', '').strip()
+
+    # Nos traemos todas las ofertas base ordenadas por fecha
+    jobs = JobOffer.objects.all().order_by('-created_at')
+
+    # Filtramos por lo que puso el usuario
+    if query:
+        jobs = jobs.filter(
+            Q(title__icontains=query) |
+            Q(position__icontains=query) |
+            Q(industry__icontains=query) |
+            Q(job_description__icontains=query) |
+            Q(requirements__icontains=query)
+        )
+
+    applied_job_ids = set()
+    if request.user.is_authenticated:
+        applied_job_ids = set(
+            JobApplication.objects.filter(applicant=request.user).values_list('job_offer_id', flat=True)
+        )
+
     context = {
         'page_title': _('Zona laboral'),
         'show_bottom_nav': True,
         'desktop_search': True,
         'show_search_menu': True,
+        'jobs': jobs,
+        'applied_job_ids': applied_job_ids,
+        'search_query': query,  # Pasamos el término de vuelta al template
+        # Agregamos placeholder variable
+        'search_placeholder': _('Buscar oferta laboral'),
     }
     return render(request, 'search_jobs.html', context)
 
 
 def apply_job(request, job_id):
-    pass
+    job = get_object_or_404(JobOffer, pk=job_id)
+
+    if request.method != "POST":
+        return redirect('search_jobs')
+
+    application, created = JobApplication.objects.get_or_create(
+        job_offer=job,
+        applicant=request.user,
+    )
+
+    return redirect('search_jobs')
+
+
+def create_post(request):
+    if request.method == "POST":
+        content = request.POST.get("content", "").strip()
+        title = (request.POST.get("title") or "").strip()
+        image = request.FILES.get("image")
+
+        if not content and not image:
+            # messages.error(request, _("Debes escribir un texto o adjuntar una imagen."))
+            return redirect("create_post")
+
+        Post.objects.create(
+            author=request.user,
+            title=title,
+            content=content or _("(Sin texto)"),
+            image=image,
+        )
+
+        # messages.success(request, _("Publicación creada correctamente."))
+        return redirect("feed")
+
+    # GET
+    return render(request, "create_post.html", {
+        "page_title": _("Crear publicación"),
+        "show_bottom_nav": True,
+        "desktop_search": True,
+        "show_search_menu": True,
+        "show_menu": True,
+    })
 
 
 def post_job(request):
@@ -94,7 +163,6 @@ def post_job(request):
         # Extraemos los campos ocultos (hidden)
         opportunity_type = request.POST.get('opportunity_type', 'job_offer')
         offer_status = request.POST.get('offer_status', 'open')
-
         image = request.FILES.get('image')
 
         # Pequeña validación de seguridad:
@@ -103,11 +171,8 @@ def post_job(request):
         if salary == '':
             salary = None
 
-        # 2. Guardamos todo en la base de datos
-        # asignamos el autor usando la sesión activa (request.user)
-        JobOpportunity.objects.create(
+        JobOffer.objects.create(
             author=request.user,
-            opportunity_type=opportunity_type,
             title=title,
             content=content,
             image=image,
@@ -117,14 +182,13 @@ def post_job(request):
             working_hours=working_hours,
             job_description=job_description,
             requirements=requirements,
-            offer_status=offer_status
+            offer_status=offer_status,
         )
 
         # 3. Exito, redirigimos al usuario al feed
         # para que vea su nueva publicación
         return redirect('feed')
 
-    # Si la petición es GET (el usuario solo entró a ver la página vacía)
     return render(request, 'post_job.html')
 
 
@@ -152,7 +216,7 @@ def search_staff(request):
                 profesionales = profesionales.filter(experience__icontains=q_experience)
 
     return render(request, 'search_staff.html', {
-        'page_title': _('Buscar Talento'),
+        'page_title': _('Buscar Personal'),
         'profesionales': profesionales,
         'show_bottom_nav': True,
     })
@@ -173,10 +237,20 @@ def manage_staff(request):
 
 # Sección de muro y mensajería
 def feed(request):
+    posts = Post.objects.select_related("author", "joboffer").all().order_by("-created_at")
+
+    applied_job_ids = set()
+    if request.user.is_authenticated:
+        applied_job_ids = set(
+            JobApplication.objects.filter(applicant=request.user).values_list('job_offer_id', flat=True)
+        )
+
     context = {
         'desktop_search': True,
         'page_title': '',
         'show_bottom_nav': True,
+        'posts': posts,
+        'applied_job_ids': applied_job_ids,
     }
     return render(request, 'feed.html', context)
 
