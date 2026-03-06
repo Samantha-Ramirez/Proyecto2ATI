@@ -20,7 +20,11 @@ def login(request):
             auth_login(request, user)
             return redirect('feed')
 
-    return render(request, 'login.html')
+    context = {
+        'page_title': _('Iniciar sesión'),
+    }
+
+    return render(request, 'login.html', context)
 
 
 def logout(request):
@@ -29,7 +33,10 @@ def logout(request):
 
 
 def register(request):
-    return render(request, 'register.html')
+    context = {
+        'page_title': _('Registrarse'),
+    }
+    return render(request, 'register.html', context)
 
 
 def profile(request):
@@ -40,14 +47,14 @@ def profile(request):
         'show_search_menu': True,
         'show_menu': True,
 
-        'message_rows': [
-            {
-                'name': 'First Guy',
-                'time': '17 h',
-                'message': 'Java Technical Lead',
-                'bold': True
-            },
-        ],
+        'profile_post': {
+            'author': None,
+            'joboffer': None,
+            'title': None,
+            'content': None,
+            'image': None,
+            'created_at': None,
+        },
     }
 
     return render(request, 'profile.html', context)
@@ -174,7 +181,11 @@ def post_job(request):
 
         return redirect('feed')
 
-    return render(request, 'post_job.html')
+    context = {
+        'page_title': _('Publicar oferta laboral'),
+    }
+
+    return render(request, 'post_job.html', context)
 
 
 def search_professionals(request):
@@ -196,7 +207,7 @@ def search_professionals(request):
                 professionals = professionals.filter(experience__icontains=experience)
 
     context = {
-        'page_title': _('Buscar personal'),
+        'page_title': _('Zona laboral'),
         'professionals': professionals,
         'show_bottom_nav': True,
     }
@@ -233,7 +244,7 @@ def feed(request):
 
     context = {
         'desktop_search': True,
-        'page_title': '',
+        'page_title': 'Inicio',
         'show_bottom_nav': True,
         'posts': posts,
         'applied_job_ids': applied_job_ids,
