@@ -10,7 +10,7 @@ services:
         command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
         volumes:
             - .:/app
-            - sqlite_data:/app/db_folder
+            - ./db_folder:/app/db_folder
         ports:
             - '8000:8000'
         depends_on:
