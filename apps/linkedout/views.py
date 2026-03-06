@@ -57,7 +57,7 @@ def profile(request):
 
 def manage_profile(request):
     return render(request, 'manage_profile.html', {
-        'page_title': _('Ajustes'),
+        'page_title': _('Gestionar perfil'),
         'show_search_menu': True,
         'desktop_search': True,
         'show_bottom_nav': True,
@@ -89,7 +89,7 @@ def search_jobs(request):
         )
 
     context = {
-        'page_title': _('Zona laboral'),
+        'page_title': _('Zona Laboral'),
         'show_bottom_nav': True,
         'desktop_search': True,
         'show_search_menu': True,

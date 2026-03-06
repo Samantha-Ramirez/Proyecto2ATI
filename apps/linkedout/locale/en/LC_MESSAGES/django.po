@@ -29,7 +29,7 @@ msgstr "Home"
 #: .\apps\linkedout\templates\components\bottombar.html:4
 #: .\apps\linkedout\templates\components\sidebar.html:6
 #: .\apps\linkedout\views.py:50
-msgid "Zona laboral"
+msgid "Zona Laboral"
 msgstr "Jobs"
 
 #: .\apps\linkedout\templates\components\bottombar.html:5
@@ -82,8 +82,8 @@ msgstr "Sign In | LinkedOut"
 #: .\apps\linkedout\templates\manage_profile.html:4
 #: .\apps\linkedout\templates\manage_profile.html:12
 #: .\apps\linkedout\views.py:40
-msgid "Ajustes"
-msgstr "Settings"
+msgid "Gestionar perfil"
+msgstr "Manage profile"
 
 #: .\apps\linkedout\templates\manage_profile.html:19
 msgid "Preferencias de la cuenta"

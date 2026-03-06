@@ -73,13 +73,13 @@
                     <button id="btn-edit-profile"
                         class="flex items-center gap-1 whitespace-nowrap hover:text-orange-600 transition-colors outline-none"
                         title="{% trans 'Editar Perfil' %}">
-                        Editar Descripción ✏️
+                        Editar ✏️
                     </button>
 
                     <a href="{% url 'manage_profile' %}"
                         class="flex items-center gap-1 whitespace-nowrap hover:text-orange-600 transition-colors"
-                        title="{% trans 'Ajustes' %}">
-                        Ajustes ⚙️
+                        title="{% trans 'Gestionar perfil' %}">
+                        Gestionar perfil ⚙️
                     </a>
                 </div>
 
@@ -87,73 +87,27 @@
         </div>
     </section>
 
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
-
-        <div class="lg:col-span-2 space-y-4">
-            <div class="bg-white rounded-lg border border-gray-300 p-4 shadow-sm">
-                <div class="flex gap-4">
-                    <div class="size-12 rounded-full bg-gray-300 shrink-0 overflow-hidden">
-                        <img id="post-input-avatar" src="{% static 'img/linkedout_logo.png' %}"
-                            class="w-full h-full object-cover" alt="Mini Avatar">
-                    </div>
-                    <textarea placeholder="{% trans 'Escribe una publicacion...' %}"
-                        class="w-full border border-gray-300 rounded-xl p-3 text-lg outline-none focus:border-orange-500 transition-colors"
-                        rows="2"></textarea>
+    <article class="bg-white rounded-lg border border-gray-300 p-6 shadow-sm">
+        <div class="flex justify-between">
+            <div class="flex gap-3">
+                <div class="size-14 rounded-full bg-gray-300 shrink-0 overflow-hidden">
+                    <img id="post-author-avatar" src="{% static 'img/linkedout_logo.png' %}"
+                        class="w-full h-full object-cover" alt="Post Avatar">
                 </div>
-                <div class="flex justify-between items-center mt-4">
-                    <button
-                        class="flex items-center gap-2 text-gray-500 font-semibold hover:bg-gray-100 p-2 rounded-lg">
-                        <span class="text-orange-500 text-2xl">+</span> {% trans 'Agregar Imagen/Video' %}
-                    </button>
-                    <button
-                        class="bg-gray-400 text-white px-8 py-2 rounded-full font-bold text-xl hover:bg-orange-500 transition-colors">
-                        {% trans 'Publicar' %}
-                    </button>
+                <div>
+                    <h4 class="font-bold text-xl">First Guy •</h4>
+                    <p class="text-gray-500">Java Technical Lead</p>
+                    <p class="text-gray-400 text-sm">17 h • 🌎</p>
                 </div>
             </div>
-
-            <article class="bg-white rounded-lg border border-gray-300 p-6 shadow-sm">
-                <div class="flex justify-between">
-                    <div class="flex gap-3">
-                        <div class="size-14 rounded-full bg-gray-300 shrink-0 overflow-hidden">
-                            <img id="post-author-avatar" src="{% static 'img/linkedout_logo.png' %}"
-                                class="w-full h-full object-cover" alt="Post Avatar">
-                        </div>
-                        <div>
-                            <h4 class="font-bold text-xl">First Guy •</h4>
-                            <p class="text-gray-500">Java Technical Lead</p>
-                            <p class="text-gray-400 text-sm">17 h • 🌎</p>
-                        </div>
-                    </div>
-                    <button class="text-2xl text-gray-400">⋮</button>
-                </div>
-                <div
-                    class="mt-4 bg-gray-50 h-64 border border-dashed border-gray-300 rounded-lg flex items-center justify-center">
-                    <span class="text-gray-300 text-5xl">🖼️</span>
-                </div>
-            </article>
+            <button class="text-2xl text-gray-400">⋮</button>
         </div>
+        <div
+            class="mt-4 bg-gray-50 h-64 border border-dashed border-gray-300 rounded-lg flex items-center justify-center">
+            <span class="text-gray-300 text-5xl">🖼️</span>
+        </div>
+    </article>
 
-        <aside class="space-y-4">
-            <div class="bg-white rounded-lg border-2 border-orange-400 overflow-hidden shadow-sm">
-                <div class="divide-y divide-gray-200">
-                    <div class="p-6 text-center group hover:bg-orange-50 transition-colors cursor-pointer">
-                        <strong class="block text-4xl text-orange-600">4,270</strong>
-                        <span class="text-gray-600 text-lg leading-tight block mt-1">Visitas a tu perfil</span>
-                    </div>
-                    <div class="p-6 text-center group hover:bg-orange-50 transition-colors cursor-pointer">
-                        <strong class="block text-4xl text-orange-600">6,967</strong>
-                        <span class="text-gray-600 text-lg leading-tight block mt-1">Vistas a tus publicaciones</span>
-                    </div>
-                    <div class="p-6 text-center group hover:bg-orange-50 transition-colors cursor-pointer">
-                        <strong class="block text-4xl text-orange-600">1,515</strong>
-                        <span class="text-gray-600 text-lg leading-tight block mt-1">Apariciones en búsquedas</span>
-                    </div>
-                </div>
-            </div>
-        </aside>
-
-    </div>
 </div>
 
 <script>

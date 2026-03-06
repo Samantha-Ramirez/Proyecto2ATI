@@ -18,20 +18,12 @@
             <span class="text-sm lg:text-xl">🔍</span>
 
             <input type="text" name="q" value="{{ search_query|default:'' }}"
-                placeholder="{% if search_placeholder %}{{ search_placeholder }}{% else %}{% trans 'Buscar empresa/usuario' %}{% endif %}"
+                placeholder="{% if search_placeholder %}{{ search_placeholder }}{% else %}{% trans 'Buscar' %}{% endif %}"
                 class="bg-transparent border-none text-black placeholder-gray-400 outline-none px-1 lg:px-2 w-full text-xs lg:text-base">
 
             <button type="submit" class="hidden"></button>
         </form>
         {% endif %}
-    </div>
-
-    <div class="flex items-center gap-2 shrink-0">
-        {% if show_menu %}
-        <button class="text-2xl lg:text-3xl p-1 hover:bg-white/10 rounded-full" type="button"
-            aria-label="{% trans 'Opciones' %}">⋮</button>
-        {% endif %}
-        <div class="hidden lg:block text-3xl opacity-80" aria-hidden="true">◯</div>
     </div>
 
 </header>
