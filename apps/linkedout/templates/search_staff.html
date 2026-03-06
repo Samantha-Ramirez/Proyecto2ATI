@@ -5,44 +5,83 @@
 
 {% block content %}
 <div class="max-w-6xl mx-auto space-y-6">
-    
-    <div class="bg-white p-4 rounded-xl border border-gray-300 shadow-sm flex flex-col md:flex-row gap-4 items-center">
-        <div class="flex-1 relative w-full">
-            <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">🔍</span>
-            <input type="text" placeholder="{% trans 'Buscar por habilidad (ej: React, Python, UI)...' %}"
-                class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-full focus:border-linkedout-orange focus:ring-1 focus:ring-linkedout-orange outline-none">
+
+    {% if messages %}
+    <div class="space-y-2">
+        {% for message in messages %}
+        <div class="p-4 rounded-xl {% if message.tags == 'warning' %}bg-yellow-100 text-yellow-700 border border-yellow-300{% else %}bg-blue-100 text-blue-700 border border-blue-300{% endif %}">
+            {{ message }}
         </div>
-        <button class="w-full md:w-auto bg-linkedout-orange text-white font-bold px-8 py-2.5 rounded-full hover:opacity-90">
-            {% trans "Filtrar" %}
-        </button>
+        {% endfor %}
     </div>
+    {% endif %}
+    
+    <section class="bg-white p-6 rounded-xl border border-gray-300 shadow-sm">
+        <form method="GET" action="{% url 'search_staff' %}" class="space-y-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+                <div class="relative w-full">
+                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">🔍</span>
+                    <input type="text" name="summary" value="{{ request.GET.summary }}"
+                        placeholder="{% trans 'Habilidades o Resumen...' %}"
+                        class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-full focus:border-linkedout-orange focus:ring-1 focus:ring-linkedout-orange outline-none">
+                </div>
+
+                <div class="relative w-full">
+                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">🎓</span>
+                    <input type="text" name="education" value="{{ request.GET.education }}"
+                        placeholder="{% trans 'Educación (Ej: UCV, USB)...' %}"
+                        class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-full focus:border-linkedout-orange focus:ring-1 focus:ring-linkedout-orange outline-none">
+                </div>
+
+                <div class="relative w-full">
+                    <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400">💼</span>
+                    <input type="text" name="experience" value="{{ request.GET.experience }}"
+                        placeholder="{% trans 'Experiencia laboral...' %}"
+                        class="w-full pl-10 pr-4 py-2.5 border border-gray-300 rounded-full focus:border-linkedout-orange focus:ring-1 focus:ring-linkedout-orange outline-none">
+                </div>
+            </div>
+
+            <button type="submit" name="search_btn" 
+                class="w-full bg-linkedout-orange text-white font-bold py-2.5 rounded-full hover:opacity-90 transition-opacity">
+                {% trans "Filtrar Resultados" %}
+            </button>
+        </form>
+    </section>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         
-        {% for prof in profesionales %}
+        {% for perfil in profesionales %}
         <div class="bg-white border border-gray-300 rounded-xl p-6 text-center hover:shadow-md transition-shadow">
-            <div class="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 border-2 border-linkedout-orange"></div>
+            <div class="w-20 h-20 bg-gray-200 rounded-full mx-auto mb-4 border-2 border-linkedout-orange flex items-center justify-center">
+                <span class="text-2xl text-gray-400">{{ perfil.user.first_name|first }}{{ perfil.user.last_name|first }}</span>
+            </div>
             
-            <h3 class="font-bold text-lg text-gray-900">{{ prof.nombre }}</h3>
-            <p class="text-sm text-linkedout-orange font-medium mb-2">{{ prof.rol }}</p>
-            <p class="text-xs text-gray-500 mb-4 line-clamp-2">Experto con años de experiencia en proyectos escalables.</p>
+            <h3 class="font-bold text-lg text-gray-900">{{ perfil.user.get_full_name }}</h3>
+            <p class="text-sm text-linkedout-orange font-medium mb-2">@{{ perfil.user.username }}</p>
             
-            <div class="flex flex-wrap justify-center gap-1 mb-6">
-                {% for skill in prof.skills %}
-                    <span class="px-2 py-0.5 bg-gray-100 text-[10px] rounded text-gray-600">{{ skill }}</span>
-                {% endfor %}
+            <p class="text-xs text-gray-500 mb-4 line-clamp-2">
+                {{ perfil.professional_summary|default:_("Sin resumen profesional disponible.") }}
+            </p>
+            
+            <div class="text-[10px] text-gray-400 mb-4 uppercase tracking-wider font-bold">
+                {% trans "Educación" %}: {{ perfil.education|truncatechars:30|default:_("No especificada") }}
             </div>
 
-            <div class="grid grid-cols-2 gap-2">
-                <a href="{% url 'professional_detail' prof.id %}" 
-                   class="text-sm font-bold border border-linkedout-orange text-linkedout-orange py-2 rounded-full hover:bg-orange-50 transition-colors block text-center flex items-center justify-center">
+            <div class="grid grid-cols-2 gap-2 mt-auto">
+                <a href="{% url 'profile' %}" 
+                   class="text-sm font-bold border border-linkedout-orange text-linkedout-orange py-2 rounded-full hover:bg-orange-50 transition-colors block text-center">
                     {% trans "Ver Perfil" %}
                 </a>
                 
-                <button class="text-sm font-bold bg-linkedout-orange text-white py-2 rounded-full hover:opacity-90">
+                <a href="{% url 'messages' %}" class="text-sm font-bold bg-linkedout-orange text-white py-2 rounded-full hover:opacity-90 transition-opacity block text-center">
                     {% trans "Contactar" %}
-                </button>
+                </a>
             </div>
+        </div>
+        {% empty %}
+        <div class="col-span-full py-12 text-center text-gray-500 bg-white rounded-xl border border-dashed border-gray-400">
+            <p class="text-lg font-medium">{% trans "No se encontraron profesionales que coincidan con los filtros." %}</p>
+            <p class="text-sm">{% trans "Prueba ajustando tus criterios de búsqueda." %}</p>
         </div>
         {% endfor %}
 

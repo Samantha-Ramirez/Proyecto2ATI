@@ -3,7 +3,8 @@ from django.shortcuts import render
 from django.utils.translation import gettext_lazy as _
 from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout as auth_logout
-from .models import JobOpportunity
+from .models import JobOpportunity, Profile
+
 
 # Sección de perfil y autenticación
 def login(request):
@@ -78,8 +79,9 @@ def apply_job(request, job_id):
 
 def post_job(request):
     if request.method == 'POST':
-        
-        # 1. Extraemos todos los textos del formulario usando el atributo 'name' del HTML
+
+        # 1. Extraemos todos los textos del formulario
+        # usando el atributo 'name' del HTML
         title = request.POST.get('title')
         content = request.POST.get('content')
         position = request.POST.get('position')
@@ -88,14 +90,15 @@ def post_job(request):
         working_hours = request.POST.get('working_hours')
         job_description = request.POST.get('job_description')
         requirements = request.POST.get('requirements')
-        
+
         # Extraemos los campos ocultos (hidden)
         opportunity_type = request.POST.get('opportunity_type', 'job_offer')
         offer_status = request.POST.get('offer_status', 'open')
 
         image = request.FILES.get('image')
 
-        # Pequeña validación de seguridad: Si el campo salario llega vacío, lo volvemos None 
+        # Pequeña validación de seguridad:
+        # Si el campo salario llega vacío, lo volvemos None
         # para que la base de datos (que espera un Decimal) no lance un error.
         if salary == '':
             salary = None
@@ -117,23 +120,41 @@ def post_job(request):
             offer_status=offer_status
         )
 
-        # 3. Exito, redirigimos al usuario al feed para que vea su nueva publicación
-        return redirect('feed') 
+        # 3. Exito, redirigimos al usuario al feed
+        # para que vea su nueva publicación
+        return redirect('feed')
 
     # Si la petición es GET (el usuario solo entró a ver la página vacía)
     return render(request, 'post_job.html')
 
 
 def search_staff(request):
-    profesionales = [
-        {'id': 1, 'nombre': 'Luis Colina', 'rol': 'Frontend Developer', 'skills': ['React', 'CSS', 'Figma']},
-        {'id': 2, 'nombre': 'Juan Pérez', 'rol': 'Backend Developer', 'skills': ['Python', 'Django', 'Docker']},
-        {'id': 3, 'nombre': 'Ana Gómez', 'rol': 'Data Scientist', 'skills': ['Python', 'SQL', 'Machine Learning']},
-    ]
+    # Obtenemos los parámetros de búsqueda desde el método GET
+    q_summary = request.GET.get('summary', '')
+    q_education = request.GET.get('education', '')
+    q_experience = request.GET.get('experience', '')
+
+    # Iniciamos consultando solo a los usuarios de tipo 'Profesional'
+    profesionales = Profile.objects.filter(user_type=Profile.PROFESSIONAL)
+
+    # Flujo A1: Validar si se enviaron filtros (si el botón 'Filtrar' fue presionado)
+    if 'search_btn' in request.GET:
+        if not any([q_summary, q_education, q_experience]):
+            # Solicitamos al menos un criterio (RNF-02: internacionalización)
+            messages.warning(request, _('Por favor, introduzca al menos un criterio de búsqueda.'))
+        else:
+            # Aplicamos filtros acumulativos (icontains para ignorar mayúsculas/minúsculas)
+            if q_summary:
+                profesionales = profesionales.filter(professional_summary__icontains=q_summary)
+            if q_education:
+                profesionales = profesionales.filter(education__icontains=q_education)
+            if q_experience:
+                profesionales = profesionales.filter(experience__icontains=q_experience)
 
     return render(request, 'search_staff.html', {
         'page_title': _('Buscar Talento'),
         'profesionales': profesionales,
+        'show_bottom_nav': True,
     })
 
 
@@ -174,14 +195,22 @@ def comment_post(request, post_id):
 
 def messages(request):
     message_rows = [
-        {'name': 'Samantha Ramirez', 'message': _('Por supuesto'), 'time': '10:07 AM', 'bold': True},
-        {'name': 'Gustavo Berne', 'message': _('Tu: OK'), 'time': _('Lun'), 'bold': False},
-        {'name': 'Jose Campos', 'message': _('Tu: Creo que deberia cambiarse'), 'time': _('Vie'), 'bold': False},
-        {'name': 'Luisdavid Colina', 'message': _('Tu: Luego lo revisare'), 'time': _('Mie'), 'bold': False},
-        {'name': 'Gabriel Padilla', 'message': _('Hola, tengo una sugerencia'), 'time': _('Mar'), 'bold': False},
-        {'name': 'First Guy', 'message': _('LinkedOut es lo maximo'), 'time': _('Dom'), 'bold': False},
-        {'name': 'Second Guy', 'message': _('Tu: OK'), 'time': _('Dom'), 'bold': False},
-        {'name': 'Third Guy', 'message': '👍', 'time': _('Oct 9'), 'bold': False},
+        {'name': 'Samantha Ramirez', 'message': _('Por supuesto'),
+         'time': '10:07 AM', 'bold': True},
+        {'name': 'Gustavo Berne', 'message': _('Tu: OK'),
+         'time': _('Lun'), 'bold': False},
+        {'name': 'Jose Campos', 'message': _('Tu: Creo que deberia cambiarse'),
+         'time': _('Vie'), 'bold': False},
+        {'name': 'Luisdavid Colina', 'message': _('Tu: Luego lo revisare'),
+         'time': _('Mie'), 'bold': False},
+        {'name': 'Gabriel Padilla', 'message': _('Hola, tengo una sugerencia'),
+         'time': _('Mar'), 'bold': False},
+        {'name': 'First Guy', 'message': _('LinkedOut es lo maximo'),
+         'time': _('Dom'), 'bold': False},
+        {'name': 'Second Guy', 'message': _('Tu: OK'),
+         'time': _('Dom'), 'bold': False},
+        {'name': 'Third Guy', 'message': '👍',
+         'time': _('Oct 9'), 'bold': False},
     ]
     return render(request, 'messages.html', {
         'message_rows': message_rows,
