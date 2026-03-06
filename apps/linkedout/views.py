@@ -76,7 +76,7 @@ def manage_profile(request):
 
 # Sección laboral
 def search_jobs(request):
-    query = request.GET.get('q', '').strip()
+    query = (request.GET.get('q') or '').strip()
     jobs = JobOffer.objects.all().order_by('-created_at')
 
     if query:
@@ -102,7 +102,6 @@ def search_jobs(request):
         'jobs': jobs,
         'applied_job_ids': applied_job_ids,
         'search_query': query,
-        'search_placeholder': _('Buscar oferta laboral'),
     }
 
     return render(request, 'search_jobs.html', context)
