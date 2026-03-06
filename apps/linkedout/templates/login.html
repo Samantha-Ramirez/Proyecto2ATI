@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n static %}
 
-{% block title %}{% trans 'Iniciar Sesión | LinkedOut' %}{% endblock %}
+{% block title %}{{ page_title }} | LinkedOut{% endblock %}
 
 {% block desktop_sidebar %}{% endblock %}
 {% block topbar %}{% endblock %}
@@ -23,15 +23,14 @@
             {% csrf_token %}
 
             <div class="flex flex-col gap-1">
-                <label for="username" class="font-bold text-black text-sm md:text-base">Usuario/Correo
-                    electrónico</label>
-                <input type="text" id="username" name="username" placeholder="Ingrese su usuario o correo electronico"
+                <label for="username" class="font-bold text-black text-sm md:text-base">{% trans "Usuario/Correo electrónico" %}</label>
+                <input type="text" id="username" name="username" placeholder="{% trans "Ingrese su usuario o correo electronico" %}"
                     class="w-full bg-[#E5E5E5] border border-gray-400 rounded px-4 py-2 text-gray-700 outline-none focus:border-linkedout-orange focus:ring-1 focus:ring-linkedout-orange text-center md:text-left text-sm">
             </div>
 
             <div class="flex flex-col gap-1">
-                <label for="password" class="font-bold text-black text-sm md:text-base">Contraseña</label>
-                <input type="password" id="password" name="password" placeholder="Ingrese su Contraseña"
+                <label for="password" class="font-bold text-black text-sm md:text-base">{% trans "Contraseña" %}</label>
+                <input type="password" id="password" name="password" placeholder="{% trans "Ingrese su Contraseña" %}"
                     class="w-full bg-[#E5E5E5] border border-gray-400 rounded px-4 py-2 text-gray-700 outline-none focus:border-linkedout-orange focus:ring-1 focus:ring-linkedout-orange text-center md:text-left text-sm">
             </div>
 
@@ -45,14 +44,14 @@
 
         <div class="mt-4 text-center">
             <a class="text-linkedout-orange font-bold text-sm hover:underline">
-                ¿Olvidaste tu contraseña?
+                {% trans "¿Olvidaste tu contraseña?" %}
             </a>
         </div>
 
         <div class="mt-8 mb-2">
             <a href="{% url 'register' %}"
                 class="bg-linkedout-orange text-white font-bold py-2.5 px-6 rounded-full hover:opacity-90 transition-opacity text-sm md:text-base">
-                ¿No tienes cuenta? Registrarse
+                {% trans "¿No tienes cuenta? Registrarse" %}
             </a>
         </div>
 

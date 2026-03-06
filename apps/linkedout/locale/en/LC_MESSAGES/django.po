@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: PACKAGE VERSION\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2026-02-26 20:45-0400\n"
+"POT-Creation-Date: 2026-03-06 04:45-0400\n"
 "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
 "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
 "Language-Team: LANGUAGE <LL@li.org>\n"
@@ -23,67 +23,164 @@ msgid "Navegación principal"
 msgstr "Main Navigation"
 
 #: .\apps\linkedout\templates\components\bottombar.html:3
+#: .\apps\linkedout\templates\components\sidebar.html:6
 msgid "Inicio"
 msgstr "Home"
 
-#: .\apps\linkedout\templates\components\bottombar.html:4
-#: .\apps\linkedout\templates\components\sidebar.html:6
-#: .\apps\linkedout\views.py:50
+#: .\apps\linkedout\templates\components\bottombar.html:6
+#: .\apps\linkedout\templates\components\sidebar.html:10
+msgid "Crear publicación"
+msgstr "Create post"
+
+#: .\apps\linkedout\templates\components\bottombar.html:7
+#: .\apps\linkedout\templates\components\bottombar.html:11
+#: .\apps\linkedout\templates\components\sidebar.html:9
+#: .\apps\linkedout\templates\components\sidebar.html:14
+#: .\apps\linkedout\views.py:95 .\apps\linkedout\views.py:210
 msgid "Zona laboral"
 msgstr "Jobs"
 
-#: .\apps\linkedout\templates\components\bottombar.html:5
-#: .\apps\linkedout\templates\messages.html:4 .\apps\linkedout\views.py:128
+#: .\apps\linkedout\templates\components\bottombar.html:14
+#: .\apps\linkedout\views.py:290
 msgid "Mensajes"
 msgstr "Messaging"
 
-#: .\apps\linkedout\templates\components\bottombar.html:6
-#: .\apps\linkedout\templates\components\sidebar.html:8
-#: .\apps\linkedout\views.py:18
+#: .\apps\linkedout\templates\components\bottombar.html:15
+#: .\apps\linkedout\templates\components\sidebar.html:19
+#: .\apps\linkedout\views.py:44
 msgid "Perfil"
 msgstr "Profile"
 
-#: .\apps\linkedout\templates\components\sidebar.html:5
-msgid "Home"
-msgstr "Home"
+#: .\apps\linkedout\templates\components\bottombar.html:16
+#: .\apps\linkedout\templates\components\sidebar.html:20
+msgid "Cerrar sesión"
+msgstr "Close session"
 
-#: .\apps\linkedout\templates\components\sidebar.html:7
+#: .\apps\linkedout\templates\components\post_card.html:21
+msgid "Usuario"
+msgstr "User"
+
+#: .\apps\linkedout\templates\components\post_card.html:28
+msgid "Postulado"
+msgstr "Applied"
+
+#: .\apps\linkedout\templates\components\post_card.html:40
+#, fuzzy
+#| msgid "Postulado"
+msgid "Postularse"
+msgstr "Applied"
+
+#: .\apps\linkedout\templates\components\post_card.html:81
+msgid "Sueldo:"
+msgstr "Salary"
+
+#: .\apps\linkedout\templates\components\post_card.html:82
+msgid "Horario:"
+msgstr "Schedule"
+
+#: .\apps\linkedout\templates\components\post_card.html:89
+msgid "Imagen del post"
+msgstr "Post image"
+
+#: .\apps\linkedout\templates\components\post_card.html:98
+#, fuzzy
+#| msgid "Ver Comentarios"
+msgid "Comentarios"
+msgstr "View Comments"
+
+#: .\apps\linkedout\templates\components\sidebar.html:15
+msgid "Crear oferta laboral"
+msgstr "Create job offer"
+
+#: .\apps\linkedout\templates\components\sidebar.html:18
 msgid "Chat"
 msgstr "Chat"
 
-#: .\apps\linkedout\templates\components\topbar.html:6
+#: .\apps\linkedout\templates\components\topbar.html:7
 msgid "Volver"
 msgstr "Back"
 
-#: .\apps\linkedout\templates\components\topbar.html:9
+#: .\apps\linkedout\templates\components\topbar.html:10
 msgid "LinkedOut"
 msgstr "LinkedOut"
 
-#: .\apps\linkedout\templates\components\topbar.html:18
+#: .\apps\linkedout\templates\components\topbar.html:21
 msgid "Buscar"
 msgstr "Search"
 
-#: .\apps\linkedout\templates\components\topbar.html:27
-msgid "Buscar mensaje"
-msgstr "Search messages"
+#: .\apps\linkedout\templates\feed.html:13
+msgid "No hay publicaciones por ahora."
+msgstr "There's no post."
 
-#: .\apps\linkedout\templates\components\topbar.html:35
-msgid "Opciones"
-msgstr "Settings"
+#: .\apps\linkedout\templates\login.html:28
+#: .\apps\linkedout\templates\register.html:27
+msgid "Ingrese su usuario o correo electronico"
+msgstr ""
 
-#: .\apps\linkedout\templates\feed.html:4
-msgid "Inicio | LinkedOut"
-msgstr "Feed | LinkedOut"
+#: .\apps\linkedout\templates\login.html:33
+#: .\apps\linkedout\templates\register.html:32
+#, fuzzy
+#| msgid "Contraseña"
+msgid "Contraseña"
+msgstr "Password"
 
-#: .\apps\linkedout\templates\login.html:4
-msgid "Iniciar Sesión | LinkedOut"
-msgstr "Sign In | LinkedOut"
+#: .\apps\linkedout\templates\login.html:34
+#: .\apps\linkedout\templates\register.html:33
+msgid "Ingrese su Contraseña"
+msgstr ""
 
-#: .\apps\linkedout\templates\manage_profile.html:4
-#: .\apps\linkedout\templates\manage_profile.html:12
-#: .\apps\linkedout\views.py:40
-msgid "Gestionar perfil"
-msgstr "Manage profile"
+#: .\apps\linkedout\templates\login.html:48
+msgid "¿Olvidaste tu contraseña?"
+msgstr ""
+
+#: .\apps\linkedout\templates\login.html:55
+msgid "¿No tienes cuenta? Registrarse"
+msgstr ""
+
+#: .\apps\linkedout\templates\manage_professionals.html:11
+msgid "Administra tus candidatos y contactos profesionales."
+msgstr "Manage your candidates and professional contacts."
+
+#: .\apps\linkedout\templates\manage_professionals.html:15
+msgid "Todos los estados"
+msgstr "All statuses"
+
+#: .\apps\linkedout\templates\manage_professionals.html:16
+msgid "Contactados"
+msgstr "Contacted"
+
+#: .\apps\linkedout\templates\manage_professionals.html:17
+msgid "En proceso"
+msgstr "In progress"
+
+#: .\apps\linkedout\templates\manage_professionals.html:18
+msgid "Contratados"
+msgstr "Hired"
+
+#: .\apps\linkedout\templates\manage_professionals.html:28
+#: .\apps\linkedout\templates\register.html:42
+msgid "Profesional"
+msgstr "Professional"
+
+#: .\apps\linkedout\templates\manage_professionals.html:29
+msgid "Último Contacto"
+msgstr "Last Contact"
+
+#: .\apps\linkedout\templates\manage_professionals.html:30
+msgid "Estado"
+msgstr "Status"
+
+#: .\apps\linkedout\templates\manage_professionals.html:31
+msgid "Acciones"
+msgstr "Actions"
+
+#: .\apps\linkedout\templates\manage_professionals.html:48
+msgid "En revisión"
+msgstr "Under review"
+
+#: .\apps\linkedout\templates\manage_professionals.html:53
+msgid "Ver"
+msgstr "View"
 
 #: .\apps\linkedout\templates\manage_profile.html:19
 msgid "Preferencias de la cuenta"
@@ -129,58 +226,6 @@ msgstr ""
 "Control how LinkedOut uses your data to provide you with your favorite "
 "content"
 
-#: .\apps\linkedout\templates\manage_professionals.html:4
-msgid "Gestionar Profesionales | LinkedOut"
-msgstr "Manage Professionals | LinkedOut"
-
-#: .\apps\linkedout\templates\manage_professionals.html:10
-msgid "Gestión de Personal"
-msgstr "Staff Management"
-
-#: .\apps\linkedout\templates\manage_professionals.html:11
-msgid "Administra tus candidatos y contactos profesionales."
-msgstr "Manage your candidates and professional contacts."
-
-#: .\apps\linkedout\templates\manage_professionals.html:15
-msgid "Todos los estados"
-msgstr "All statuses"
-
-#: .\apps\linkedout\templates\manage_professionals.html:16
-msgid "Contactados"
-msgstr "Contacted"
-
-#: .\apps\linkedout\templates\manage_professionals.html:17
-msgid "En proceso"
-msgstr "In progress"
-
-#: .\apps\linkedout\templates\manage_professionals.html:18
-msgid "Contratados"
-msgstr "Hired"
-
-#: .\apps\linkedout\templates\manage_professionals.html:28
-msgid "Profesional"
-msgstr "Professional"
-
-#: .\apps\linkedout\templates\manage_professionals.html:29
-msgid "Último Contacto"
-msgstr "Last Contact"
-
-#: .\apps\linkedout\templates\manage_professionals.html:30
-msgid "Estado"
-msgstr "Status"
-
-#: .\apps\linkedout\templates\manage_professionals.html:31
-msgid "Acciones"
-msgstr "Actions"
-
-#: .\apps\linkedout\templates\manage_professionals.html:48
-msgid "En revisión"
-msgstr "Under review"
-
-#: .\apps\linkedout\templates\manage_professionals.html:53
-msgid "Ver"
-msgstr "View"
-
 #: .\apps\linkedout\templates\messages.html:12
 msgid "Conversaciones"
 msgstr "Conversations"
@@ -196,15 +241,6 @@ msgstr "You"
 #: .\apps\linkedout\templates\messages.html:156
 msgid "Escribe un mensaje..."
 msgstr "Write a message..."
-
-#: .\apps\linkedout\templates\notifications.html:4
-msgid "Notificaciones | LinkedOut"
-msgstr "Notifications | LinkedOut"
-
-#: .\apps\linkedout\templates\notifications.html:9
-#: .\apps\linkedout\views.py:134
-msgid "Notificaciones"
-msgstr "Notifications"
 
 #: .\apps\linkedout\templates\notifications.html:10
 msgid "Marcar todas como leídas"
@@ -234,84 +270,141 @@ msgstr "commented on your post:"
 msgid "Ayer"
 msgstr "Yesterday"
 
-#: .\apps\linkedout\templates\post.html:4
-msgid "Publicación | LinkedOut"
-msgstr "Post | LinkedOut"
+#: .\apps\linkedout\templates\post.html:9 .\apps\linkedout\views.py:141
+msgid "Hacer publicación"
+msgstr "Create post"
 
-#: .\apps\linkedout\templates\post_job.html:4
-msgid "Publicar Oferta | LinkedOut"
-msgstr "Post Job Offer | LinkedOut"
+#: .\apps\linkedout\templates\post.html:16
+msgid "Título (opcional)"
+msgstr ""
 
-#: .\apps\linkedout\templates\post_job.html:9
-msgid "Crear nueva oferta de empleo"
-msgstr "Create new job offer"
+#: .\apps\linkedout\templates\post.html:21
+msgid "Ej: Reflexión del día / Logro / Pregunta..."
+msgstr ""
 
-#: .\apps\linkedout\templates\post_job.html:10
-msgid "Atrae al mejor talento completando los detalles de la vacante."
-msgstr "Attract the best talent by completing the job details."
+#: .\apps\linkedout\templates\post.html:27
+#, fuzzy
+#| msgid "Contactados"
+msgid "Contenido"
+msgstr "Contacted"
 
-#: .\apps\linkedout\templates\post_job.html:17
-msgid "Título de la posición"
-msgstr "Position Title"
+#: .\apps\linkedout\templates\post.html:32
+msgid "¿Qué quieres compartir?"
+msgstr ""
 
-#: .\apps\linkedout\templates\post_job.html:19
-msgid "Ej: Desarrollador Python Senior"
-msgstr "e.g., Senior Python Developer"
+#: .\apps\linkedout\templates\post.html:36
+msgid "Puedes publicar con texto, con imagen, o con ambos."
+msgstr ""
 
-#: .\apps\linkedout\templates\post_job.html:24
-msgid "Sector"
-msgstr "Industry"
+#: .\apps\linkedout\templates\post.html:42
+msgid "Imagen (opcional)"
+msgstr ""
 
-#: .\apps\linkedout\templates\post_job.html:27
-msgid "Seleccione un sector"
-msgstr "Select an industry"
-
-#: .\apps\linkedout\templates\post_job.html:28
-msgid "Tecnología / IT"
-msgstr "Technology / IT"
-
-#: .\apps\linkedout\templates\post_job.html:29
-msgid "Marketing"
-msgstr "Marketing"
-
-#: .\apps\linkedout\templates\post_job.html:30
-msgid "Ventas"
-msgstr "Sales"
-
-#: .\apps\linkedout\templates\post_job.html:35
-msgid "Descripción del puesto"
-msgstr "Job Description"
-
-#: .\apps\linkedout\templates\post_job.html:37
-msgid "Describe las responsabilidades y el día a día..."
-msgstr "Describe the responsibilities and daily tasks..."
-
-#: .\apps\linkedout\templates\post_job.html:42
-msgid "Requerimientos / Skills"
-msgstr "Requirements / Skills"
-
-#: .\apps\linkedout\templates\post_job.html:44
-msgid "Ej: Django, React, PostgreSQL, Inglés B2"
-msgstr "e.g., Django, React, PostgreSQL, B2 English"
-
-#: .\apps\linkedout\templates\post_job.html:50
+#: .\apps\linkedout\templates\post.html:55
+#: .\apps\linkedout\templates\post_job.html:95
+#: .\apps\linkedout\templates\profile.html:67
 msgid "Cancelar"
 msgstr "Cancel"
 
-#: .\apps\linkedout\templates\post_job.html:54
-msgid "Publicar Oferta"
-msgstr "Post Job"
+#: .\apps\linkedout\templates\post.html:61
+#: .\apps\linkedout\templates\post_job.html:99
+msgid "Publicar"
+msgstr "Post"
 
-#: .\apps\linkedout\templates\professional_profile.html:4
-msgid "Perfil Profesional | LinkedOut"
-msgstr "Professional Profile | LinkedOut"
+#: .\apps\linkedout\templates\post_job.html:18
+msgid "Título"
+msgstr "Title"
+
+#: .\apps\linkedout\templates\post_job.html:20
+msgid "Ej: Desarrollador Python Senior"
+msgstr "e.g., Senior Python Developer"
+
+#: .\apps\linkedout\templates\post_job.html:25
+msgid "Introducción / Resumen"
+msgstr "Summary"
+
+#: .\apps\linkedout\templates\post_job.html:27
+msgid "Un breve resumen de por qué trabajar con ustedes..."
+msgstr ""
+
+#: .\apps\linkedout\templates\post_job.html:33
+msgid "Puesto / Cargo exacto"
+msgstr "Position"
+
+#: .\apps\linkedout\templates\post_job.html:35
+msgid "Ej: Backend Engineer"
+msgstr ""
+
+#: .\apps\linkedout\templates\post_job.html:40
+msgid "Sector"
+msgstr "Industry"
+
+#: .\apps\linkedout\templates\post_job.html:43
+msgid "Seleccione un sector"
+msgstr "Select an industry"
+
+#: .\apps\linkedout\templates\post_job.html:44
+msgid "Tecnología / IT"
+msgstr "Technology / IT"
+
+#: .\apps\linkedout\templates\post_job.html:45
+msgid "Marketing"
+msgstr "Marketing"
+
+#: .\apps\linkedout\templates\post_job.html:46
+msgid "Ventas"
+msgstr "Sales"
+
+#: .\apps\linkedout\templates\post_job.html:51
+msgid "Salario Estimado"
+msgstr "Estimated Salary"
+
+#: .\apps\linkedout\templates\post_job.html:53
+msgid "Ej: 2500.00"
+msgstr ""
+
+#: .\apps\linkedout\templates\post_job.html:59
+msgid "Horas Laborales / Modalidad"
+msgstr "Working Hours / Modality"
+
+#: .\apps\linkedout\templates\post_job.html:62
+msgid "Ej: 40 horas semanales / Remoto"
+msgstr ""
+
+#: .\apps\linkedout\templates\post_job.html:69
+#, fuzzy
+#| msgid "Descripción del puesto"
+msgid "Descripción completa del puesto"
+msgstr "Job Description"
+
+#: .\apps\linkedout\templates\post_job.html:72
+msgid "Describe las responsabilidades y el día a día..."
+msgstr "Describe the responsibilities and daily tasks..."
+
+#: .\apps\linkedout\templates\post_job.html:78
+#, fuzzy
+#| msgid "Requerimientos"
+msgid "Requerimientos"
+msgstr "Requirements"
+
+#: .\apps\linkedout\templates\post_job.html:81
+msgid "Ej: Django, React, PostgreSQL, Inglés B2"
+msgstr "e.g., Django, React, PostgreSQL, B2 English"
+
+#: .\apps\linkedout\templates\post_job.html:87
+msgid "Imagen de la empresa / Banner (Opcional)"
+msgstr ""
 
 #: .\apps\linkedout\templates\professional_profile.html:13
+#: .\apps\linkedout\templates\profile.html:13
+#: .\apps\linkedout\templates\profile.html:30
+#, fuzzy
+#| msgid "Gestionar perfil"
 msgid "Foto de perfil"
-msgstr "Profile picture"
+msgstr "Manage profile"
 
 #: .\apps\linkedout\templates\professional_profile.html:17
-#: .\apps\linkedout\templates\search_professionals.html:43
+#: .\apps\linkedout\templates\search_professionals.html:77
 msgid "Contactar"
 msgstr "Contact"
 
@@ -352,106 +445,259 @@ msgstr "Present"
 msgid "Aptitudes"
 msgstr "Skills"
 
-#: .\apps\linkedout\templates\profile.html:29
+#: .\apps\linkedout\templates\profile.html:55
+msgid "Tu nombre"
+msgstr "Your name"
+
+#: .\apps\linkedout\templates\profile.html:58
+msgid "Tu cargo o titular"
+msgstr "Your position"
+
+#: .\apps\linkedout\templates\profile.html:61
+#, fuzzy
+#| msgid "Acerca de"
+msgid "Acerca de ti..."
+msgstr "About"
+
+#: .\apps\linkedout\templates\profile.html:65
+msgid "Guardar"
+msgstr "Save"
+
+#: .\apps\linkedout\templates\profile.html:75
 msgid "Editar Perfil"
 msgstr "Edit Profile"
 
-#: .\apps\linkedout\templates\profile.html:44
-msgid "Escribe una publicacion..."
-msgstr "Start a post..."
+#: .\apps\linkedout\templates\profile.html:76
+#, fuzzy
+#| msgid "Editar Perfil"
+msgid "Editar"
+msgstr "Edit Profile"
 
-#: .\apps\linkedout\templates\profile.html:50
-msgid "Agregar Imagen/Video"
-msgstr "Add Photo/Video"
+#: .\apps\linkedout\templates\profile.html:81
+#: .\apps\linkedout\templates\profile.html:82 .\apps\linkedout\views.py:65
+msgid "Gestionar perfil"
+msgstr "Manage profile"
 
-#: .\apps\linkedout\templates\profile.html:53
-msgid "Publicar"
-msgstr "Post"
+#: .\apps\linkedout\templates\register.html:26
+msgid "Usuario/Correo electrónico"
+msgstr "User/Email"
 
-#: .\apps\linkedout\templates\register.html:4
-msgid "Registro | LinkedOut"
-msgstr "Join Now | LinkedOut"
+#: .\apps\linkedout\templates\register.html:38
+msgid "Tipo de usuario"
+msgstr "User type"
 
-#: .\apps\linkedout\templates\search_jobs.html:173
-msgid "Opciones del empleo"
-msgstr "Job options"
+#: .\apps\linkedout\templates\register.html:41
+#, fuzzy
+#| msgid "Seleccione un tipo de usuario"
+msgid "Seleccione un tipo de usuario"
+msgstr "Select a type"
 
-#: .\apps\linkedout\templates\search_jobs.html:291
-msgid "Ver Comentarios"
-msgstr "View Comments"
+#: .\apps\linkedout\templates\register.html:43
+msgid "Empresa"
+msgstr "Company"
 
-#: .\apps\linkedout\templates\search_professionals.html:4
-msgid "Buscar Personal | LinkedOut"
-msgstr "Search Staff | LinkedOut"
+#: .\apps\linkedout\templates\register.html:58
+#, fuzzy
+#| msgid "Iniciar Sesión | LinkedOut"
+msgid "¿Ya tienes cuenta? Iniciar sesión"
+msgstr "Sign In"
 
-#: .\apps\linkedout\templates\search_professionals.html:12
-msgid "Buscar por habilidad (ej: React, Python, UI)..."
-msgstr "Search by skill (e.g., React, Python, UI)..."
+#: .\apps\linkedout\templates\search_jobs.html:13
+msgid "No hay ofertas o publicaciones por ahora."
+msgstr ""
 
-#: .\apps\linkedout\templates\search_professionals.html:16
-msgid "Filtrar"
-msgstr "Filter"
+#: .\apps\linkedout\templates\search_professionals.html:25
+msgid "Habilidades o Resumen..."
+msgstr "Skills"
+
+#: .\apps\linkedout\templates\search_professionals.html:32
+msgid "Educación (Ej: UCV, USB)..."
+msgstr "Education"
 
 #: .\apps\linkedout\templates\search_professionals.html:39
-msgid "Ver Perfil"
+#, fuzzy
+#| msgid "Experiencia"
+msgid "Experiencia laboral..."
+msgstr "Experience"
+
+#: .\apps\linkedout\templates\search_professionals.html:46
+msgid "Filtrar Resultados"
+msgstr "Filter Results"
+
+#: .\apps\linkedout\templates\search_professionals.html:63
+msgid "Sin resumen profesional disponible."
+msgstr ""
+
+#: .\apps\linkedout\templates\search_professionals.html:67
+msgid "Educación"
+msgstr "Education"
+
+#: .\apps\linkedout\templates\search_professionals.html:67
+msgid "No especificada"
+msgstr "Not specified"
+
+#: .\apps\linkedout\templates\search_professionals.html:73
+#, fuzzy
+#| msgid "Ver Perfil"
+msgid "Ver profile"
 msgstr "View Profile"
 
-#: .\apps\linkedout\views.py:77
-msgid "Buscar Personal"
-msgstr "Search Staff"
+#: .\apps\linkedout\templates\search_professionals.html:83
+msgid "No se encontraron professionals que coincidan con los filtros."
+msgstr ""
 
-#: .\apps\linkedout\views.py:83
-msgid "Perfil del Candidato"
-msgstr "Candidate Profile"
+#: .\apps\linkedout\templates\search_professionals.html:84
+msgid "Prueba ajustando tus criterios de búsqueda."
+msgstr ""
 
-#: .\apps\linkedout\views.py:89
-msgid "Gestionar Profesionales"
+#: .\apps\linkedout\views.py:24
+#, fuzzy
+#| msgid "Iniciar Sesión | LinkedOut"
+msgid "Iniciar sesión"
+msgstr "Sign In"
+
+#: .\apps\linkedout\views.py:37
+msgid "Registrarse"
+msgstr "Sign Up"
+
+#: .\apps\linkedout\views.py:102
+#, fuzzy
+#| msgid "Buscar Personal"
+msgid "Buscar oferta laboral"
+msgstr "Search Professional"
+
+#: .\apps\linkedout\views.py:134
+msgid "(Sin texto)"
+msgstr ""
+
+#: .\apps\linkedout\views.py:185
+msgid "Publicar oferta laboral"
+msgstr "Post Job"
+
+#: .\apps\linkedout\views.py:200
+msgid "Por favor, introduzca al menos un criterio de búsqueda."
+msgstr ""
+
+#: .\apps\linkedout\views.py:220
+#, fuzzy
+#| msgid "Profesional"
+msgid "Perfil del profesional"
+msgstr "Professional"
+
+#: .\apps\linkedout\views.py:229
+#, fuzzy
+#| msgid "Gestionar Profesionales"
+msgid "Gestionar profesionales"
 msgstr "Manage Professionals"
 
-#: .\apps\linkedout\views.py:117
+#: .\apps\linkedout\views.py:270
 msgid "Por supuesto"
 msgstr "Of course"
 
-#: .\apps\linkedout\views.py:118 .\apps\linkedout\views.py:123
+#: .\apps\linkedout\views.py:272 .\apps\linkedout\views.py:282
 msgid "Tu: OK"
 msgstr "You: OK"
 
-#: .\apps\linkedout\views.py:118
+#: .\apps\linkedout\views.py:273
 msgid "Lun"
 msgstr "Mon"
 
-#: .\apps\linkedout\views.py:119
+#: .\apps\linkedout\views.py:274
 msgid "Tu: Creo que deberia cambiarse"
 msgstr "You: I think it should be changed"
 
-#: .\apps\linkedout\views.py:119
+#: .\apps\linkedout\views.py:275
 msgid "Vie"
 msgstr "Fri"
 
-#: .\apps\linkedout\views.py:120
+#: .\apps\linkedout\views.py:276
 msgid "Tu: Luego lo revisare"
 msgstr "You: I'll check it later"
 
-#: .\apps\linkedout\views.py:120
+#: .\apps\linkedout\views.py:277
 msgid "Mie"
 msgstr "Wed"
 
-#: .\apps\linkedout\views.py:121
+#: .\apps\linkedout\views.py:278
 msgid "Hola, tengo una sugerencia"
 msgstr "Hi, I have a suggestion"
 
-#: .\apps\linkedout\views.py:121
+#: .\apps\linkedout\views.py:279
 msgid "Mar"
 msgstr "Tue"
 
-#: .\apps\linkedout\views.py:122
+#: .\apps\linkedout\views.py:280
 msgid "LinkedOut es lo maximo"
 msgstr "LinkedOut is the best"
 
-#: .\apps\linkedout\views.py:122 .\apps\linkedout\views.py:123
+#: .\apps\linkedout\views.py:281 .\apps\linkedout\views.py:283
 msgid "Dom"
 msgstr "Sun"
 
-#: .\apps\linkedout\views.py:124
+#: .\apps\linkedout\views.py:285
 msgid "Oct 9"
 msgstr "Oct 9"
+
+#: .\apps\linkedout\views.py:299
+msgid "Notificaciones"
+msgstr "Notifications"
+
+#~ msgid "Home"
+#~ msgstr "Home"
+
+#~ msgid "Buscar mensaje"
+#~ msgstr "Search messages"
+
+#~ msgid "Opciones"
+#~ msgstr "Settings"
+
+#~ msgid "Inicio | LinkedOut"
+#~ msgstr "Feed | LinkedOut"
+
+#~ msgid "Gestionar Profesionales | LinkedOut"
+#~ msgstr "Manage Professionals | LinkedOut"
+
+#~ msgid "Gestión de Personal"
+#~ msgstr "Professional Management"
+
+#~ msgid "Notificaciones | LinkedOut"
+#~ msgstr "Notifications | LinkedOut"
+
+#~ msgid "Publicación | LinkedOut"
+#~ msgstr "Post | LinkedOut"
+
+#~ msgid "Publicar Oferta | LinkedOut"
+#~ msgstr "Post Job Offer | LinkedOut"
+
+#~ msgid "Atrae al mejor talento completando los detalles de la vacante."
+#~ msgstr "Attract the best talent by completing the job details."
+
+#~ msgid "Título de la posición"
+#~ msgstr "Position Title"
+
+#~ msgid "Perfil Profesional | LinkedOut"
+#~ msgstr "Professional Profile | LinkedOut"
+
+#~ msgid "Escribe una publicacion..."
+#~ msgstr "Start a post..."
+
+#~ msgid "Agregar Imagen/Video"
+#~ msgstr "Add Photo/Video"
+
+#~ msgid "Registro | LinkedOut"
+#~ msgstr "Sign Up | LinkedOut"
+
+#~ msgid "Opciones del empleo"
+#~ msgstr "Job options"
+
+#~ msgid "Buscar Personal | LinkedOut"
+#~ msgstr "Search Professional | LinkedOut"
+
+#~ msgid "Buscar por habilidad (ej: React, Python, UI)..."
+#~ msgstr "Search by skill (e.g., React, Python, UI)..."
+
+#~ msgid "Filtrar"
+#~ msgstr "Filter"
+
+#~ msgid "Perfil del Candidato"
+#~ msgstr "Candidate Profile"

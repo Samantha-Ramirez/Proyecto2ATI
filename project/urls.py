@@ -16,6 +16,8 @@ Including another URLconf
 """
 
 from django.contrib import admin
+from django.conf import settings
+from django.conf.urls.static import static
 from django.shortcuts import redirect
 from django.urls import path, include
 from apps.linkedout import views
@@ -56,3 +58,6 @@ urlpatterns = [
     path('admin-panel/users/manage/', views.manage_users, name='manage_users'),
     path('admin-panel/content/manage/', views.manage_content, name='manage_content'),
 ]
+
+if settings.DEBUG:
+    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,7 +1,7 @@
 {% extends 'base.html' %}
 {% load i18n static %}
 
-{% block title %}First Guy | LinkedOut{% endblock %}
+{% block title %}{{ page_title }} | LinkedOut{% endblock %}
 
 {% block content %}
 <div class="max-w-5xl mx-auto space-y-4 pb-10">
@@ -10,7 +10,7 @@
 
         <div class="h-48 bg-gray-200 relative overflow-hidden group">
             <img id="banner-preview" src="{% static 'img/linkedout_banner.png' %}"
-                class="absolute inset-0 w-full h-full object-cover z-0" alt="Fondo de perfil">
+                class="absolute inset-0 w-full h-full object-cover z-0" alt="{% trans 'Foto de perfil' %}">
 
             <div id="default-banner-icon" class="hidden absolute inset-0 items-center justify-center opacity-20 z-0">
                 <span class="text-6xl">🖼️</span>
@@ -27,7 +27,7 @@
             <label
                 class="size-40 rounded-full bg-gray-300 border-4 border-white absolute -top-20 shadow-md flex items-center justify-center cursor-pointer overflow-hidden group z-20">
                 <img id="avatar-preview" src="{% static 'img/linkedout_logo.png' %}" class="w-full h-full object-cover"
-                    alt="Foto de perfil">
+                    alt="{% trans 'Foto de perfil' %}">
 
                 <div id="default-avatar-icon" class="hidden text-6xl text-gray-400">👤</div>
 
@@ -52,19 +52,19 @@
                     <div id="profile-edit-form" class="hidden flex-col gap-3 w-full">
                         <input type="text" id="input-name"
                             class="border border-gray-300 rounded px-3 py-2 text-2xl font-bold outline-none focus:border-orange-500 w-full"
-                            placeholder="Tu nombre">
+                            placeholder="{% trans 'Tu nombre' %}">
                         <input type="text" id="input-title"
                             class="border border-gray-300 rounded px-3 py-2 text-lg outline-none focus:border-orange-500 w-full"
-                            placeholder="Tu cargo o titular">
+                            placeholder="{% trans 'Tu cargo o titular' %}">
                         <textarea id="input-desc"
                             class="border border-gray-300 rounded px-3 py-2 text-base outline-none focus:border-orange-500 w-full min-h-[100px]"
-                            placeholder="Acerca de ti..."></textarea>
+                            placeholder="{% trans 'Acerca de ti...' %}"></textarea>
 
                         <div class="flex gap-2 mt-2">
                             <button id="btn-save-profile"
-                                class="bg-orange-500 text-white px-5 py-2 rounded-full font-bold hover:bg-orange-600 transition-colors text-sm">Guardar</button>
+                                class="bg-orange-500 text-white px-5 py-2 rounded-full font-bold hover:bg-orange-600 transition-colors text-sm">{% trans 'Guardar' %}</button>
                             <button id="btn-cancel-profile"
-                                class="bg-gray-200 text-gray-700 px-5 py-2 rounded-full font-bold hover:bg-gray-300 transition-colors text-sm">Cancelar</button>
+                                class="bg-gray-200 text-gray-700 px-5 py-2 rounded-full font-bold hover:bg-gray-300 transition-colors text-sm">{% trans 'Cancelar' %}</button>
                         </div>
                     </div>
                 </div>
@@ -73,13 +73,13 @@
                     <button id="btn-edit-profile"
                         class="flex items-center gap-1 whitespace-nowrap hover:text-orange-600 transition-colors outline-none"
                         title="{% trans 'Editar Perfil' %}">
-                        Editar ✏️
+                        {% trans 'Editar' %} ✏️
                     </button>
 
                     <a href="{% url 'manage_profile' %}"
                         class="flex items-center gap-1 whitespace-nowrap hover:text-orange-600 transition-colors"
                         title="{% trans 'Gestionar perfil' %}">
-                        Gestionar perfil ⚙️
+                        {% trans 'Gestionar perfil' %} ⚙️
                     </a>
                 </div>
 
@@ -87,26 +87,7 @@
         </div>
     </section>
 
-    <article class="bg-white rounded-lg border border-gray-300 p-6 shadow-sm">
-        <div class="flex justify-between">
-            <div class="flex gap-3">
-                <div class="size-14 rounded-full bg-gray-300 shrink-0 overflow-hidden">
-                    <img id="post-author-avatar" src="{% static 'img/linkedout_logo.png' %}"
-                        class="w-full h-full object-cover" alt="Post Avatar">
-                </div>
-                <div>
-                    <h4 class="font-bold text-xl">First Guy •</h4>
-                    <p class="text-gray-500">Java Technical Lead</p>
-                    <p class="text-gray-400 text-sm">17 h • 🌎</p>
-                </div>
-            </div>
-            <button class="text-2xl text-gray-400">⋮</button>
-        </div>
-        <div
-            class="mt-4 bg-gray-50 h-64 border border-dashed border-gray-300 rounded-lg flex items-center justify-center">
-            <span class="text-gray-300 text-5xl">🖼️</span>
-        </div>
-    </article>
+    {% include "components/post_card.html" with item=profile_post comments_url="#" applied_job_ids=applied_job_ids %}
 
 </div>
 
@@ -175,7 +156,6 @@
         const btnSaveProfile = document.getElementById('btn-save-profile');
         const btnCancelProfile = document.getElementById('btn-cancel-profile');
 
-        // Abrir edición
         btnEditProfile.addEventListener('click', function (e) {
             e.preventDefault();
 
@@ -188,14 +168,12 @@
             btnEditProfile.classList.add('hidden');
         });
 
-        // Cancelar edición
         btnCancelProfile.addEventListener('click', function () {
             profileDisplay.classList.remove('hidden');
             profileEditForm.classList.add('hidden');
             btnEditProfile.classList.remove('hidden');
         });
 
-        // Guardar edición
         btnSaveProfile.addEventListener('click', function () {
             displayName.textContent = inputName.value;
             displayTitle.textContent = inputTitle.value;

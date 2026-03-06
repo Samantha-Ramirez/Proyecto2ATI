@@ -1,12 +1,12 @@
 {% extends 'base.html' %}
 {% load i18n static %}
 
-{% block title %}{% trans "Notificaciones | LinkedOut" %}{% endblock %}
+{% block title %}{{ page_title }} | LinkedOut{% endblock %}
 
 {% block content %}
 <div class="max-w-2xl mx-auto space-y-4">
     <div class="flex items-center justify-between mb-6">
-        <h2 class="text-xl font-bold text-gray-900">{% trans "Notificaciones" %}</h2>
+        <h2 class="text-xl font-bold text-gray-900">{{ page_title }}</h2>
         <button class="text-sm text-linkedout-orange font-bold hover:underline">{% trans "Marcar todas como leídas" %}</button>
     </div>
 
