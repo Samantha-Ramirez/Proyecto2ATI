@@ -4,17 +4,14 @@ services:
         volumes:
             - sqlite_data:/data
         command: tail -f /dev/null
-
     web:
         build: .
-        command: sh -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+        command: sh -c "python manage.py migrate --noinput && python manage.py runserver 0.0.0.0:8000"
         volumes:
             - .:/app
-            - ./db_folder:/app/db_folder
+            - sqlite_data:/data
         ports:
             - '8000:8000'
-        depends_on:
-            - db
 
 volumes:
     sqlite_data:

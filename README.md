@@ -48,6 +48,7 @@ Muestra la organización lógica de los módulos del sistema (Autenticación, Pe
 ![Diagrama de Paquetes](./docs/package_diagram.png)
 
 ### Mapa de Navegacion
+
 Este diagrama define la experiencia del usuario (UX), mostrando el flujo entre pantallas y las condiciones de acceso (ej. áreas públicas vs. áreas privadas de usuario/admin).
 ![Mapa de Navegacion](./docs/Mapa_navegacion.png)
 
@@ -55,20 +56,21 @@ Este diagrama define la experiencia del usuario (UX), mostrando el flujo entre p
 
 [Figma](https://www.figma.com/design/InsltnGkXWAljm4XlRxcQP/Proyecto-LinkedOut-ATI?node-id=30-1057&t=hySV0PvQUuFgofog-1)
 
-| Vista Desktop | Vista Mobile |
-| :--- | :--- |
-| ![Mobile Placeholder](./docs/mobile.png) | ![Desktop Placeholder](./docs/desktop.png) |
-| *Ver [Wireframes Mobile](./docs/Mobile_Wireframes.pdf)* | *Ver [Wireframes Desktop](./docs/Desktop_Wireframes.pdf)* |
+| Vista Desktop                                           | Vista Mobile                                              |
+| :------------------------------------------------------ | :-------------------------------------------------------- |
+| ![Mobile Placeholder](./docs/mobile.png)                | ![Desktop Placeholder](./docs/desktop.png)                |
+| _Ver [Wireframes Mobile](./docs/Mobile_Wireframes.pdf)_ | _Ver [Wireframes Desktop](./docs/Desktop_Wireframes.pdf)_ |
 
 ---
 
 ## 🛠️ Stack Tecnológico
-* **Lenguaje:** Python 3.12-slim
-* **Framework:** Django 6.0.1
-* **Base de Datos:** SQLite
-* **Infraestructura:** Docker & Docker Compose
-* **Diseño:** Figma
-* **Control de Versiones:** Git
+
+- **Lenguaje:** Python 3.12-slim
+- **Framework:** Django 6.0.1
+- **Base de Datos:** SQLite
+- **Infraestructura:** Docker & Docker Compose
+- **Diseño:** Figma
+- **Control de Versiones:** Git
 
 ---
 
@@ -111,13 +113,18 @@ El proyecto está contenerizado para garantizar que funcione correctamente en cu
     Ejecuta el siguiente comando en la terminal (donde está el archivo `docker-compose.yml`):
 
     ```bash
-    docker-compose up -d
+    docker compose up --build
     ```
 
 3.  **Acceder:**
     Abre tu navegador en: [http://localhost:8000](http://localhost:8000)
 
-_(Para detener el servidor, usa: `docker-compose down`)_
+4.  **Detener la aplicación:**
+    Ejecuta el siguiente comando en la terminal (donde está el archivo `docker-compose.yml`):
+
+    ```bash
+    docker compose down -v --rmi all
+    ```
 
 ---
 
