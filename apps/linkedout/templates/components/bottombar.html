@@ -3,12 +3,13 @@
     <a href="{% url 'feed' %}" title="{% trans 'Inicio' %}">🏠</a>
 
     {% if request.user.groups.all.0.name == 'Professional' %}
-        <a href="{% url 'post' %}" title="{% trans 'Crear publicación' %}">➕</a>
         <a href="{% url 'search_jobs' %}" title="{% trans 'Zona laboral' %}">💼</a>
+        <a href="{% url 'post' %}" title="{% trans 'Crear publicación' %}">➕</a>
     {% endif %}
 
     {% if request.user.groups.all.0.name == 'Company' %}
         <a href="{% url 'search_professionals' %}" title="{% trans 'Zona laboral' %}">💼</a>
+        <a href="{% url 'post_job' %}" title="{% trans 'Crear oferta laboral' %}">➕</a>
     {% endif %}
 
     <a href="{% url 'messages' %}" title="{% trans 'Mensajes' %}">💬</a>

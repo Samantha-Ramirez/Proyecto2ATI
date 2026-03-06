@@ -23,25 +23,24 @@
             {% csrf_token %}
 
             <div class="flex flex-col gap-1">
-                <label for="username" class="font-bold text-black text-sm md:text-base">Usuario/Correo
-                    electronico</label>
-                <input type="text" id="username" name="username" placeholder="Ingrese su usuario o correo electronico"
+                <label for="username" class="font-bold text-black text-sm md:text-base">{% trans "Usuario/Correo electrónico" %}</label>
+                <input type="text" id="username" name="username" placeholder="{% trans "Ingrese su usuario o correo electronico" %}"
                     class="w-full bg-[#E5E5E5] border border-gray-400 rounded px-4 py-2 text-gray-700 outline-none focus:border-linkedout-orange focus:ring-1 focus:ring-linkedout-orange text-center md:text-left text-sm">
             </div>
 
             <div class="flex flex-col gap-1">
-                <label for="password" class="font-bold text-black text-sm md:text-base">Contraseña</label>
-                <input type="password" id="password" name="password" placeholder="Ingrese su Contraseña"
+                <label for="password" class="font-bold text-black text-sm md:text-base">{% trans "Contraseña" %}</label>
+                <input type="password" id="password" name="password" placeholder="{% trans "Ingrese su Contraseña" %}"
                     class="w-full bg-[#E5E5E5] border border-gray-400 rounded px-4 py-2 text-gray-700 outline-none focus:border-linkedout-orange focus:ring-1 focus:ring-linkedout-orange text-center md:text-left text-sm">
             </div>
 
             <div class="flex flex-col gap-1">
-                <label for="user_type" class="font-bold text-black text-sm md:text-base">Tipo de usuario</label>
+                <label for="user_type" class="font-bold text-black text-sm md:text-base">{% trans "Tipo de usuario" %}</label>
                 <select id="user_type" name="user_type" required
                     class="w-full bg-[#E5E5E5] border border-gray-400 rounded px-4 py-2 text-gray-700 outline-none focus:border-linkedout-orange focus:ring-1 focus:ring-linkedout-orange text-center md:text-left text-sm cursor-pointer appearance-none">
-                    <option value="" disabled selected>Tipo de usuario</option>
-                    <option value="profesional">Profesional</option>
-                    <option value="empresa">Empresa</option>
+                    <option value="" disabled selected>{% trans "Seleccione un tipo de usuario" %}</option>
+                    <option value="profesional">{% trans "Profesional" %}</option>
+                    <option value="empresa">{% trans "Empresa" %}</option>
                 </select>
             </div>
 
@@ -56,7 +55,7 @@
         <div class="mt-8 mb-2 w-full max-w-sm flex justify-center">
             <a href="{% url 'login' %}"
                 class="w-full text-center bg-linkedout-orange text-white font-bold py-2.5 px-6 rounded-full hover:opacity-90 transition-opacity text-sm md:text-base shadow-md">
-                ¿Ya tienes cuenta? Iniciar sesión
+                {% trans "¿Ya tienes cuenta? Iniciar sesión" %}
             </a>
         </div>
 
