@@ -2,6 +2,7 @@ from django.shortcuts import redirect
 from django.urls import reverse
 
 
+# Middleware para requerir inicio de sesión en todas las vistas excepto las públicas
 class LoginRequiredMiddleware:
     def __init__(self, get_response):
         self.get_response = get_response

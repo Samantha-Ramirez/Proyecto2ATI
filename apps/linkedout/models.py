@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 
 
+# Modelo para publicaciones generales
 class Post(models.Model):
     author = models.ForeignKey(User,
                                on_delete=models.CASCADE,
@@ -15,6 +16,7 @@ class Post(models.Model):
         return f"Post #{self.id} by {self.author}"
 
 
+# Modelo para ofertas de trabajo, hereda de Post
 class JobOffer(Post):
     STATUS_CHOICES = [
         ("open", "Abierta / Recibiendo CVs"),
@@ -33,6 +35,7 @@ class JobOffer(Post):
         return f"{self.title} (Oferta)"
 
 
+# Modelo para postulaciones a ofertas de trabajo
 class JobApplication(models.Model):
     job_offer = models.ForeignKey(JobOffer, on_delete=models.CASCADE, related_name="applications")
     applicant = models.ForeignKey(User, on_delete=models.CASCADE, related_name="job_applications")
@@ -43,6 +46,7 @@ class JobApplication(models.Model):
         unique_together = [("job_offer", "applicant")]
 
 
+# Modelo para perfiles de usuario
 class Profile(models.Model):
     user = models.OneToOneField(User,
                                 on_delete=models.CASCADE,

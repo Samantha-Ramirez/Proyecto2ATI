@@ -27,14 +27,14 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', lambda request: redirect('login'), name='root'),
 
-    # Sección de perfil y autenticación
+    # URLs de perfil y autenticación
     path('login/', views.login, name='login'),
     path('logout/', views.logout, name='logout'),
     path('register/', views.register, name='register'),
     path('profile/', views.profile, name='profile'),
     path('profile/manage/', views.manage_profile, name='manage_profile'),
 
-    # Sección laboral
+    # URLs de sección laboral
     path('search-jobs/', views.search_jobs, name='search_jobs'),
     path('apply-job/<int:job_id>/', views.apply_job, name='apply_job'),
     path('search-professionals/', views.search_professionals, name='search_professionals'),
@@ -43,17 +43,17 @@ urlpatterns = [
     path('professional-profile/<int:pk>/', views.professional_profile, name='professional_profile'),
     path('manage-professionals/', views.manage_professionals, name='manage_professionals'),
 
-    # Sección social
+    # URLs de sección social
     path('feed/', views.feed, name='feed'),
     path('feed/follow/<int:user_id>/', views.follow_user, name='follow_user'),
     path('feed/comment/<int:post_id>/', views.comment_post, name='comment_post'),
 
-    # Sección de muro y mensajería
+    # URLs de muro y mensajería
     path('messages/', views.messages, name='messages'),
     path('messages/chat/<int:user_id>/', views.chat, name='chat'),
     path('notifications/', views.notifications, name='notifications'),
 
-    # Sección de administración
+    # URLs de administración
     path('admin-panel/', views.admin_panel, name='admin_panel'),
     path('admin-panel/users/manage/', views.manage_users, name='manage_users'),
     path('admin-panel/content/manage/', views.manage_content, name='manage_content'),
