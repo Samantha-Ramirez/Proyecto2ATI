@@ -9,7 +9,7 @@ from django.db.models import Q
 from .models import JobApplication, JobOffer, Post, Profile
 
 
-# Sección de perfil y autenticación
+# Controlador para inicio de sesión
 def login(request):
     if request.method == 'POST':
         u = request.POST.get('username')
@@ -30,11 +30,13 @@ def login(request):
     return render(request, 'login.html', context)
 
 
+# Controlador para cierre de sesión
 def logout(request):
     auth_logout(request)
     return redirect('login')
 
 
+# Controlador para registro de nuevos usuarios
 def register(request):
     context = {
         'page_title': _('Registrarse'),
@@ -42,6 +44,7 @@ def register(request):
     return render(request, 'register.html', context)
 
 
+# Controlador para ver el perfil del usuario
 def profile(request):
     context = {
         'page_title': _('Perfil'),
@@ -63,6 +66,7 @@ def profile(request):
     return render(request, 'profile.html', context)
 
 
+# Controlador para gestionar el perfil del usuario
 def manage_profile(request):
     context = {
         'page_title': _('Gestionar perfil'),
@@ -74,7 +78,7 @@ def manage_profile(request):
     return render(request, 'manage_profile.html', context)
 
 
-# Sección laboral
+# Controlador para buscar ofertas de trabajo
 def search_jobs(request):
     query = (request.GET.get('q') or '').strip()
     jobs = JobOffer.objects.all().order_by('-created_at')
@@ -107,6 +111,7 @@ def search_jobs(request):
     return render(request, 'search_jobs.html', context)
 
 
+# Controlador para postularse a una oferta de trabajo
 def apply_job(request, job_id):
     job = get_object_or_404(JobOffer, pk=job_id)
 
@@ -126,6 +131,7 @@ def apply_job(request, job_id):
     return redirect('search_jobs')
 
 
+# Controlador para crear una publicación general
 def post(request):
     if request.method == "POST":
         content = request.POST.get("content", "").strip()
@@ -157,6 +163,7 @@ def post(request):
     return render(request, "post.html", context)
 
 
+# Controlador para crear una oferta de trabajo
 def post_job(request):
     if request.method == 'POST':
         title = request.POST.get('title')
@@ -198,6 +205,7 @@ def post_job(request):
     return render(request, 'post_job.html', context)
 
 
+# Controlador para buscar profesionales
 def search_professionals(request):
     summary = request.GET.get('summary', '')
     education = request.GET.get('education', '')
@@ -225,6 +233,7 @@ def search_professionals(request):
     return render(request, 'search_professionals.html', context)
 
 
+# Controlador para ver el perfil de un profesional específico
 def professional_profile(request, pk):
     context = {
         'page_title': _('Perfil del profesional'),
@@ -234,6 +243,7 @@ def professional_profile(request, pk):
     return render(request, 'professional_profile.html', context)
 
 
+# Controlador para gestionar profesionales
 def manage_professionals(request):
     context = {
         'page_title': _('Gestionar profesionales'),
@@ -242,7 +252,7 @@ def manage_professionals(request):
     return render(request, 'manage_professionals.html', context)
 
 
-# Sección de muro y mensajería
+# Controlador para el feed de publicaciones
 def feed(request):
     posts = Post.objects.select_related("author", "joboffer").all().order_by("-created_at")
 
@@ -263,10 +273,12 @@ def feed(request):
     return render(request, 'feed.html', context)
 
 
+# Controlador para seguir a otro usuario
 def follow_user(request, user_id):
     pass
 
 
+# Controlador para comentar una publicación
 def comment_post(request, post_id):
     context = {
         'desktop_search': True,
@@ -275,6 +287,7 @@ def comment_post(request, post_id):
     return render(request, 'comment_post.html', context)
 
 
+# Controlador para mensajes
 def messages(request):
     message_rows = [
         {'name': 'Samantha Ramirez', 'message': _('Por supuesto'),
@@ -304,6 +317,7 @@ def messages(request):
     return render(request, 'messages.html', context)
 
 
+# Controlador para notificaciones
 def notifications(request):
     context = {
         'page_title': _('Notificaciones'),
@@ -313,18 +327,21 @@ def notifications(request):
     return render(request, 'notifications.html', context)
 
 
+# Controlador para chat entre usuarios
 def chat(request, user_id):
     return redirect('messages')
 
 
-# Sección de administración
+# Controlador para panel de administración
 def admin_panel(request):
     return render(request, 'admin_panel.html')
 
 
+# Controlador para gestionar usuarios (admin)
 def manage_users(request):
     return render(request, 'manage_users.html')
 
 
+# Controlador para gestionar contenido (admin)
 def manage_content(request):
     return render(request, 'manage_content.html')
