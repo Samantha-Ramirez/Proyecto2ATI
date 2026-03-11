@@ -44,7 +44,8 @@ class ProfileTemplateTests(TestCase):
         self.assertContains(response, 'First Guy')
 
 
-# Prueba unitaria para verificar que la restricción UNIQUE en JobApplication funciona correctamente
+# Prueba unitaria para verificar que la restricción UNIQUE en JobApplication
+# funciona correctamente
 class JobApplicationUniqueConstraintTests(TestCase):
     def setUp(self):
         # Configurar un usuario empresa
@@ -95,3 +96,51 @@ class JobApplicationUniqueConstraintTests(TestCase):
                     applicant=self.applicant,
                     message='Intento duplicado'
                 )
+
+
+# Prueba unitaria para validar la funcionalidad de búsqueda de profesionales
+class StaffSearchTests(TestCase):
+    def setUp(self):
+        # Crear un usuario que actuará como la empresa que busca
+        self.company_user = User.objects.create_user(
+            username='empresa_test',
+            password='password123'
+        )
+
+        # Crear un profesional que SI coincide con la búsqueda
+        self.user_pro1 = User.objects.create_user(username='pro_computacion',
+                                                  password='123')
+        Profile.objects.create(
+            user=self.user_pro1,
+            user_type='professional',
+            education='Ingeniería en Computación - UCV',
+            professional_summary='Experto en redes'
+        )
+
+        # Crear un profesional que NO coincide con la búsqueda
+        self.user_pro2 = User.objects.create_user(username='pro_diseno',
+                                                  password='123')
+        Profile.objects.create(
+            user=self.user_pro2,
+            user_type='professional',
+            education='Diseño Gráfico - LUZ',
+            professional_summary='Diseñador senior'
+        )
+
+    def test_search_staff_by_education(self):
+
+        # Login para poder acceder (por el middleware de seguridad)
+        self.client.login(username='empresa_test', password='password123')
+
+        # Ejecutar la búsqueda enviando el filtro Y el botón de búsqueda
+        response = self.client.get(reverse('search_professionals'),
+                                   {'education': 'Computación',
+                                    'search_btn': '1'})
+        # Verificar que la página carga (200)
+        self.assertEqual(response.status_code, 200)
+
+        # Verificar que el profesional de Computación APARECE en los resultados
+        self.assertContains(response, 'pro_computacion')
+
+        # Verificar que el profesional de Diseño NO APARECE
+        self.assertNotContains(response, 'pro_diseno')
