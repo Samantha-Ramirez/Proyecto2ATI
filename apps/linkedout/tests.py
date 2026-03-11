@@ -95,3 +95,82 @@ class JobApplicationUniqueConstraintTests(TestCase):
                     applicant=self.applicant,
                     message='Intento duplicado'
                 )
+
+# Prueba unitaria para la creación de Ofertas Laborales (post_job)
+class PostJobTests(TestCase):
+    def setUp(self):
+        # 1. Configurar un usuario de prueba que actuará como la empresa
+        self.user = User.objects.create_user(
+            username='company_tester',
+            password='testpassword123',
+            first_name='Tech',
+            last_name='Company'
+        )
+
+    def test_post_job_get_renders_template(self):
+        # Prueba que hacer una petición GET carga el HTML correcto
+        self.client.login(username='company_tester', password='testpassword123')
+        
+        # Hacemos la petición a la vista
+        response = self.client.get(reverse('post_job'))
+        
+        # Verificamos que cargue bien (200) y use el template correcto
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'post_job.html')
+
+    def test_post_job_post_creates_offer(self):
+        # Prueba que enviar el formulario por POST crea la oferta y redirige
+        self.client.login(username='company_tester', password='testpassword123')
+        
+        # Diccionario simulando lo que el usuario escribe en el formulario HTML
+        form_data = {
+            'title': 'Desarrollador Backend Senior',
+            'content': 'Únete a nuestro gran equipo de tecnología.',
+            'position': 'Backend Engineer',
+            'industry': 'it',
+            'salary': '3500.50',
+            'working_hours': '40 horas / Remoto',
+            'job_description': 'Desarrollo y mantenimiento de APIs.',
+            'requirements': 'Django, Python, PostgreSQL',
+            'offer_status': 'open'
+        }
+        
+        # Contamos cuántas ofertas hay antes del POST (debería ser 0)
+        offers_count_before = JobOffer.objects.count()
+        
+        # Hacemos la petición POST enviando los datos
+        response = self.client.post(reverse('post_job'), form_data)
+        
+        # 1. Verificamos que al terminar nos mande al muro (feed)
+        self.assertRedirects(response, reverse('feed'))
+        
+        # 2. Verificamos que haya exactamente 1 oferta más en la base de datos
+        self.assertEqual(JobOffer.objects.count(), offers_count_before + 1)
+        
+        # 3. Extraemos la oferta de la BD y verificamos que guardó bien al autor y los datos
+        latest_offer = JobOffer.objects.latest('id')
+        self.assertEqual(latest_offer.title, 'Desarrollador Backend Senior')
+        self.assertEqual(latest_offer.author, self.user)
+        self.assertEqual(float(latest_offer.salary), 3500.50) # Convertimos a float para comparar con el Decimal
+
+    def test_post_job_empty_salary_is_saved_as_none(self):
+        # Prueba la regla de validación: si el salario viene vacío, se guarda como NULL (None)
+        self.client.login(username='company_tester', password='testpassword123')
+        
+        form_data = {
+            'title': 'Diseñador UI/UX',
+            'content': 'Buscamos talento creativo.',
+            'position': 'UI Designer',
+            'industry': 'it',
+            'salary': '',  # <-- ¡Enviamos el salario vacío a propósito!
+            'working_hours': 'Medio tiempo',
+            'job_description': 'Diseño de interfaces.',
+            'requirements': 'Figma, CSS',
+            'offer_status': 'open'
+        }
+        
+        self.client.post(reverse('post_job'), form_data)
+        
+        # Verificamos que la base de datos no explotó y guardó None
+        latest_offer = JobOffer.objects.latest('id')
+        self.assertIsNone(latest_offer.salary)
