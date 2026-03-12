@@ -216,7 +216,11 @@ class SearchJobsTests(TestCase):
             offer_status='open',
         )
 
+    def login_applicant(self):
+        self.client.login(username='applicant_search', password='testpassword123')
+
     def test_search_jobs_get_renders_template_with_all_jobs(self):
+        self.login_applicant()
         response = self.client.get(reverse('search_jobs'))
 
         self.assertEqual(response.status_code, 200)
@@ -230,6 +234,7 @@ class SearchJobsTests(TestCase):
         self.assertEqual(response.context['applied_job_ids'], set())
 
     def test_search_jobs_filters_results_using_trimmed_query(self):
+        self.login_applicant()
         response = self.client.get(reverse('search_jobs'), {'q': '  python  '})
 
         self.assertEqual(response.status_code, 200)
@@ -246,7 +251,7 @@ class SearchJobsTests(TestCase):
             applicant=self.applicant,
             message='Me interesa esta oferta',
         )
-        self.client.login(username='applicant_search', password='testpassword123')
+        self.login_applicant()
 
         response = self.client.get(reverse('search_jobs'))
 
