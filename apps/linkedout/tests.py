@@ -174,3 +174,86 @@ class PostJobTests(TestCase):
         # Verificamos que la base de datos no explotó y guardó None
         latest_offer = JobOffer.objects.latest('id')
         self.assertIsNone(latest_offer.salary)
+
+
+class SearchJobsTests(TestCase):
+    def setUp(self):
+        self.company = User.objects.create_user(
+            username='company_search',
+            password='testpassword123',
+            first_name='Search',
+            last_name='Company'
+        )
+        self.applicant = User.objects.create_user(
+            username='applicant_search',
+            password='testpassword123',
+            first_name='Search',
+            last_name='Applicant'
+        )
+
+        self.python_job = JobOffer.objects.create(
+            author=self.company,
+            title='Python Backend Developer',
+            content='Buscamos developer backend.',
+            job_description='Trabajo con Django y APIs REST.',
+            salary='4000.00',
+            position='Backend Engineer',
+            working_hours='40 horas semanales',
+            requirements='Python, Django, PostgreSQL',
+            industry='Software',
+            offer_status='open',
+        )
+        self.design_job = JobOffer.objects.create(
+            author=self.company,
+            title='UX Designer',
+            content='Vacante para equipo de producto.',
+            job_description='Diseno de interfaces y prototipos.',
+            salary='3000.00',
+            position='Product Designer',
+            working_hours='40 horas semanales',
+            requirements='Figma, research, prototipado',
+            industry='Diseno',
+            offer_status='open',
+        )
+
+    def login_applicant(self):
+        self.client.login(username='applicant_search', password='testpassword123')
+
+    def test_search_jobs_get_renders_template_with_all_jobs(self):
+        self.login_applicant()
+        response = self.client.get(reverse('search_jobs'))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertTemplateUsed(response, 'search_jobs.html')
+        self.assertQuerySetEqual(
+            response.context['jobs'],
+            JobOffer.objects.all().order_by('-created_at'),
+            transform=lambda job: job,
+        )
+        self.assertEqual(response.context['search_query'], '')
+        self.assertEqual(response.context['applied_job_ids'], set())
+
+    def test_search_jobs_filters_results_using_trimmed_query(self):
+        self.login_applicant()
+        response = self.client.get(reverse('search_jobs'), {'q': '  python  '})
+
+        self.assertEqual(response.status_code, 200)
+        self.assertQuerySetEqual(
+            response.context['jobs'],
+            [self.python_job],
+            transform=lambda job: job,
+        )
+        self.assertEqual(response.context['search_query'], 'python')
+
+    def test_search_jobs_includes_applied_job_ids_for_authenticated_user(self):
+        JobApplication.objects.create(
+            job_offer=self.python_job,
+            applicant=self.applicant,
+            message='Me interesa esta oferta',
+        )
+        self.login_applicant()
+
+        response = self.client.get(reverse('search_jobs'))
+
+        self.assertEqual(response.status_code, 200)
+        self.assertEqual(response.context['applied_job_ids'], {self.python_job.id})
