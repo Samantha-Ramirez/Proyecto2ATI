@@ -122,7 +122,7 @@ msgstr "User/Email"
 #: .\apps\linkedout\templates\login.html:27
 #: .\apps\linkedout\templates\register.html:27
 msgid "Ingrese su usuario o correo electronico"
-msgstr ""
+msgstr "Add your user or email"
 
 #: .\apps\linkedout\templates\login.html:32
 #: .\apps\linkedout\templates\register.html:32
@@ -134,7 +134,7 @@ msgstr "Password"
 #: .\apps\linkedout\templates\login.html:33
 #: .\apps\linkedout\templates\register.html:33
 msgid "Ingrese su Contraseña"
-msgstr ""
+msgstr "Add your Password"
 
 #: .\apps\linkedout\templates\login.html:40
 msgid "Iniciar Sesión"
@@ -142,7 +142,7 @@ msgstr "Sign In"
 
 #: .\apps\linkedout\templates\login.html:47
 msgid "¿Olvidaste tu contraseña?"
-msgstr ""
+msgstr "Forgot your password?"
 
 #: .\apps\linkedout\templates\login.html:54
 msgid "¿No tienes cuenta? Registrarse"
@@ -283,11 +283,11 @@ msgstr "Yesterday"
 
 #: .\apps\linkedout\templates\post.html:16
 msgid "Título (opcional)"
-msgstr ""
+msgstr "Title (optional)"
 
 #: .\apps\linkedout\templates\post.html:21
 msgid "Ej: Reflexión del día / Logro / Pregunta..."
-msgstr ""
+msgstr "Ex: Reflect on your day / Achievement / Ask..."
 
 #: .\apps\linkedout\templates\post.html:27
 #, fuzzy
@@ -297,15 +297,15 @@ msgstr "Contacted"
 
 #: .\apps\linkedout\templates\post.html:32
 msgid "¿Qué quieres compartir?"
-msgstr ""
+msgstr "What do you want to share?"
 
 #: .\apps\linkedout\templates\post.html:36
 msgid "Puedes publicar con texto, con imagen, o con ambos."
-msgstr ""
+msgstr "You can post with text, images, o both."
 
 #: .\apps\linkedout\templates\post.html:42
 msgid "Imagen (opcional)"
-msgstr ""
+msgstr "Image (opcional)"
 
 #: .\apps\linkedout\templates\post.html:55
 #: .\apps\linkedout\templates\post_job.html:95
@@ -332,7 +332,7 @@ msgstr "Summary"
 
 #: .\apps\linkedout\templates\post_job.html:27
 msgid "Un breve resumen de por qué trabajar con ustedes..."
-msgstr ""
+msgstr "A few words about why you want to work with us..."
 
 #: .\apps\linkedout\templates\post_job.html:33
 msgid "Puesto / Cargo exacto"
@@ -340,7 +340,7 @@ msgstr "Position"
 
 #: .\apps\linkedout\templates\post_job.html:35
 msgid "Ej: Backend Engineer"
-msgstr ""
+msgstr "Ex: Backend Engineer"
 
 #: .\apps\linkedout\templates\post_job.html:40
 msgid "Sector"
@@ -367,8 +367,8 @@ msgid "Salario Estimado"
 msgstr "Estimated Salary"
 
 #: .\apps\linkedout\templates\post_job.html:53
-msgid "Ej: 2500.00"
-msgstr ""
+msgid "Ej: 2.500,00"
+msgstr "Ex: 2,500.00"
 
 #: .\apps\linkedout\templates\post_job.html:59
 msgid "Horas Laborales / Modalidad"
@@ -376,7 +376,7 @@ msgstr "Working Hours / Modality"
 
 #: .\apps\linkedout\templates\post_job.html:62
 msgid "Ej: 40 horas semanales / Remoto"
-msgstr ""
+msgstr "Ex: 40 weekly hours / Remote"
 
 #: .\apps\linkedout\templates\post_job.html:69
 #, fuzzy
@@ -400,7 +400,7 @@ msgstr "e.g., Django, React, PostgreSQL, B2 English"
 
 #: .\apps\linkedout\templates\post_job.html:87
 msgid "Imagen de la empresa / Banner (Opcional)"
-msgstr ""
+msgstr "Image of the company / Banner (Optional)"
 
 #: .\apps\linkedout\templates\professional_profile.html:13
 #: .\apps\linkedout\templates\profile.html:13
@@ -464,7 +464,7 @@ msgstr "Your position"
 #, fuzzy
 #| msgid "Acerca de"
 msgid "Acerca de ti..."
-msgstr "About"
+msgstr "About you..."
 
 #: .\apps\linkedout\templates\profile.html:65
 msgid "Guardar"
@@ -475,10 +475,8 @@ msgid "Editar Perfil"
 msgstr "Edit Profile"
 
 #: .\apps\linkedout\templates\profile.html:76
-#, fuzzy
-#| msgid "Editar Perfil"
 msgid "Editar"
-msgstr "Edit Profile"
+msgstr "Edit"
 
 #: .\apps\linkedout\templates\profile.html:81
 #: .\apps\linkedout\templates\profile.html:82 .\apps\linkedout\views.py:68
@@ -511,21 +509,21 @@ msgstr "Sign In"
 
 #: .\apps\linkedout\templates\search_jobs.html:13
 msgid "No hay ofertas o publicaciones por ahora."
-msgstr ""
+msgstr "No offers or pots yet."
 
 #: .\apps\linkedout\templates\search_professionals.html:14
 msgid "Habilidades o Resumen..."
-msgstr "Skills"
+msgstr "Skills or Resume..."
 
 #: .\apps\linkedout\templates\search_professionals.html:21
 msgid "Educación (Ej: UCV, USB)..."
-msgstr "Education"
+msgstr "Education (Ex: CVU, SBU)..."
 
 #: .\apps\linkedout\templates\search_professionals.html:28
 #, fuzzy
 #| msgid "Experiencia"
 msgid "Experiencia laboral..."
-msgstr "Experience"
+msgstr "Work experience"
 
 #: .\apps\linkedout\templates\search_professionals.html:35
 msgid "Filtrar Resultados"
@@ -533,7 +531,7 @@ msgstr "Filter Results"
 
 #: .\apps\linkedout\templates\search_professionals.html:52
 msgid "Sin resumen profesional disponible."
-msgstr ""
+msgstr "Professional resume unavailable"
 
 #: .\apps\linkedout\templates\search_professionals.html:56
 msgid "Educación"
@@ -551,15 +549,15 @@ msgstr "View Profile"
 
 #: .\apps\linkedout\templates\search_professionals.html:72
 msgid "No se encontraron professionals que coincidan con los filtros."
-msgstr ""
+msgstr "No professionals that match the filters"
 
 #: .\apps\linkedout\templates\search_professionals.html:73
 msgid "Prueba ajustando tus criterios de búsqueda."
-msgstr ""
+msgstr "Try adjusting your search criteria"
 
 #: .\apps\linkedout\views.py:24
 msgid "Usuario o contraseña incorrectos."
-msgstr ""
+msgstr "Wrong user or password"
 
 #: .\apps\linkedout\views.py:27
 msgid "Iniciar sesión"
@@ -573,23 +571,23 @@ msgstr "Search Professional"
 
 #: .\apps\linkedout\views.py:123
 msgid "Te postulaste correctamente."
-msgstr ""
+msgstr "You apply succesfully."
 
 #: .\apps\linkedout\views.py:125
 msgid "Ya estabas postulado."
-msgstr ""
+msgstr "Already applied"
 
 #: .\apps\linkedout\views.py:137
 msgid "Escribe un texto o adjunta una imagen."
-msgstr ""
+msgstr "write a text o add an image"
 
 #: .\apps\linkedout\views.py:143
 msgid "(Sin texto)"
-msgstr ""
+msgstr "(No text)"
 
 #: .\apps\linkedout\views.py:147
 msgid "Publicación creada correctamente."
-msgstr ""
+msgstr "Post created succesfully"
 
 #: .\apps\linkedout\views.py:151
 msgid "Hacer publicación"
@@ -597,15 +595,15 @@ msgstr "Create post"
 
 #: .\apps\linkedout\views.py:192
 msgid "Oferta laboral publicada correctamente."
-msgstr ""
+msgstr "Job offer posted succesfully"
 
 #: .\apps\linkedout\views.py:196
 msgid "Publicar oferta laboral"
-msgstr "Post Job"
+msgstr "Post Job offer"
 
 #: .\apps\linkedout\views.py:211
 msgid "Introduce al menos un criterio de búsqueda."
-msgstr ""
+msgstr "Introduce at least a search criteria"
 
 #: .\apps\linkedout\views.py:231
 #, fuzzy

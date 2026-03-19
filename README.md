@@ -58,7 +58,7 @@ Este diagrama define la experiencia del usuario (UX), mostrando el flujo entre p
 
 | Vista Desktop                                           | Vista Mobile                                              |
 | :------------------------------------------------------ | :-------------------------------------------------------- |
-| ![Mobile Placeholder](./docs/mobile.png)                | ![Desktop Placeholder](./docs/desktop.png)                |
+| ![Mobile Placeholder](./docs/mobile_figma.png)                | ![Desktop Placeholder](./docs/desktop_figma.png)                |
 | _Ver [Wireframes Mobile](./docs/Mobile_Wireframes.pdf)_ | _Ver [Wireframes Desktop](./docs/Desktop_Wireframes.pdf)_ |
 
 ---
@@ -117,7 +117,7 @@ El proyecto está contenerizado para garantizar que funcione correctamente en cu
     ```
 
 3.  **Acceder:**
-    Abre tu navegador en: [http://localhost:8000](http://localhost:8000)
+    Abre tu navegador en: [http://localhost:8000/login/](http://localhost:8000/login/)
 
 4.  **Detener la aplicación:**
     Ejecuta el siguiente comando en la terminal (donde está el archivo `docker-compose.yml`):
