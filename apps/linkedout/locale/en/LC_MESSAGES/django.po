@@ -475,10 +475,8 @@ msgid "Editar Perfil"
 msgstr "Edit Profile"
 
 #: .\apps\linkedout\templates\profile.html:76
-#, fuzzy
-#| msgid "Editar Perfil"
 msgid "Editar"
-msgstr "Edit Profile"
+msgstr "Edit"
 
 #: .\apps\linkedout\templates\profile.html:81
 #: .\apps\linkedout\templates\profile.html:82 .\apps\linkedout\views.py:68
