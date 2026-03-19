@@ -36,6 +36,7 @@
                 <button
                   type="submit"
                   class="font-medium text-sm ml-0.5 text-linkedout-orange hover:underline"
+                  aria-label="{% trans 'Postularse a esta oferta' %}"
                 >
                   {% trans "Postularse" %}
                 </button>
@@ -44,7 +45,7 @@
           {% endif %}
         </h3>
 
-        <button class="text-gray-500 hover:bg-gray-100 px-2 py-1 rounded">⋮</button>
+        <button class="text-gray-500 hover:bg-gray-100 px-2 py-1 rounded" aria-label="{% trans 'Más opciones' %}">⋮</button>
       </div>
 
       <p class="text-gray-500 text-sm">

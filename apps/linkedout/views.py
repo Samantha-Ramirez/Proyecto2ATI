@@ -2,6 +2,8 @@ from django.contrib.auth import authenticate, login as auth_login
 from django.contrib.auth import logout as auth_logout
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages as msg
+from django.contrib.auth.models import Group, User
+from django.db import IntegrityError, transaction
 from django.shortcuts import get_object_or_404, redirect, render
 from django.utils.translation import gettext_lazy as _
 from django.db.models import Q
@@ -12,16 +14,19 @@ from .models import JobApplication, JobOffer, Post, Profile
 # Controlador para inicio de sesión
 def login(request):
     if request.method == 'POST':
-        u = request.POST.get('username')
-        p = request.POST.get('password')
+        u = (request.POST.get('username') or '').strip()
+        p = (request.POST.get('password') or '').strip()
 
-        user = authenticate(request, username=u, password=p)
+        if not u or not p:
+            msg.warning(request, _("Por favor completa usuario/correo y contraseña."))
+        else:
+            user = authenticate(request, username=u, password=p)
 
-        if user is not None:
-            auth_login(request, user)
-            return redirect('feed')
+            if user is not None:
+                auth_login(request, user)
+                return redirect('feed')
 
-        msg.warning(request, _("Usuario o contraseña incorrectos."))
+            msg.warning(request, _("Usuario o contraseña incorrectos."))
 
     context = {
         'page_title': _('Iniciar sesión'),
@@ -112,11 +117,17 @@ def search_jobs(request):
 
 
 # Controlador para postularse a una oferta de trabajo
+@login_required
 def apply_job(request, job_id):
     job = get_object_or_404(JobOffer, pk=job_id)
 
     if request.method != "POST":
         return redirect('search_jobs')
+
+    # Evitar que una empresa se postule a su propia oferta
+    if job.author_id == request.user.id:
+        msg.warning(request, _("No puedes postularte a tu propia oferta."))
+        return redirect(request.META.get("HTTP_REFERER", "search_jobs"))
 
     application, created = JobApplication.objects.get_or_create(
         job_offer=job,
@@ -128,7 +139,7 @@ def apply_job(request, job_id):
     else:
         msg.info(request, _("Ya estabas postulado."))
 
-    return redirect('search_jobs')
+    return redirect(request.META.get("HTTP_REFERER", "search_jobs"))
 
 
 # Controlador para crear una publicación general
