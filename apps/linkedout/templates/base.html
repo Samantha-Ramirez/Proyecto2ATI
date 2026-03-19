@@ -22,7 +22,7 @@
             {% include 'components/topbar.html' with topbar_title=page_title back_button=show_back show_search=show_search_menu show_menu=show_menu desktop_search=desktop_search %}
         {% endblock %}
 
-        <main class="flex-1 p-4 lg:p-6">
+        <main class="flex-1 p-4 lg:p-6 pb-24 lg:pb-6">
 
             {% if messages %}
                 <div class="space-y-2 mb-4">
@@ -44,7 +44,9 @@
 
         {% block bottombar %}
             {% if show_bottom_nav %}
-                {% include 'components/bottombar.html' %}
+                <div class="fixed bottom-0 left-0 right-0 z-40 lg:hidden">
+                    {% include 'components/bottombar.html' %}
+                </div>
             {% endif %}
         {% endblock %}
     </div>
